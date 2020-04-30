@@ -1,6 +1,6 @@
 {
   "name": "@discordia/framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The main discordia framework",
   "keywords": [
     "discordia",
@@ -27,14 +27,15 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/debug": "^0.0.2",
-    "@discordia/help-default": "^0.0.2",
+    "@discordia/debug": "^0.0.3",
+    "@discordia/help-default": "^0.0.3",
     "chalk": "^4.0.0",
     "discord.js": "^12.2.0",
     "lodash": "^4.17.15"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.com"
+    "registry": "https://registry.npmjs.com",
+    "access": "public"
   },
-  "gitHead": "4012c9450d86029a8cc48cc53d83df82ced62453"
+  "gitHead": "0cf7bed2246dea76dbe3de83333c15aab2de9b38"
 }
