@@ -1,6 +1,6 @@
 {
   "name": "@discordia/help-default",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Default help action for the discordia framework",
   "keywords": [
     "discordia",
@@ -32,5 +32,5 @@
     "registry": "https://registry.npmjs.com",
     "access": "public"
   },
-  "gitHead": "0cf7bed2246dea76dbe3de83333c15aab2de9b38"
+  "gitHead": "b54ab541a7febad5874c3918e491ed2da0852648"
 }
