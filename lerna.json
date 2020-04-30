@@ -5,5 +5,9 @@
   "version": "0.0.5",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "ignoreChanges": [
+    "**/*.md",
+    "*.md"
+  ]
 }
