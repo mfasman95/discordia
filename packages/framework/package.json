@@ -1,0 +1,39 @@
+{
+  "name": "@discordia/framework",
+  "version": "0.0.0",
+  "description": "The main discordia framework",
+  "keywords": [
+    "discordia",
+    "framework",
+    "discord",
+    "bot",
+    "eris"
+  ],
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/framework#readme",
+  "bugs": {
+    "url": "https://github.com/mfasman95/discordia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfasman95/discordia.git"
+  },
+  "license": "MIT",
+  "author": "Matthew <mfasman95@gmail.com>",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "sortPackage": "sort-package-json"
+  },
+  "dependencies": {
+    "@discordia/debug": "file:../debug",
+    "@discordia/help-default": "file:../help-default",
+    "chalk": "^4.0.0",
+    "discord.js": "^12.2.0",
+    "lodash": "^4.17.15"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com"
+  }
+}

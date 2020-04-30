@@ -1,0 +1,36 @@
+{
+  "name": "@discordia/debug",
+  "version": "0.0.0",
+  "description": "Wrapper of the `debug` library for discordia",
+  "keywords": [
+    "discordia",
+    "discord",
+    "bot",
+    "debug"
+  ],
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/debug#readme",
+  "bugs": {
+    "url": "https://github.com/mfasman95/discordia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfasman95/discordia.git"
+  },
+  "license": "MIT",
+  "author": "Matthew <mfasman95@gmail.com>",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "sortPackage": "sort-package-json"
+  },
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.15"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com"
+  }
+}
