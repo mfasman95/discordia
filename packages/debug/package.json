@@ -1,6 +1,6 @@
 {
   "name": "@discordia/debug",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Wrapper of the `debug` library for discordia",
   "keywords": [
     "discordia",
@@ -34,5 +34,5 @@
     "registry": "https://registry.npmjs.com",
     "access": "public"
   },
-  "gitHead": "b54ab541a7febad5874c3918e491ed2da0852648"
+  "gitHead": "a7eab386a5d1b53fc528dc32c7bfca486971ba49"
 }
