@@ -1,15 +1,16 @@
 {
-  "name": "@discordia/framework",
+  "name": "@discordia/action",
   "version": "0.0.5",
-  "description": "The main discordia framework",
+  "description": "Class for creating discordia actions",
   "keywords": [
     "discordia",
-    "framework",
     "discord",
     "bot",
-    "eris"
+    "action",
+    "actions",
+    "discordia action"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/framework#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -27,11 +28,8 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/action": "^0.0.5",
     "@discordia/debug": "^0.0.5",
-    "@discordia/help-default": "^0.0.5",
     "chalk": "^4.0.0",
-    "discord.js": "^12.2.0",
     "lodash": "^4.17.15"
   },
   "publishConfig": {

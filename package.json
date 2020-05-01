@@ -52,12 +52,14 @@
       "comma-dangle": "off",
       "function-paren-newline": "off",
       "implicit-arrow-linebreak": "off",
+      "object-curly-newline": "off",
       "indent": "off",
       "max-len": "off",
       "prettier/prettier": "error"
     }
   },
   "dependencies": {
+    "@discordia/action": "file:packages/action",
     "@discordia/debug": "file:packages/debug",
     "@discordia/framework": "file:packages/framework",
     "@discordia/help-default": "file:packages/help-default"
