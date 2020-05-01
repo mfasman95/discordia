@@ -61,9 +61,6 @@ class DiscordiaFramework {
     // #endregion Validate Optional Config
 
     this.client = new Discord.Client();
-    this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
-    this.client.on('message', this.handleMessage);
-    this.client.login(token);
   }
 
   validateToken() {
@@ -227,6 +224,12 @@ class DiscordiaFramework {
     }
 
     return undefined;
+  }
+
+  start() {
+    this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
+    this.client.on('message', this.handleMessage);
+    this.client.login(this.token);
   }
 
   // eslint-disable-next-line class-methods-use-this
