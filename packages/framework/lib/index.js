@@ -3,7 +3,7 @@ const { red, cyan } = require('chalk');
 const Discord = require('discord.js');
 const discordiaDebug = require('@discordia/debug');
 const defaultHelp = require('@discordia/help-default');
-const DiscordiaAction = require('@disordia/action');
+const DiscordiaAction = require('@discordia/action');
 
 const enumHelp = {
   STRING: 'STRING',
