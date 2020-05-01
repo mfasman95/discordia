@@ -1,6 +1,6 @@
 {
   "name": "@discordia/framework",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "The main discordia framework",
   "keywords": [
     "discordia",
@@ -27,9 +27,9 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/action": "^0.0.5",
-    "@discordia/debug": "^0.0.5",
-    "@discordia/help-default": "^0.0.5",
+    "@discordia/action": "^0.0.6",
+    "@discordia/debug": "^0.0.6",
+    "@discordia/help-default": "^0.0.6",
     "chalk": "^4.0.0",
     "discord.js": "^12.2.0",
     "lodash": "^4.17.15"
