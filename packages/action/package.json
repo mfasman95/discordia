@@ -1,6 +1,6 @@
 {
   "name": "@discordia/action",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Class for creating discordia actions",
   "keywords": [
     "discordia",
@@ -28,7 +28,7 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/debug": "^0.0.7",
+    "@discordia/debug": "^0.0.8",
     "chalk": "^4.0.0",
     "lodash": "^4.17.15"
   },
