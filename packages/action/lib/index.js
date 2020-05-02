@@ -55,6 +55,7 @@ class DiscordiaAction {
       this.debug('ERROR: The provided action accessor was not a String, Array, or Function', this.accessor);
       throw new Error(red('Invalid action accessor type provided:', this.accessor));
     }
+    return this.accessorType;
   }
 
   /**
@@ -72,6 +73,7 @@ class DiscordiaAction {
       this.debug('ERROR: The provided action response was not a String or Function:', this.response);
       throw new Error(red('Invalid action response type provided:', this.response));
     }
+    return this.responseType;
   }
 
   /**
@@ -89,6 +91,7 @@ class DiscordiaAction {
       this.debug('ERROR: The provided action description was not a String:', this.description);
       throw new Error(red('Invalid action description type provided:', this.description));
     }
+    return this.description;
   }
 
   /**
@@ -151,7 +154,7 @@ class DiscordiaAction {
   }
 
   /**
-   * @function checkAccessor
+   * @function handleAction
    * @description Handle the userAction with this.response based on this.responseType
    * - enumResponseType.STRING: Reply to the user with this.response
    * - enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client
