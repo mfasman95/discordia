@@ -28,6 +28,12 @@ const optionsDefaults = {
 };
 
 class DiscordiaFramework {
+  /**
+   * @param {string} token Discord Bot Token
+   * @param {Array<DiscordiaAction>}actions An array of DiscordiaActions provided by the bot creator
+   *
+   * @memberof DiscordiaFramework
+   */
   constructor(
     token,
     actions,
@@ -66,28 +72,22 @@ class DiscordiaFramework {
   validateToken() {
     if (!isString(this.token)) {
       this.debug('Token', this.token);
-      // eslint-disable-next-line no-console
-      console.log(red(`ERROR: The provided token ${cyan(this.token)} was not a STRING - failing to start bot`));
-      process.exit(1);
+      throw new Error(red(`ERROR: The provided token ${cyan(this.token)} was not a STRING - failing to start bot`));
     }
   }
 
   validateActions() {
     if (!isArray(this.actions)) {
       this.debug('Actions', this.actions);
-      // eslint-disable-next-line no-console
-      console.log(red('ERROR: The provided actions was not an ARRAY - failing to start bot'));
-      process.exit(1);
+      throw new Error(red('ERROR: The provided actions was not an ARRAY - failing to start bot'));
     }
     this.actions.forEach((action) => {
       const isDiscordiaAction = action instanceof DiscordiaAction;
       if (!isDiscordiaAction) {
         this.debug('Action', action);
-        // eslint-disable-next-line no-console
-        console.log(
+        throw new Error(
           red('ERROR: One or more of the provided actions was not of type DiscordiaAction - failing to start bot')
         );
-        process.exit(1);
       }
     });
   }
@@ -95,9 +95,7 @@ class DiscordiaFramework {
   validateCaseSensitiveName() {
     if (this.caseSensitiveName !== defaultCaseSensitiveName && !isBoolean(this.caseSensitiveName)) {
       this.debug('config.caseSensitiveName', this.caseSensitiveName);
-      // eslint-disable-next-line no-console
-      console.log(red('ERROR: The provided config.caseSensitiveName was not an OBJECT - failing to start bot'));
-      process.exit(1);
+      throw new Error(red('ERROR: The provided config.caseSensitiveName was not an OBJECT - failing to start bot'));
     }
   }
 
@@ -110,20 +108,16 @@ class DiscordiaFramework {
       this.missingCommandMessageType = enumMissingCommandMessage.FUNCTION;
     } else {
       this.debug('config.missingCommandMessage', this.missingCommandMessage);
-      // eslint-disable-next-line no-console
-      console.log(
+      throw new Error(
         red('ERROR: The provided config.missingCommandMessage was not a STRING or FUNCTION - failing to start bot')
       );
-      process.exit(1);
     }
   }
 
   validateName() {
     if (this.name !== defaultName && !isString(this.name)) {
       this.debug('config.name', this.name);
-      // eslint-disable-next-line no-console
-      console.log(red('ERROR: The provided config.name was not a STRING - failing to start bot'));
-      process.exit(1);
+      throw new Error(red('ERROR: The provided config.name was not a STRING - failing to start bot'));
     }
   }
 
@@ -215,7 +209,7 @@ class DiscordiaFramework {
 
       let actionHandled = false;
       this.actions.forEach((action) => {
-        actionHandled = action.handleAction(msg, userArgs, this.client);
+        actionHandled = action.checkAccessor(userAction, msg, userArgs, this.client).bind(action);
       });
 
       if (!actionHandled) {
@@ -231,11 +225,8 @@ class DiscordiaFramework {
     this.client.on('message', this.handleMessage);
     this.client.login(this.token);
   }
-
-  // eslint-disable-next-line class-methods-use-this
-  debug(...args) {
-    return discordiaDebug('framework')(args);
-  }
 }
+
+DiscordiaFramework.prototype.debug = discordiaDebug('framework');
 
 module.exports = DiscordiaFramework;

@@ -1,15 +1,14 @@
 {
-  "name": "@discordia/framework",
+  "name": "@discordia/complete",
   "version": "0.0.8",
-  "description": "The main discordia framework",
+  "description": "A complete rollup of the packages in the Discordia monorepo",
   "keywords": [
     "discordia",
-    "framework",
     "discord",
     "bot",
-    "eris"
+    "complete"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/framework#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/complete#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -29,10 +28,8 @@
   "dependencies": {
     "@discordia/action": "file:../action",
     "@discordia/debug": "file:../debug",
-    "@discordia/help-default": "file:../help-default",
-    "chalk": "^4.0.0",
-    "discord.js": "^12.2.0",
-    "lodash": "^4.17.15"
+    "@discordia/framework": "file:../framework",
+    "@discordia/help-default": "file:../help-default"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.com",

@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@discordia/action": "file:packages/action",
+    "@discordia/complete": "file:packages/complete",
     "@discordia/debug": "file:packages/debug",
     "@discordia/framework": "file:packages/framework",
     "@discordia/help-default": "file:packages/help-default"

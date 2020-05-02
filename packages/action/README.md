@@ -1,11 +1,11 @@
-# `@discordia/debug`
+# `@discordia/action`
 
 > TODO: description
 
 ## Usage
 
 ```
-const debug = require('@discordia/debug');
+const DiscordiaAction = require('@discordia/action');
 
 // TODO: DEMONSTRATE API
 ```

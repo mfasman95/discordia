@@ -53,6 +53,11 @@ class DiscordiaAction {
     this.validateResponse();
     this.description = description;
     this.validateDescription();
+
+    this.debug('@@@@@@ New Action @@@@@@');
+    this.debug('Accessor:', accessor);
+    this.debug('Response:', response);
+    this.debug('Description:', description);
   }
 
   /**
@@ -68,11 +73,9 @@ class DiscordiaAction {
       this.accessor.forEach((accessorEntry) => {
         if (!isString(accessorEntry)) {
           this.debug('ERROR: One or more of the accessors in your accessor array is not a string', this.accessor);
-          // eslint-disable-next-line no-console
-          console.log(
+          throw new Error(
             red('Invalid action accessor of type array provided - all entries must be strings:', this.accessor)
           );
-          process.exit(1);
         }
       });
       this.accessorType = enumAccessorType.ARRAY;
@@ -80,35 +83,31 @@ class DiscordiaAction {
       this.accessorType = enumAccessorType.FUNCTION;
     } else {
       this.debug('ERROR: The provided action accessor was not a String, Array, or Function', this.accessor);
-      // eslint-disable-next-line no-console
-      console.log(red('Invalid action accessor type provided:', this.accessor));
-      process.exit(1);
+      throw new Error(red('Invalid action accessor type provided:', this.accessor));
     }
   }
 
   /**
    * @function validateResponse
    * @description Confirm that the accessor is one of the valid types - String or Function.
-   * Set the corresponding enum on this.reponseType from enumResponseType.
+   * Set the corresponding enum on this.responseType from enumResponseType.
    * @memberof DiscordiaAction
    */
   validateResponse() {
     if (isString(this.response)) {
-      this.reponseType = enumResponseType.STRING;
+      this.responseType = enumResponseType.STRING;
     } else if (isFunction(this.response)) {
-      this.reponseType = enumResponseType.FUNCTION;
+      this.responseType = enumResponseType.FUNCTION;
     } else {
       this.debug('ERROR: The provided action response was not a String or Function:', this.response);
-      // eslint-disable-next-line no-console
-      console.log(red('Invalid action response type provided:', this.response));
-      process.exit(1);
+      throw new Error(red('Invalid action response type provided:', this.response));
     }
   }
 
   /**
    * @function validateDescription
    * @description Confirm that the description is one of the valid types - String or Null.
-   * Set the corresponding enum on this.reponseType from enumDescriptionType.
+   * Set the corresponding enum on this.descriptionType from enumDescriptionType.
    * @memberof DiscordiaAction
    */
   validateDescription() {
@@ -118,9 +117,7 @@ class DiscordiaAction {
       this.descriptionType = enumDescriptionType.NULL;
     } else {
       this.debug('ERROR: The provided action description was not a String:', this.description);
-      // eslint-disable-next-line no-console
-      console.log(red('Invalid action description type provided:', this.description));
-      process.exit(1);
+      throw new Error(red('Invalid action description type provided:', this.description));
     }
   }
 
@@ -174,16 +171,13 @@ class DiscordiaAction {
       }
       // This case should not be reached - accessor type is validated in the constructor
       default: {
-        // eslint-disable-next-line no-console
-        console.log(
+        throw new Error(
           red(
             'Something has gone terribly wrong with checkAccessor - you should not be manually setting this.accessorType if you are doing so.'
           )
         );
-        process.exit(1);
       }
     }
-    return false;
   }
 
   /**
@@ -201,7 +195,7 @@ class DiscordiaAction {
    * @memberof DiscordiaAction
    */
   handleAction(msg, userArgs, client) {
-    switch (this.response) {
+    switch (this.responseType) {
       // If the response is a string
       case enumResponseType.STRING: {
         // Send the response as a reply to the user who triggered the action
@@ -220,29 +214,17 @@ class DiscordiaAction {
         break;
       }
       default: {
-        // eslint-disable-next-line no-console
-        console.log(
+        throw new Error(
           red(
             'Something has gone terribly wrong with handleAction - you should not be manually setting this.responseType if you are doing so.'
           )
         );
-        process.exit(1);
       }
     }
   }
-
-  /**
-   * @function debug
-   * @description Send a namespaced message using the discordia implementation of the
-   * debug library
-   * @param {...any} args Any args to be sent to the debug instance
-   * @memberof DiscordiaAction
-   */
-  // eslint-disable-next-line class-methods-use-this
-  debug(...args) {
-    return discordiaDebug('action')(args);
-  }
 }
+
+DiscordiaAction.prototype.debug = discordiaDebug('action');
 
 module.exports = DiscordiaAction;
 module.exports.enumAccessorType = enumAccessorType;
