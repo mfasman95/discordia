@@ -1,4 +1,5 @@
 const { isString, isArray, isFunction } = require('lodash');
+const { ENUM_HELP_TYPE } = require('./constants');
 
 module.exports = (botName, actions, userArgs, msg) => {
   const messageStarter = `All commands are written in the form \`${botName} {command}\`:`;
@@ -26,3 +27,5 @@ ${description}`;
 
   msg.reply(helpMessage);
 };
+
+module.exports.ENUM_HELP_TYPE = ENUM_HELP_TYPE;

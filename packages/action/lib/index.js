@@ -1,37 +1,7 @@
 const discordiaDebug = require('@discordia/debug');
 const { isString, isArray, isFunction, isNull } = require('lodash');
 const { red } = require('chalk');
-
-/**
- * @readonly
- * @enum enumAccessorType
- * @description Enum for DiscordiaAction accessor types: STRING, ARRAY, or FUNCTION
- */
-const enumAccessorType = {
-  STRING: 'STRING',
-  ARRAY: 'ARRAY',
-  FUNCTION: 'FUNCTION',
-};
-
-/**
- * @readonly
- * @enum enumResponseType
- * @description Enum for DiscordiaAction response types: STRING or FUNCTION
- */
-const enumResponseType = {
-  STRING: 'STRING',
-  FUNCTION: 'FUNCTION',
-};
-
-/**
- * @readonly
- * @enum enumDescriptionType
- * @description Enum for DiscordiaAction description types: STRING or NULL
- */
-const enumDescriptionType = {
-  STRING: 'STRING',
-  NULL: 'NULL',
-};
+const { ENUM_ACCESSOR_TYPE, ENUM_RESPONSE_TYPE, ENUM_DESCRIPTION_TYPE } = require('./constants');
 
 /**
  * @class DiscordiaAction
@@ -68,7 +38,7 @@ class DiscordiaAction {
    */
   validateAccessor() {
     if (isString(this.accessor)) {
-      this.accessorType = enumAccessorType.STRING;
+      this.accessorType = ENUM_ACCESSOR_TYPE.STRING;
     } else if (isArray(this.accessor)) {
       this.accessor.forEach((accessorEntry) => {
         if (!isString(accessorEntry)) {
@@ -78,9 +48,9 @@ class DiscordiaAction {
           );
         }
       });
-      this.accessorType = enumAccessorType.ARRAY;
+      this.accessorType = ENUM_ACCESSOR_TYPE.ARRAY;
     } else if (isFunction(this.accessor)) {
-      this.accessorType = enumAccessorType.FUNCTION;
+      this.accessorType = ENUM_ACCESSOR_TYPE.FUNCTION;
     } else {
       this.debug('ERROR: The provided action accessor was not a String, Array, or Function', this.accessor);
       throw new Error(red('Invalid action accessor type provided:', this.accessor));
@@ -95,9 +65,9 @@ class DiscordiaAction {
    */
   validateResponse() {
     if (isString(this.response)) {
-      this.responseType = enumResponseType.STRING;
+      this.responseType = ENUM_RESPONSE_TYPE.STRING;
     } else if (isFunction(this.response)) {
-      this.responseType = enumResponseType.FUNCTION;
+      this.responseType = ENUM_RESPONSE_TYPE.FUNCTION;
     } else {
       this.debug('ERROR: The provided action response was not a String or Function:', this.response);
       throw new Error(red('Invalid action response type provided:', this.response));
@@ -112,9 +82,9 @@ class DiscordiaAction {
    */
   validateDescription() {
     if (isString(this.description)) {
-      this.descriptionType = enumDescriptionType.STRING;
+      this.descriptionType = ENUM_DESCRIPTION_TYPE.STRING;
     } else if (isNull(this.description)) {
-      this.descriptionType = enumDescriptionType.NULL;
+      this.descriptionType = ENUM_DESCRIPTION_TYPE.NULL;
     } else {
       this.debug('ERROR: The provided action description was not a String:', this.description);
       throw new Error(red('Invalid action description type provided:', this.description));
@@ -140,30 +110,30 @@ class DiscordiaAction {
   checkAccessor(userAction, msg, userArgs, client) {
     switch (this.accessorType) {
       // If the accessor is a string
-      case enumAccessorType.STRING: {
+      case ENUM_ACCESSOR_TYPE.STRING: {
         // If the accessor matches the given command
         if (userAction === this.accessor) {
-          this.debug(`Handling ${userAction} as a ${enumAccessorType.STRING}`);
+          this.debug(`Handling "${userAction}" as a ${ENUM_ACCESSOR_TYPE.STRING}`);
           this.handleAction(msg, userArgs, client);
           return true;
         }
         return false;
       }
       // If the accessor is an array of strings
-      case enumAccessorType.ARRAY: {
+      case ENUM_ACCESSOR_TYPE.ARRAY: {
         // If the array includes the given command
         if (this.accessor.includes(userAction)) {
-          this.debug(`Handling ${userAction} as a ${enumAccessorType.ARRAY}`);
+          this.debug(`Handling "${userAction}" as an ${ENUM_ACCESSOR_TYPE.ARRAY}`);
           this.handleAction(msg, userArgs, client);
           return true;
         }
         return false;
       }
       // If the accessor is a function
-      case enumAccessorType.FUNCTION: {
+      case ENUM_ACCESSOR_TYPE.FUNCTION: {
         // If the accessor returns a truthy value when resolved
         if (this.accessor(userAction, msg, userArgs)) {
-          this.debug(`Handling ${userAction} as a ${enumAccessorType.FUNCTION}`);
+          this.debug(`Handling "${userAction}" as a ${ENUM_ACCESSOR_TYPE.FUNCTION}`);
           this.handleAction(msg, userArgs, client);
           return true;
         }
@@ -197,13 +167,13 @@ class DiscordiaAction {
   handleAction(msg, userArgs, client) {
     switch (this.responseType) {
       // If the response is a string
-      case enumResponseType.STRING: {
+      case ENUM_RESPONSE_TYPE.STRING: {
         // Send the response as a reply to the user who triggered the action
         msg.reply(this.response);
         break;
       }
       // If the response is a function
-      case enumResponseType.FUNCTION: {
+      case ENUM_RESPONSE_TYPE.FUNCTION: {
         // Execute it and store the result
         const result = this.response(userArgs, msg, client);
         // If the result of the response function is a string
@@ -227,6 +197,6 @@ class DiscordiaAction {
 DiscordiaAction.prototype.debug = discordiaDebug('action');
 
 module.exports = DiscordiaAction;
-module.exports.enumAccessorType = enumAccessorType;
-module.exports.enumResponseType = enumResponseType;
-module.exports.enumDescriptionType = enumDescriptionType;
+module.exports.ENUM_ACCESSOR_TYPE = ENUM_ACCESSOR_TYPE;
+module.exports.ENUM_RESPONSE_TYPE = ENUM_RESPONSE_TYPE;
+module.exports.ENUM_DESCRIPTION_TYPE = ENUM_DESCRIPTION_TYPE;
