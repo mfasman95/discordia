@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const types = [
   {
     value: 'feat',
@@ -41,9 +39,11 @@ const types = [
   },
 ];
 
-const scopes = ['action', 'complete', 'debug', 'framework', 'help-default', 'multiple-packages'].map((name) => ({
-  name,
-}));
+const scopes = ['action', 'complete', 'debug', 'framework', 'help-default', 'multiple-packages', 'build-tooling'].map(
+  (name) => ({
+    name,
+  })
+);
 
 module.exports = {
   types,
