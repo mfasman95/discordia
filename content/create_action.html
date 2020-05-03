@@ -1,5 +1,58 @@
 
 <html><head></head><body><h1 id="create-an-action">Create An Action</h1>
 <hr />
-<p>🚧 Coming Soon! 🚧</p>
+<p>Discordia actions are created using the <a href="https://github.com/mfasman95/discordia/tree/master/packages/action">@discordia/action</a> module.</p>
+<pre><code class="bash"># install the module using npm
+npm install @discordia/action
+
+# install the module using yarn
+yarn add @discordia/action</code></pre>
+<p>Discordia actions are designed to be used with a Discordia framework instance. See the <a href="#testing">section on testing</a> below for details on how to validate your actions.</p>
+<h2 id="basic-example">Basic Example</h2>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
+<h2 id="usage">Usage</h2>
+<hr />
+<p>Every Discordia action is made of three pieces: an accessor, a response, and an optional description.</p>
+<h3 id="accessor">Accessor</h3>
+<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <a href="/api#DiscordiaAction.checkAccessor">checkAccessor</a> method which in turn determines whether or not to call the action's <a href="/api#DiscordiaAction.handleAction">handleAction</a> method based on the type of the accessor. The <a href="/api#DiscordiaAction.checkAccessor">checkAccessor</a> method is given four parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>userAction</code></td>
+<td>The first <code>string</code> after the name of the bot that triggered the framework</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that contains <code>userAction</code> and <code>userArgs</code> in its <code>content</code></td>
+</tr>
+<tr>
+<td><code>userArgs</code></td>
+<td>Everything in side the <code>msg.content</code> field after <code>userAction</code> as an array</td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Client">Client object</a> used by the Discordia framework - USE WITH CAUTION</td>
+</tr>
+</tbody></table>
+<h4 id="string"><code>String</code></h4>
+<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<h4 id="array"><code>Array</code></h4>
+<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<h4 id="function"><code>Function</code></h4>
+<p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>client</code> then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<h3 id="response">Response</h3>
+<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="/api#DiscordiaAction.handleAction">handleAction</a> is called</p>
+<h3 id="description">Description</h3>
+<h2 id="examples">Examples</h2>
+<hr />
+<h2 id="testing">Testing</h2>
+<hr />
 </body></html>
