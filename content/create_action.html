@@ -65,10 +65,10 @@ BotName: @User, pong</code></pre><h2 id="usage">Usage</h2>
 <td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Client">Client object</a> used by the Discordia framework - USE WITH CAUTION</td>
 </tr>
 </tbody></table>
-<p><strong>String</strong>
-If the accessor is a string and matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
-<p><strong>Array</strong>
-If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p><strong>String</strong></p>
+<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p><strong>Array</strong></p>
+<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <p><strong>Function</strong></p>
 <p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>client</code> then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <h3 id="response">Response</h3>
@@ -93,10 +93,10 @@ If the accessor is an array and any of its entries matches <code>userAction</cod
 <td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Client">Client object</a> used by the Discordia framework - USE WITH CAUTION</td>
 </tr>
 </tbody></table>
-<p><strong>String</strong>
-If the response is a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with response as the <code>content</code> parameter.</p>
-<p><strong>Function</strong>
-If the response is a function then that function will be called with <code>msg</code>, <code>userArgs</code>, and <code>client</code> as parameters. If the function returns a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with the result of that function as the <code>content</code> parameter.</p>
+<p><strong>String</strong></p>
+<p>If the response is a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with response as the <code>content</code> parameter.</p>
+<p><strong>Function</strong></p>
+<p>If the response is a function then that function will be called with <code>msg</code>, <code>userArgs</code>, and <code>client</code> as parameters. If the function returns a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with the result of that function as the <code>content</code> parameter.</p>
 <h3 id="description">Description</h3>
 <p>Description is an optional parameter that must be a string used to enable a <code>help</code> (or <code>h</code>) action on the Discordia framework. By default the discordia framework will attempt to supply usage information to server members who ask the bot created by the Discordia framework for help.</p>
 <pre><code class="js">// Default Behavior
