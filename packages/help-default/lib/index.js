@@ -26,6 +26,8 @@ ${description}`;
   }, messageStarter);
 
   msg.reply(helpMessage);
+
+  return helpMessage;
 };
 
 module.exports.ENUM_HELP_TYPE = ENUM_HELP_TYPE;

@@ -23,6 +23,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
+    "publish": "lerna publish from-git -y --no-verify-access",
     "sortPackage": "sort-package-json",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -52,11 +53,14 @@
       "comma-dangle": "off",
       "function-paren-newline": "off",
       "implicit-arrow-linebreak": "off",
-      "object-curly-newline": "off",
       "indent": "off",
       "max-len": "off",
+      "object-curly-newline": "off",
       "prettier/prettier": "error"
     }
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "dependencies": {
     "@discordia/action": "file:packages/action",
@@ -77,5 +81,9 @@
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "sort-package-json": "^1.42.1"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.10"
   }
 }
