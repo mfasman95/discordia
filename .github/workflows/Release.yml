@@ -22,6 +22,9 @@ jobs:
         scope: '@discordia'
     - run: npm ci
     - run: npm test
+    - run: npm login
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - run: npm run publish-ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
