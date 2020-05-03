@@ -58,6 +58,9 @@
       "prettier/prettier": "error"
     }
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "@discordia/action": "file:packages/action",
     "@discordia/complete": "file:packages/complete",

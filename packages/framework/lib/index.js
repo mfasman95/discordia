@@ -1,8 +1,9 @@
 const { isString, isArray, isFunction, isBoolean } = require('lodash');
 const { red, cyan } = require('chalk');
-const Discord = require('discord.js');
+const discord = require('discord.js');
 const discordiaDebug = require('@discordia/debug');
 const DiscordiaAction = require('@discordia/action');
+const { parseMessageContent } = require('./utils');
 const {
   DEFAULT_NAME,
   DEFAULT_CASE_SENSITIVE_NAME,
@@ -57,20 +58,20 @@ class DiscordiaFramework {
     // #endregion Validate Required Parameters
 
     // #region Validate Optional Config
+    this.name = name;
+    this.validateName();
+
     this.caseSensitiveName = caseSensitiveName;
     this.validateCaseSensitiveName();
 
     this.missingCommandMessage = missingCommandMessage;
     this.validateMissingCommandMessage();
 
-    this.name = name;
-    this.validateName();
-
     this.help = help;
     this.validateHelp();
     // #endregion Validate Optional Config
 
-    this.client = new Discord.Client();
+    this.client = new discord.Client();
   }
 
   /**
@@ -143,16 +144,13 @@ class DiscordiaFramework {
    */
   validateMissingCommandMessage() {
     if (this.missingCommandMessage === DEFAULT_MISSING_COMMAND_MESSAGE) {
-      this.missingCommandMessage = ENUM_MISSING_COMMAND_MESSAGE_TYPE.STRING;
+      this.missingCommandMessageType = ENUM_MISSING_COMMAND_MESSAGE_TYPE.STRING;
     } else if (isString(this.missingCommandMessage)) {
       this.missingCommandMessageType = ENUM_MISSING_COMMAND_MESSAGE_TYPE.STRING;
     } else if (isFunction(this.missingCommandMessage)) {
       this.missingCommandMessageType = ENUM_MISSING_COMMAND_MESSAGE_TYPE.FUNCTION;
     } else {
-      this.debug('config.missingCommandMessage', this.missingCommandMessage);
-      throw new Error(
-        red('ERROR: The provided config.missingCommandMessage was not a STRING or FUNCTION - failing to start bot')
-      );
+      this.debug('WARNING: The provided config.missingCommandMessage was not a STRING or FUNCTION', this.help);
     }
   }
 
@@ -301,12 +299,9 @@ class DiscordiaFramework {
    * @private
    */
   handleMessage(msg) {
-    const [botName, unsanitizedUserAction] = msg.content.split(' ');
+    const [botName, userAction, userArgs] = parseMessageContent(msg);
 
     if (this.shouldHandleMessage(botName)) {
-      const userAction = unsanitizedUserAction || '';
-      const userArgs = msg.content.slice(msg.content.indexOf(userAction) + userAction.length + 1).split(' ');
-
       this.debug(botName, userAction, userArgs);
 
       let actionHandled = this.handleHelp(userAction, userArgs, msg);
@@ -321,7 +316,11 @@ class DiscordiaFramework {
       if (!actionHandled) {
         this.handleMissingCommand(userAction, userArgs, msg);
       }
+
+      return actionHandled;
     }
+
+    return false;
   }
 
   /**
@@ -333,7 +332,7 @@ class DiscordiaFramework {
    */
   start() {
     this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
-    this.client.on('message', this.handleMessage.bind(this));
+    this.client.on('message', (msg) => this.handleMessage(msg));
     this.client.login(this.token);
   }
 }
