@@ -1,2 +1,2 @@
 # @discordia
-> Monorepo for the Discordia Discord bot framework
+> Monorepo for the @discordia Discord bot framework
