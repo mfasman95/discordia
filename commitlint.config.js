@@ -13,6 +13,6 @@ module.exports = {
   rules: {
     // Apply valid scopes and types
     'scope-enum': [scopeValidationLevel, 'always', validScopes],
-    'type-enum': [2, 'always', validTypes]
-  }
+    'type-enum': [2, 'always', validTypes],
+  },
 };
