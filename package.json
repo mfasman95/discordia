@@ -34,8 +34,12 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint -- --fix"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "*.js": "eslint --fix"
   },
   "prettier": {
     "printWidth": 120,
@@ -48,10 +52,12 @@
     },
     "plugins": [
       "jest",
-      "prettier"
+      "prettier",
+      "jsdoc"
     ],
     "extends": [
-      "airbnb-base"
+      "airbnb-base",
+      "plugin:jsdoc/recommended"
     ],
     "rules": {
       "comma-dangle": "off",
@@ -83,10 +89,12 @@
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jsdoc": "^24.0.1",
     "eslint-plugin-prettier": "^3.1.3",
     "husky": "^4.2.5",
     "jest": "^25.4.0",
     "lerna": "^3.20.2",
+    "lint-staged": "^10.2.2",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
     "sort-package-json": "^1.42.1"

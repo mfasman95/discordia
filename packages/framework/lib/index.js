@@ -21,22 +21,21 @@ const {
  */
 class DiscordiaFramework {
   /**
+   * @class
    * @param {string} token Discord Bot Token
    * @param {Array<DiscordiaAction>} actions An array of DiscordiaActions provided by the bot creator
-   * @param {Object} [options=DEFAULT_OPTIONS]
-   * @param {?String} [options.name=undefined] A string to that can be used to get the bot to respond. Setting
+   * @param {object} [options=DEFAULT_OPTIONS] The options object
+   * @param {?string} [options.name=undefined] A string to that can be used to get the bot to respond. Setting
    * this value means the bot will response to this name instead of when (AT)'d.
-   * @param {?Boolean} [options.caseSensitiveName=false] A boolean to set whether or not the bot name is case
+   * @param {?boolean} [options.caseSensitiveName=false] A boolean to set whether or not the bot name is case
    * sensitive. Requires options.Name to be a String.
-   * @param {?String|Function} [options.missingCommandMessage=DEFAULT_MISSING_COMMAND_MESSAGE] The message to
+   * @param {?string|Function} [options.missingCommandMessage=DEFAULT_MISSING_COMMAND_MESSAGE] The message to
    * send when a user tries to use a command that does not exist. String by default, but can be set to a new
    * Fixed string or a custom Function that receives (userAction, userArgs, msg, client).
-   * @param {?String|Function} [options.help=DEFAULT_HELP] The message to send to a user that tries to list the
+   * @param {?string|Function} [options.help=DEFAULT_HELP] The message to send to a user that tries to list the
    * available commands using 'help' or 'h'. By default this will use the descriptions of each of the provided
    * actions, but can be configured to use a fixed String or a custom Function that receives (nameToSend,
    * actions, userArgs, msg).
-   *
-   * @returns DiscordiaFramework
    * @memberof DiscordiaFramework
    */
   constructor(
@@ -176,9 +175,10 @@ class DiscordiaFramework {
   /**
    * @function shouldHandleMessage
    * @description Determine if the incoming message was directed at this bot based on the
-   * name of the bot and whether or not the name should be case sensitive
-   * @param {String} botName
-   * @returns Boolean
+   * portion of the user message that would be the name of the bot and whether or not the
+   * name should be case sensitive
+   * @param {string} botName The portion of the user message that would be the botName
+   * @returns {boolean} whether or not this bot was being addressed
    * @memberof DiscordiaFramework
    * @private
    */
@@ -208,12 +208,12 @@ class DiscordiaFramework {
    * <a href="https://discord.js.org/#/docs/main/stable/class/Message">Discord.js Message object</a>
    * as parameters.
    *
-   * @param {String} userAction The action taken by the user. This method only operates on 'h'
+   * @param {string} userAction The action taken by the user. This method only operates on 'h'
    * or 'help'
-   * @param {Array<String>} userArgs Everything in the message after the userAction as an Array
-   * @param msg The message object from discord.js
+   * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
+   * @param {any} msg The message object from discord.js
    * - https://discord.js.org/#/docs/main/stable/class/Message
-   * @returns {Boolean} True if userAction was 'h' or 'help', False otherwise
+   * @returns {boolean} True if userAction was 'h' or 'help', False otherwise
    * @memberof DiscordiaFramework
    * @private
    */
@@ -251,10 +251,10 @@ class DiscordiaFramework {
    * and the <a href="https://discord.js.org/#/docs/main/stable/class/Client">Discord.js Client object</a>,
    * as parameters.
    *
-   * @param {String} userAction The action taken by the user. This method only operates on 'h'
+   * @param {string} userAction The action taken by the user. This method only operates on 'h'
    * or 'help'
-   * @param {Array<String>} userArgs Everything in the message after the userAction as an Array
-   * @param msg The message object from discord.js
+   * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
+   * @param {any} msg The message object from discord.js
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @memberof DiscordiaFramework
    * @private
@@ -293,8 +293,9 @@ class DiscordiaFramework {
    * this bot, if it was a help request, if it can be handled by an action, or if it should be handled
    * as a missing action.
    *
-   * @param msg The message object from discord.js
+   * @param {any} msg The message object from discord.js
    * - https://discord.js.org/#/docs/main/stable/class/Message
+   * @returns {boolean} Returns whether or not the action was handled
    * @memberof DiscordiaFramework
    * @private
    */
