@@ -330,10 +330,10 @@ class DiscordiaFramework {
    *
    * @memberof DiscordiaFramework
    */
-  start() {
+  async start() {
     this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
     this.client.on('message', (msg) => this.handleMessage(msg));
-    this.client.login(this.token);
+    await this.client.login(this.token);
   }
 }
 
