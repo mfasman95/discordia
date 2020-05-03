@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.18](https://github.com/mfasman95/discordia/compare/v0.0.17...v0.0.18) (2020-05-03)
+
+**Note:** Version bump only for package @discordia/complete
+
+
+
+
+
 ## [0.0.17](https://github.com/mfasman95/discordia/compare/v0.0.16...v0.0.17) (2020-05-03)
 
 **Note:** Version bump only for package @discordia/complete
