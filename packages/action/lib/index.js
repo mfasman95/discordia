@@ -36,6 +36,7 @@ class DiscordiaAction {
    * @description Confirm that the accessor is one of the valid types - String, String[], or Function.
    * Set the corresponding enum on this.accessorType from enumAccessorType.
    * @returns {string} Returns this.accessorType
+   * @private
    * @memberof DiscordiaAction
    */
   validateAccessor() {
@@ -65,6 +66,7 @@ class DiscordiaAction {
    * @description Confirm that the accessor is one of the valid types - String or Function.
    * Set the corresponding enum on this.responseType from enumResponseType.
    * @returns {string} Returns this.responseType
+   * @private
    * @memberof DiscordiaAction
    */
   validateResponse() {
@@ -84,6 +86,7 @@ class DiscordiaAction {
    * @description Confirm that the description is one of the valid types - String or Null.
    * Set the corresponding enum on this.descriptionType from enumDescriptionType.
    * @returns {string} Returns this.descriptionType
+   * @private
    * @memberof DiscordiaAction
    */
   validateDescription() {
