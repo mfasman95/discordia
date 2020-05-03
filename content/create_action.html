@@ -17,7 +17,7 @@ const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
 <hr />
 <p>Every Discordia action is made of three pieces: an accessor, a response, and an optional description.</p>
 <h3 id="accessor">Accessor</h3>
-<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <a href="/api#DiscordiaAction.checkAccessor">checkAccessor</a> method which in turn determines whether or not to call the action's <a href="/api#DiscordiaAction.handleAction">handleAction</a> method based on the type of the accessor. The <a href="/api#DiscordiaAction.checkAccessor">checkAccessor</a> method is given four parameters:</p>
+<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method which in turn determines whether or not to call the action's <a href="api#DiscordiaAction.handleAction">handleAction</a> method based on the type of the accessor. The <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method is given four parameters:</p>
 <table>
 <thead>
 <tr>
@@ -43,13 +43,13 @@ const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
 </tr>
 </tbody></table>
 <h4 id="string"><code>String</code></h4>
-<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <h4 id="array"><code>Array</code></h4>
-<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <h4 id="function"><code>Function</code></h4>
-<p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>client</code> then <a href="/api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>client</code> then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <h3 id="response">Response</h3>
-<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="/api#DiscordiaAction.handleAction">handleAction</a> is called</p>
+<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="api#DiscordiaAction.handleAction">handleAction</a> is called</p>
 <h3 id="description">Description</h3>
 <h2 id="examples">Examples</h2>
 <hr />
