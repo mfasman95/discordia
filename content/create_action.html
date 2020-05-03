@@ -9,7 +9,7 @@
 </ul>
 </li>
 <li><a href="#examples">Examples</a><ul>
-<li><a href="#string-accessor--string-response">String Accessor &amp; String Response</a></li>
+<li><a href="#string-accessor-and-string-response">String Accessor and String Response</a></li>
 <li><a href="#array-accessor">Array Accessor</a></li>
 <li><a href="#function-accessor">Function Accessor</a></li>
 <li><a href="#function-response">Function Response</a></li>
@@ -33,7 +33,10 @@ yarn add @discordia/action</code></pre>
 <pre><code class="js">const DiscordiaAction = require('@discordia/action');
 
 const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
-<h2 id="usage">Usage</h2>
+<pre><code># Conversation Example(s)
+
+User: @BotName ping
+BotName: @User, pong</code></pre><h2 id="usage">Usage</h2>
 <hr />
 <p>Every Discordia action is made of three pieces: an accessor, a response, and an optional description.</p>
 <h3 id="accessor">Accessor</h3>
@@ -106,18 +109,18 @@ ${description}`</code></pre>
 <p>The behavior of the help command can be overriden - see the <a href="api#DiscordiaFramework">Discordia Framework constructor</a>.</p>
 <h2 id="examples">Examples</h2>
 <hr />
-<h3 id="string-accessor---string-response">String Accessor &amp; String Response</h3>
+<h3 id="string-accessor-and-string-response">String Accessor and String Response</h3>
 <pre><code class="js">const DiscordiaAction = require('@discordia/action');
 
 const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
-<pre><code># Conversation Example(s) #
+<pre><code># Conversation Example(s)
 
 User: @BotName ping
 BotName: @User, pong</code></pre><h3 id="array-accessor">Array Accessor</h3>
 <pre><code class="js">const DiscordiaAction = require('@discordia/action');
 
 const pingAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt');</code></pre>
-<pre><code># Conversation Example(s) #
+<pre><code># Conversation Example(s)
 
 User: @BotName oof
 BotName: @User, rekt
@@ -136,7 +139,7 @@ const accessor = (userAction, msg, client) =&gt; {
   return false;
 };
 const pingAction = new DiscordiaAction(accessor, 'delicious');</code></pre>
-<pre><code># Conversation Example(s) #
+<pre><code># Conversation Example(s)
 
 User: @BotName Do you like potatoes?
 BotName: @User, delicious</code></pre><h3 id="function-response">Function Response</h3>
@@ -146,7 +149,7 @@ const response = (msg, userArgs, client) =&gt; {
   return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
 };
 const pingAction = new DiscordiaAction('joke', response);</code></pre>
-<pre><code># Conversation Example(s) #
+<pre><code># Conversation Example(s)
 
 User: @BotName joke
 BotName: @User, here is a joke for User: {something funny}</code></pre><h2 id="testing">Testing</h2>
