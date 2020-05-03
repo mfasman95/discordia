@@ -23,7 +23,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint .",
-    "publish": "lerna publish from-package -y --no-verify-access",
+    "publish-ci": "lerna publish from-package -y --no-verify-access",
     "sortPackage": "sort-package-json",
     "test": "jest",
     "test:watch": "jest --watch"
