@@ -26,7 +26,10 @@
     "publish-ci": "lerna publish from-package -y --no-verify-access",
     "sortPackage": "sort-package-json",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "commit": "git-cz",
+    "commit:retry": "git-cz --retry",
+    "commitmsg": "commitlint -e"
   },
   "husky": {
     "hooks": {
@@ -40,6 +43,7 @@
   },
   "eslintConfig": {
     "env": {
+      "node": true,
       "jest/globals": true
     },
     "plugins": [
@@ -70,6 +74,10 @@
     "@discordia/help-default": "file:packages/help-default"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/prompt": "^8.3.5",
+    "commitizen": "^4.0.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -85,5 +93,10 @@
   "engines": {
     "node": ">=12",
     "npm": ">=6.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/@commitlint/prompt"
+    }
   }
 }
