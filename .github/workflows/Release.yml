@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: 12.x
         registry-url: 'https://registry.npmjs.org'
+        scope: '@discordia'
     - run: npm ci
     - run: npm test
     - run: npm run publish-ci
