@@ -41,7 +41,9 @@ const types = [
   },
 ];
 
-const scopes = ['example-1', 'example-2'].map((name) => ({ name }));
+const scopes = ['action', 'complete', 'debug', 'framework', 'help-default', 'multiple-packages'].map((name) => ({
+  name,
+}));
 
 module.exports = {
   types,
