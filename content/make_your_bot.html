@@ -1,0 +1,84 @@
+
+<html><head></head><body><ul>
+<li><a href="#make-your-bot">Make Your Bot</a><ul>
+<li><a href="#basic-example">Basic Example</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#token">Token</a></li>
+<li><a href="#actions">Actions</a></li>
+<li><a href="#options">Options</a></li>
+</ul>
+</li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="make-your-bot">Make Your Bot</h1>
+<hr />
+<p>Discordia instantiates and starts Discord bots using the <a href="https://github.com/mfasman95/discordia/tree/master/packages/framework">@discordia/framework</a> module.</p>
+<pre><code class="bash"># install the module using npm
+npm install @discordia/framework
+
+# install the module using yarn
+yarn add @discordia/framework</code></pre>
+<h2 id="basic-example">Basic Example</h2>
+<hr />
+<pre><code class="js">const DiscordiaFramework = require('@discordia/framework');
+// actions is an array of DiscordiaAction objects
+const actions = require('./actions');
+
+const myBot = new DiscordiaFramework('token', actions);</code></pre>
+<h2 id="usage">Usage</h2>
+<hr />
+<p>Every Discordia framework is made of three pieces: a token, an array of actions, and a set of optional options.</p>
+<h3 id="token">Token</h3>
+<blockquote>
+<p>String</p>
+</blockquote>
+<p>Your private Discord bot token. The token for your bot should be located at <a href="https://discordapp.com/developers/applications/%7Bclient-id%7D/bot">https://discordapp.com/developers/applications/{client-id}/bot</a> (replace {client-id} with the Client ID of your Discord application) in a hidden field that you can reveal by clicking "Click to Reveal Token". <a href="https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/">This guide</a> is a useful one for making a new Discord bot if you have not done so before. Follow that guide through step #4 to make your bot and get a link to invite it to a server.</p>
+<blockquote>
+<p>⚠️This token is a sensitive piece of information - do not commit it with your source code and regenerate it if it ever becomes compromised⚠️</p>
+</blockquote>
+<h3 id="actions">Actions</h3>
+<blockquote>
+<p>Array[DiscordiaAction]</p>
+</blockquote>
+<p>An array of <a href="api#DiscordiaAction">DiscordiaAction</a> objects. See <a href="create_an_action">our guide</a> on how to use the <a href="https://github.com/mfasman95/discordia/tree/master/packages/action">@discordia/action</a> module to create your own actions and/or install them from third party modules.</p>
+<h3 id="options">Options</h3>
+<blockquote>
+<p>Object</p>
+</blockquote>
+<p>The options object is prepopulated with overrideable defaults. More in-depth explanations of the available options are below.
+|Option|Default|
+|---|---|
+|<code>name</code>|<code>undefined</code>|
+|<code>caseSensitiveName</code>|<code>false</code>|
+|<code>missingCommandMessage</code>|"The command you typed is not available 🙁"|
+|<code>help</code>|<a href="https://github.com/mfasman95/discordia/tree/master/packages/help-default">@discordia/help-default</a>|</p>
+<p><strong>name</strong></p>
+<blockquote>
+<p>String - Default = undefined</p>
+</blockquote>
+<p>Your discord bot will see all messages sent in a server you invite it to. By default, it will only respond when you @ the bot. If <code>name</code> is set then the bot will instead respond to any message that begins with a string matching <code>name</code>. By default this is not case sensitive but you can set <code>caseSensitiveName</code> to <code>true</code> if you want the <code>name</code> to be case sensitive.</p>
+<p><strong>caseSensitiveName</strong></p>
+<blockquote>
+<p>Boolean - Default = false</p>
+</blockquote>
+<p>Controls whether or not the bot name should be treated as if it is case sensitive. This field is ignored if <code>name</code> is not set.</p>
+<p><strong>missingCommandMessage</strong></p>
+<blockquote>
+<p>String|Function - Default = "The command you typed is not available 🙁"</p>
+</blockquote>
+<p>The message to send if</p>
+<p><strong>help</strong></p>
+<blockquote>
+<p>String|Function - Default = <a href="https://github.com/mfasman95/discordia/tree/master/packages/help-default">@discordia/help-default</a></p>
+</blockquote>
+<p>Description.</p>
+<h2 id="examples">Examples</h2>
+<hr />
+<p>🚧 Coming Soon! 🚧</p>
+<h2 id="testing">Testing</h2>
+<hr />
+<p>🚧 Coming Soon! 🚧</p>
+</body></html>
