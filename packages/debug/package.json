@@ -26,9 +26,7 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "chalk": "^4.0.0",
-    "debug": "^4.1.1",
-    "lodash": "^4.17.15"
+    "debug": "^4.1.1"
   },
   "engines": {
     "node": ">=12",
