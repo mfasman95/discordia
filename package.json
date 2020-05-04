@@ -27,7 +27,7 @@
     "commitmsg": "commitlint -e",
     "docs:build": "rm -rf docs/ && node docma.js",
     "docs:dev": "nodemon --watch packages/ --watch guides/ --watch docma.js --exec npm run serveDocs",
-    "docs:publish": "npm run docs:build && gh-pages -d docs/",
+    "// docs:publish": "npm run docs:build && gh-pages -d docs/",
     "docs:serve": "DOCMA_BASE=/ npm run docma && light-server -s docs",
     "lint": "eslint .",
     "publish-ci": "lerna publish from-package -y --no-verify-access",

@@ -35,7 +35,12 @@ jobs:
     - run: npm run publish-ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - run: npm run docs:publish
+    - run: npm run docs:build
+    - name: Update Docs
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
   create-release:
     needs: test
     runs-on: ubuntu-latest
