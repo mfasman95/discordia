@@ -35,6 +35,7 @@ jobs:
     - run: npm run publish-ci
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - run: npm run docs:publish
   create-release:
     needs: test
     runs-on: ubuntu-latest

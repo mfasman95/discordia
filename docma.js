@@ -2,7 +2,7 @@
 const Docma = require('docma');
 const { version } = require('./lerna.json');
 
-const base = process.env.DOCMA_BASE || '/pages/NPM/ctct-fe-config/';
+const base = process.env.DOCMA_BASE || '/discordia/';
 
 const config = {
   src: ['./packages/**/*.js', './guides/*.md', { guide: './README.md' }],
@@ -26,22 +26,22 @@ const config = {
         menu: [
           {
             label: 'Discordia',
-            href: '/',
+            href: `${base}`,
           },
           {
             label: 'Getting Started',
             items: [
               {
-                label: 'Creating An Action',
-                href: '/create_action',
+                label: 'Setting Up A Bot',
+                href: `${base}make_your_bot`,
               },
               {
-                label: 'Setting Up A Bot',
-                href: '/setup_bot',
+                label: 'Creating An Action',
+                href: `${base}create_an_action`,
               },
               {
                 label: 'Discordia Quick Start',
-                href: '/quick_start',
+                href: `${base}quick_start`,
               },
             ],
           },
@@ -49,7 +49,7 @@ const config = {
             // https://fontawesome.com/icons/at?style=solid
             iconClass: 'fas fa-lg fa-at',
             label: `API ${version}`,
-            href: '/api',
+            href: `${base}api`,
           },
           {
             // https://fontawesome.com/icons/github?style=brands

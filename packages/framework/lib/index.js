@@ -180,7 +180,6 @@ class DiscordiaFramework {
    * @param {string} botName The portion of the user message that would be the botName
    * @returns {boolean} whether or not this bot was being addressed
    * @memberof DiscordiaFramework
-   * @private
    */
   shouldHandleMessage(botName) {
     let defaultNameMatch = false;
@@ -215,7 +214,6 @@ class DiscordiaFramework {
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @returns {boolean} True if userAction was 'h' or 'help', False otherwise
    * @memberof DiscordiaFramework
-   * @private
    */
   handleHelp(userAction, userArgs, msg) {
     if (userAction === 'help' || userAction === 'h') {
@@ -251,13 +249,11 @@ class DiscordiaFramework {
    * and the <a href="https://discord.js.org/#/docs/main/stable/class/Client">Discord.js Client object</a>,
    * as parameters.
    *
-   * @param {string} userAction The action taken by the user. This method only operates on 'h'
-   * or 'help'
+   * @param {string} userAction The action taken by the user
    * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
    * @param {any} msg The message object from discord.js
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @memberof DiscordiaFramework
-   * @private
    */
   handleMissingCommand(userAction, userArgs, msg) {
     switch (this.missingCommandMessageType) {
@@ -297,7 +293,6 @@ class DiscordiaFramework {
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @returns {boolean} Returns whether or not the action was handled
    * @memberof DiscordiaFramework
-   * @private
    */
   handleMessage(msg) {
     const [botName, userAction, userArgs] = parseMessageContent(msg);
