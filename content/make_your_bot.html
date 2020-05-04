@@ -8,7 +8,6 @@
 <li><a href="#options">Options</a></li>
 </ul>
 </li>
-<li><a href="#examples">Examples</a></li>
 <li><a href="#testing">Testing</a></li>
 </ul>
 </li>
@@ -26,8 +25,17 @@ yarn add @discordia/framework</code></pre>
 <pre><code class="js">const DiscordiaFramework = require('@discordia/framework');
 // actions is an array of DiscordiaAction objects
 const actions = require('./actions');
+const options = {
+  name: 'myBot',
+  caseSensitiveName: false,
+  missingCommandMessage: 'The command you tried to send was not available',
+  help: 'You should probably configure a useful help message or leave the default',
+};
 
-const myBot = new DiscordiaFramework('token', actions);</code></pre>
+const myBot = new DiscordiaFramework('DISCORD_BOT_TOKEN', actions, options);
+
+// Set up the event listeners and log the bot in using the provided token
+myBot.start();</code></pre>
 <h2 id="usage">Usage</h2>
 <hr />
 <p>Every Discordia framework is made of three pieces: a token, an array of actions, and a set of optional options.</p>
@@ -69,15 +77,14 @@ const myBot = new DiscordiaFramework('token', actions);</code></pre>
 <blockquote>
 <p>String|Function - Default = "The command you typed is not available 🙁"</p>
 </blockquote>
-<p>The message to send if</p>
+<p>See <a href="api#DiscordiaAction.handleMissingCommand">DiscordiaFramework.handleMissingCommand</a> for more details.</p>
+<p>The message to send if a server member tries to ask the bot to do an action it does not know how to handle. You can either customize the <code>string</code> or provide a <code>function</code> to give a more involved response.</p>
 <p><strong>help</strong></p>
 <blockquote>
 <p>String|Function - Default = <a href="https://github.com/mfasman95/discordia/tree/master/packages/help-default">@discordia/help-default</a></p>
 </blockquote>
-<p>Description.</p>
-<h2 id="examples">Examples</h2>
-<hr />
-<p>🚧 Coming Soon! 🚧</p>
+<p>See <a href="api#DiscordiaAction.handleHelp">DiscordiaFramework.handleHelp</a> for more details.</p>
+<p>The message to send if a server member tries to ask the bot for help. By default it will use <a href="https://github.com/mfasman95/discordia/tree/master/packages/help-default">@discordia/default-help</a> to read your actions and send a response based on their <a href="create_an_action#accessor">accessors</a> and <a href="create_an_action#description">descriptions</a>. You can provide a static <code>string</code> as a response or provide a custom <code>function</code> to give a more involved response.</p>
 <h2 id="testing">Testing</h2>
 <hr />
 <p>🚧 Coming Soon! 🚧</p>
