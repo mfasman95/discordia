@@ -59,14 +59,15 @@ By default the bot will respond to any missing command with the default missing 
 ```js
 // src/index.js //
 const DiscordiaFramework = require('@discordia/framework');
+const DiscordiaAction = require('@discordia/action');
 const actions = require('./actions'); // This should be an empty array
 
 // Options object
 const options = {
-  help: 'You missed that command, huh?',
+  help: new DiscordiaAction(['h', 'help'], () => 'A help message', 'A description for this action',
 };
 // Pass ptions as the third parameter to the bot constructor
 const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, options);
 myBot.start();
 ```
-By default the bot will respond to any `help` or `h` action with the default help message exported by [@discordia/help-default](help-default). This default message is based on the accessors and descriptions of the provided actions. You can override that message with a static string or a custom function. For more details on the function go to the [README file for @discordia/framework](framework) or the [API Documentation](api#DiscordiaFramework).
+By default the bot will respond to any `help` or `h` action with the default help message exported by [@discordia/default-help](default-help). This default message is based on the accessors and descriptions of the provided actions. You can override that message with a static string or a custom function. For more details on the function go to the [README file for @discordia/framework](framework) or the [API Documentation](api#DiscordiaFramework).

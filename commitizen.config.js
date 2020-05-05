@@ -44,7 +44,7 @@ const scopes = [
   'complete',
   'debug',
   'framework',
-  'help-default',
+  'default-help',
   'multiple-packages',
   'build-tooling',
 ].map((name) => ({ name }));

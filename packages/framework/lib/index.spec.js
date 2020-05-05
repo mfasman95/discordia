@@ -44,7 +44,7 @@ describe('@discordia/framework', () => {
       test('options are default', () => {
         framework = new DiscordiaFramework(mockToken, mockActions);
         expect(framework.token).toEqual(mockToken);
-        expect(framework.actions).toEqual(mockActions);
+        expect(framework.actions).toEqual([DEFAULT_HELP, ...mockActions]);
         expect(framework.name).toEqual(DEFAULT_NAME);
         expect(framework.caseSensitiveName).toEqual(DEFAULT_CASE_SENSITIVE_NAME);
         expect(framework.missingCommandMessage).toEqual(DEFAULT_MISSING_COMMAND_MESSAGE);
@@ -85,14 +85,14 @@ describe('@discordia/framework', () => {
         expect(framework.missingCommandMessage).toEqual(mockMissingCommandMessage);
       });
 
-      test('options.help is a String', () => {
-        const mockHelp = 'MOCK_HELP';
+      test('options.help is a DiscordiaAction', () => {
+        const mockHelp = new DiscordiaAction('h', 'MOCK_HELP_MESSAGE');
         framework = new DiscordiaFramework(mockToken, mockActions, { help: mockHelp });
         expect(framework.help).toEqual(mockHelp);
       });
 
-      test('options.help is a Function', () => {
-        const mockHelp = jest.fn();
+      test('options.help is a null', () => {
+        const mockHelp = null;
         framework = new DiscordiaFramework(mockToken, mockActions, { help: mockHelp });
         expect(framework.help).toEqual(mockHelp);
       });
@@ -116,19 +116,21 @@ describe('@discordia/framework', () => {
     });
 
     describe('should set framework.helpType', () => {
-      test('to ENUM_HELP_TYPE.STRING if help is not set', () => {
+      test('to ENUM_HELP_TYPE.DISCORDIA_ACTION if help is not set', () => {
         framework = new DiscordiaFramework(mockToken, mockActions);
-        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.FUNCTION);
+        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.DISCORDIA_ACTION);
       });
 
-      test('to ENUM_HELP_TYPE.STRING if help is a String', () => {
-        framework = new DiscordiaFramework(mockToken, mockActions, { help: 'MOCK' });
-        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.STRING);
+      test('to ENUM_HELP_TYPE.NULL if help is null', () => {
+        framework = new DiscordiaFramework(mockToken, mockActions, { help: null });
+        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.NULL);
       });
 
-      test('to ENUM_HELP_TYPE.FUNCTION if help is a Function', () => {
-        framework = new DiscordiaFramework(mockToken, mockActions, { help: jest.fn() });
-        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.FUNCTION);
+      test('to ENUM_HELP_TYPE.DISCORDIA_ACTION if help is a DiscordiaAction', () => {
+        framework = new DiscordiaFramework(mockToken, mockActions, {
+          help: new DiscordiaAction('h', 'MOCK_HELP_MESSAGE'),
+        });
+        expect(framework.helpType).toEqual(ENUM_HELP_TYPE.DISCORDIA_ACTION);
       });
     });
 
@@ -187,48 +189,6 @@ describe('@discordia/framework', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, { name: mockName });
       framework.shouldHandleMessage(defaultNamePattern);
       expect(framework.nameToSend).toEqual(mockName);
-    });
-  });
-
-  describe('handleHelp', () => {
-    const mockMsg = { reply: jest.fn() };
-
-    test('should return true if userAction is "help"', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions);
-      expect(framework.handleHelp('help', [], mockMsg)).toEqual(true);
-    });
-
-    test('should return true if userAction is "h"', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions);
-      expect(framework.handleHelp('h', [], mockMsg)).toEqual(true);
-    });
-
-    test('should return false if userAction is not "help" or "h"', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions);
-      expect(framework.handleHelp('NOT_HELP', [], mockMsg)).toEqual(false);
-    });
-
-    test('should call msg.reply with framework.help if options.help is a String', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions, { help: 'MOCK_HELP' });
-      framework.handleHelp('h', [], mockMsg);
-      expect(mockMsg.reply).toHaveBeenCalledWith(framework.help);
-    });
-
-    test('should call framework.help with expected params if options.help is Function', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions, { help: jest.fn() });
-      framework.handleHelp('h', [], mockMsg);
-      expect(framework.help).toHaveBeenCalledWith(framework.nameToSend, framework.actions, [], mockMsg);
-    });
-
-    test('should call msg.reply with a default value options.help is not a String or Function', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions, { help: null });
-      framework.handleHelp('h', [], mockMsg);
-      expect(mockMsg.reply).toHaveBeenCalledWith('I am missing a help command, sorry :frowning:');
-    });
-
-    test('should not throw if options.help is not a String or Function', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions, { help: null });
-      expect(() => framework.handleHelp('h', [], mockMsg)).not.toThrow();
     });
   });
 

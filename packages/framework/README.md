@@ -60,7 +60,7 @@ The options object is prepopulated with overrideable defaults. More in-depth exp
 |`name`|`undefined`|
 |`caseSensitiveName`|`false`|
 |`missingCommandMessage`|"The command you typed is not available 🙁"|
-|`help`|[@discordia/help-default](https://github.com/mfasman95/discordia/tree/master/packages/help-default)|
+|`help`|[@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help)|
 
 **name**
 >String - Default = undefined
@@ -80,11 +80,11 @@ See [DiscordiaFramework.handleMissingCommand](api#DiscordiaAction.handleMissingC
 The message to send if a server member tries to ask the bot to do an action it does not know how to handle. You can either customize the `string` or provide a `function` to give a more involved response.
 
 **help**
->String|Function - Default = [@discordia/help-default](https://github.com/mfasman95/discordia/tree/master/packages/help-default)
+>String|Function - Default = [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help)
 
 See [DiscordiaFramework.handleHelp](api#DiscordiaAction.handleHelp) for more details.
 
-The message to send if a server member tries to ask the bot for help. By default it will use [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/help-default) to read your actions and send a response based on their [accessors](create_an_action#accessor) and [descriptions](create_an_action#description). You can provide a static `string` as a response or provide a custom `function` to give a more involved response.
+The message to send if a server member tries to ask the bot for help. By default it will use [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help) to read your actions and send a response based on their [accessors](create_an_action#accessor) and [descriptions](create_an_action#description). You can provide a static `string` as a response or provide a custom `function` to give a more involved response.
 
 # Testing
 🚧 Coming Soon! 🚧

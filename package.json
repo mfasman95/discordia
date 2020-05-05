@@ -90,7 +90,7 @@
     "@discordia/complete": "file:packages/complete",
     "@discordia/debug": "file:packages/debug",
     "@discordia/framework": "file:packages/framework",
-    "@discordia/help-default": "file:packages/help-default"
+    "@discordia/default-help": "file:packages/default-help"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

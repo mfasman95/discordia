@@ -1,4 +1,4 @@
-const DEFAULT_HELP = require('@discordia/help-default');
+const DEFAULT_HELP = require('@discordia/default-help');
 
 module.exports.DEFAULT_NAME = undefined;
 

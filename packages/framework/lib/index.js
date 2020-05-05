@@ -1,4 +1,4 @@
-const { isString, isArray, isFunction, isBoolean } = require('lodash');
+const { isString, isArray, isFunction, isBoolean, isNull } = require('lodash');
 const { red, cyan } = require('chalk');
 const discord = require('discord.js');
 const discordiaDebug = require('@discordia/debug');
@@ -32,10 +32,10 @@ class DiscordiaFramework {
    * @param {?string|Function} [options.missingCommandMessage=DEFAULT_MISSING_COMMAND_MESSAGE] The message to
    * send when a user tries to use a command that does not exist. String by default, but can be set to a new
    * Fixed string or a custom Function that receives (userAction, userArgs, msg, client).
-   * @param {?string|Function} [options.help=DEFAULT_HELP] The message to send to a user that tries to list the
+   * @param {?DiscordiaAction|null} [options.help=DEFAULT_HELP] The message to send to a user that tries to list the
    * available commands using 'help' or 'h'. By default this will use the descriptions of each of the provided
-   * actions, but can be configured to use a fixed String or a custom Function that receives (nameToSend,
-   * actions, userArgs, msg).
+   * actions, but can be configured to use a custom DiscordiaAction or set to `null` to remove it from the list of
+   * available actions.
    * @memberof DiscordiaFramework
    */
   constructor(
@@ -52,7 +52,8 @@ class DiscordiaFramework {
     this.token = token;
     this.validateToken();
 
-    this.actions = actions;
+    // Include help in the actions but remove it if it is null
+    this.actions = [help, ...actions].filter((action) => action !== null);
     this.validateActions();
     // #endregion Validate Required Parameters
 
@@ -156,19 +157,19 @@ class DiscordiaFramework {
   /**
    * @function validateHelp
    * @description Confirm that the help option is either the default value or
-   * one of the expected types - String or Function
+   * one of the expected types - DiscordiaAction or Null
    * @memberof DiscordiaFramework
    * @private
    */
   validateHelp() {
     if (this.help === DEFAULT_HELP) {
-      this.helpType = ENUM_HELP_TYPE.FUNCTION;
-    } else if (isString(this.help)) {
-      this.helpType = ENUM_HELP_TYPE.STRING;
-    } else if (isFunction(this.help)) {
-      this.helpType = ENUM_HELP_TYPE.FUNCTION;
+      this.helpType = ENUM_HELP_TYPE.DISCORDIA_ACTION;
+    } else if (isNull(this.help)) {
+      this.helpType = ENUM_HELP_TYPE.NULL;
+    } else if (this.help instanceof DiscordiaAction) {
+      this.helpType = ENUM_HELP_TYPE.DISCORDIA_ACTION;
     } else {
-      this.debug('WARNING: The provided config.help was not a STRING or FUNCTION', this.help);
+      this.debug('WARNING: The provided config.help was not a DISCORDIA_ACTION or NULL', this.help);
     }
   }
 
@@ -198,48 +199,6 @@ class DiscordiaFramework {
   }
 
   /**
-   * @function handleHelp
-   * @description Handle the help action if the user provided action
-   * was 'h' or 'help'. The way the method is handled is based on
-   * this.helpType:
-   * String - Replies to the user with this.help
-   * Function - Passes this.nameToSend, this.actions, userArgs, and the
-   * <a href="https://discord.js.org/#/docs/main/stable/class/Message">Discord.js Message object</a>
-   * as parameters.
-   *
-   * @param {string} userAction The action taken by the user. This method only operates on 'h'
-   * or 'help'
-   * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
-   * @param {any} msg The message object from discord.js
-   * - https://discord.js.org/#/docs/main/stable/class/Message
-   * @returns {boolean} True if userAction was 'h' or 'help', False otherwise
-   * @memberof DiscordiaFramework
-   */
-  handleHelp(userAction, userArgs, msg) {
-    if (userAction === 'help' || userAction === 'h') {
-      switch (this.helpType) {
-        case ENUM_HELP_TYPE.STRING: {
-          msg.reply(this.help);
-          break;
-        }
-        case ENUM_HELP_TYPE.FUNCTION: {
-          this.help(this.nameToSend, this.actions, userArgs, msg);
-          break;
-        }
-        default: {
-          msg.reply('I am missing a help command, sorry :frowning:');
-          break;
-        }
-      }
-      // This indicates the action was handled
-      return true;
-    }
-
-    // This indicates the action was not handled
-    return false;
-  }
-
-  /**
    * @function handleMissingCommand
    * @description Determines the message to send back to the user if the command
    * they attempted to use was not available based on this.missingCommandMessageType.
@@ -251,7 +210,7 @@ class DiscordiaFramework {
    *
    * @param {string} userAction The action taken by the user
    * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
-   * @param {any} msg The message object from discord.js
+   * @param {import('discord.js').Message} msg The discord.js message object that triggered this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @memberof DiscordiaFramework
    */
@@ -289,7 +248,7 @@ class DiscordiaFramework {
    * this bot, if it was a help request, if it can be handled by an action, or if it should be handled
    * as a missing action.
    *
-   * @param {any} msg The message object from discord.js
+   * @param {import('discord.js').Message} msg The discord.js message object that triggered this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @returns {boolean} Returns whether or not the action was handled
    * @memberof DiscordiaFramework
@@ -300,11 +259,11 @@ class DiscordiaFramework {
     if (this.shouldHandleMessage(botName)) {
       this.debug(botName, userAction, userArgs);
 
-      let actionHandled = this.handleHelp(userAction, userArgs, msg);
+      let actionHandled = false;
 
       this.actions.forEach((action) => {
         // If any of the actions are handled, make sure to track it
-        if (action.checkAccessor(userAction, msg, userArgs, this.client)) {
+        if (action.checkAccessor(userAction, msg, userArgs, this)) {
           actionHandled = true;
         }
       });

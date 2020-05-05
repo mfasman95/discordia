@@ -1,5 +1,5 @@
 {
-  "name": "@discordia/help-default",
+  "name": "@discordia/default-help",
   "version": "0.0.25",
   "description": "Default help action for the discordia framework",
   "keywords": [
@@ -8,7 +8,7 @@
     "bot",
     "help"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/help-default#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/default-help#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -26,6 +26,7 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
+    "@discordia/action": "file:../action",
     "lodash": "^4.17.15"
   },
   "engines": {

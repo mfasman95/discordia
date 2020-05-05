@@ -29,7 +29,7 @@
     "@discordia/action": "file:../action",
     "@discordia/debug": "file:../debug",
     "@discordia/framework": "file:../framework",
-    "@discordia/help-default": "file:../help-default"
+    "@discordia/default-help": "file:../default-help"
   },
   "engines": {
     "node": ">=12",

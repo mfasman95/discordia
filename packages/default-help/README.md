@@ -6,10 +6,10 @@
 # Installation
 ```bash
 # install the module using npm
-npm install @discordia/help-default
+npm install @discordia/default-help
 
 # install the module using yarn
-yarn add @discordia/help-default
+yarn add @discordia/default-help
 ```
 
 # Usage

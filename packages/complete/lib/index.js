@@ -1,11 +1,11 @@
 const DiscordiaAction = require('@discordia/action');
 const DiscordiaDebug = require('@discordia/debug');
+const DiscordiaDefaultHelp = require('@discordia/default-help');
 const DiscordiaFramework = require('@discordia/framework');
-const DiscordiaHelpDefault = require('@discordia/help-default');
 
 module.exports = {
   DiscordiaAction,
   DiscordiaDebug,
+  DiscordiaDefaultHelp,
   DiscordiaFramework,
-  DiscordiaHelpDefault,
 };

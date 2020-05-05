@@ -4,7 +4,7 @@ const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
-const packages = ['framework', 'action', 'help-default', 'debug'];
+const packages = ['framework', 'action', 'default-help', 'debug'];
 
 const config = {
   src: [

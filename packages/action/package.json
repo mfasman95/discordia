@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@discordia/debug": "file:../debug",
+    "@discordia/framework": "file:../framework",
     "chalk": "^4.0.0",
     "lodash": "^4.17.15"
   },
