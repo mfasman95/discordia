@@ -32,10 +32,6 @@ const config = {
         dark: true,
         menu: [
           {
-            label: 'Discordia',
-            href: `${base}`,
-          },
-          {
             label: 'Getting Started',
             items: [
               {
