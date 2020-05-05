@@ -1,6 +1,6 @@
 
 <html><head></head><body><ul>
-<li><a href="#make-your-bot">Make Your Bot</a><ul>
+<li><a href="#installation">Installation</a></li>
 <li><a href="#basic-example">Basic Example</a></li>
 <li><a href="#usage">Usage</a><ul>
 <li><a href="#token">Token</a></li>
@@ -10,9 +10,10 @@
 </li>
 <li><a href="#testing">Testing</a></li>
 </ul>
-</li>
-</ul>
-<h1 id="make-your-bot">Make Your Bot</h1>
+<blockquote>
+<p>Note: Some of the links in this README file work better on the <a href="https://mfasman95.github.io/discordia/">documentation site</a></p>
+</blockquote>
+<h1 id="installation">Installation</h1>
 <hr />
 <p>Discordia instantiates and starts Discord bots using the <a href="https://github.com/mfasman95/discordia/tree/master/packages/framework">@discordia/framework</a> module.</p>
 <pre><code class="bash"># install the module using npm
@@ -20,7 +21,7 @@ npm install @discordia/framework
 
 # install the module using yarn
 yarn add @discordia/framework</code></pre>
-<h2 id="basic-example">Basic Example</h2>
+<h1 id="basic-example">Basic Example</h1>
 <hr />
 <pre><code class="js">const DiscordiaFramework = require('@discordia/framework');
 // actions is an array of DiscordiaAction objects
@@ -36,10 +37,11 @@ const myBot = new DiscordiaFramework('DISCORD_BOT_TOKEN', actions, options);
 
 // Set up the event listeners and log the bot in using the provided token
 myBot.start();</code></pre>
-<h2 id="usage">Usage</h2>
+<h1 id="usage">Usage</h1>
 <hr />
 <p>Every Discordia framework is made of three pieces: a token, an array of actions, and a set of optional options.</p>
-<h3 id="token">Token</h3>
+<h2 id="token">Token</h2>
+<hr />
 <blockquote>
 <p>String</p>
 </blockquote>
@@ -47,12 +49,14 @@ myBot.start();</code></pre>
 <blockquote>
 <p>⚠️This token is a sensitive piece of information - do not commit it with your source code and regenerate it if it ever becomes compromised⚠️</p>
 </blockquote>
-<h3 id="actions">Actions</h3>
+<h2 id="actions">Actions</h2>
+<hr />
 <blockquote>
 <p>Array[DiscordiaAction]</p>
 </blockquote>
 <p>An array of <a href="api#DiscordiaAction">DiscordiaAction</a> objects. See <a href="create_an_action">our guide</a> on how to use the <a href="https://github.com/mfasman95/discordia/tree/master/packages/action">@discordia/action</a> module to create your own actions and/or install them from third party modules.</p>
-<h3 id="options">Options</h3>
+<h2 id="options">Options</h2>
+<hr />
 <blockquote>
 <p>Object</p>
 </blockquote>
@@ -85,7 +89,7 @@ myBot.start();</code></pre>
 </blockquote>
 <p>See <a href="api#DiscordiaAction.handleHelp">DiscordiaFramework.handleHelp</a> for more details.</p>
 <p>The message to send if a server member tries to ask the bot for help. By default it will use <a href="https://github.com/mfasman95/discordia/tree/master/packages/help-default">@discordia/default-help</a> to read your actions and send a response based on their <a href="create_an_action#accessor">accessors</a> and <a href="create_an_action#description">descriptions</a>. You can provide a static <code>string</code> as a response or provide a custom <code>function</code> to give a more involved response.</p>
-<h2 id="testing">Testing</h2>
+<h1 id="testing">Testing</h1>
 <hr />
 <p>🚧 Coming Soon! 🚧</p>
 </body></html>

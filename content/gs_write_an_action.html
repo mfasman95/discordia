@@ -1,0 +1,147 @@
+
+<html><head></head><body><h1 id="previous">Previous</h1>
+<hr />
+<p>You should have gotten to this page after completing <a href="gs_start_your_bot">Getting Started - Start Your Bot</a>.</p>
+<h1 id="write-a-basic-ping-action">Write A Basic <code>ping</code> Action</h1>
+<hr />
+<pre><code class="js">// src/actions.js //
+// Import Your Dependencies
+const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong', 'ping -&gt; pong');
+
+module.exports = [pingAction];</code></pre>
+<p>Every action is made up of an accessor, a response, and a description. For more detailed explanations on these, go to the <a href="action">README file for @discordia/action</a> or the <a href="api#DiscordiaAction">API Documentation</a>.</p>
+<p>The accessor is how the bot knows when a server member wants to trigger this action. The response is how the bot knows what to respond with when the action is triggered. The description is how the bot knows what to say when you ask it for <code>help</code>. If you leave off the description then it will not be included when you ask the bot for help.</p>
+<h1 id="--test-your-bot---ping--">⚠️Test Your Bot - Ping⚠️</h1>
+<hr />
+<pre><code class="bash"># Start Your Bot
+npm start
+# Stop Your Bot (once you are done with this step)
+ctrl+c</code></pre>
+<p>You have given your bot its first action! Try out the following commands:</p>
+<ul>
+<li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use <code>ping</code></li>
+<li><code>@BotName ping</code> should reply with <code>pong</code></li>
+</ul>
+<p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<h1 id="write-an-action-with-an-array-of-accessors">Write An Action with an Array of Accessors</h1>
+<hr />
+<pre><code class="js">// src/actions.js //
+// Import Your Dependencies
+const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong', 'ping -&gt; pong');
+
+// ADD A NEW ACTION //
+const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
+
+// MAKE SURE TO EXPORT THE NEW ACTION //
+module.exports = [pingAction, arrayAccessorAction];</code></pre>
+<p>The accessor can also be an array of strings instead of a single string. You can use this to respond to multiple triggers with the same action.</p>
+<h1 id="--test-your-bot---accessor-array--">⚠️Test Your Bot - Accessor Array⚠️</h1>
+<hr />
+<pre><code class="bash"># Start Your Bot
+npm start
+# Stop Your Bot (once you are done with this step)
+ctrl+c</code></pre>
+<p>Try out the following commands:</p>
+<ul>
+<li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
+<li><code>@BotName oof</code> should reply with <code>rekt</code></li>
+<li><code>@BotName ow</code> should reply with <code>rekt</code></li>
+<li><code>@BotName ouch</code> should reply with <code>rekt</code></li>
+</ul>
+<p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<h1 id="write-an-action-with-a-function-accessor">Write An Action with a Function Accessor</h1>
+<hr />
+<pre><code class="js">// src/actions.js //
+// Import Your Dependencies
+const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong', 'ping -&gt; pong');
+const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
+
+// ADD A NEW ACTION //
+const functionAccessor = (userAction, msg, client) =&gt; {
+  if (msg.content.includes('hot')) {
+    return true;
+  } else if (msg.content.includes('heat')) {
+    return true;
+  } else if (msg.content.includes('fire')) {
+    return true;
+  } else if (msg.content.includes('flame')) {
+    return true;
+  }
+  return false;
+};
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '<img class="docma emoji" src="https://twemoji.maxcdn.com/svg/1f525.svg" />', 'Let the user know if their message is hot');
+
+// MAKE SURE TO EXPORT THE NEW ACTION //
+module.exports = [pingAction, arrayAccessorAction, functionAccessorAction];</code></pre>
+<p>The accessor can also be a function. Once you use a function you get a lot more freedom with the types of messages you can respond to.</p>
+<h1 id="--test-your-bot---accessor-function--">⚠️Test Your Bot - Accessor Function⚠️</h1>
+<hr />
+<pre><code class="bash"># Start Your Bot
+npm start
+# Stop Your Bot (once you are done with this step)
+ctrl+c</code></pre>
+<p>Try out the following commands:</p>
+<ul>
+<li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
+<li><code>@BotName this is really hot</code> should reply with <code>🔥</code></li>
+<li><code>@BotName do you like lighting things on fire?</code> should reply with <code>🔥</code></li>
+<li><code>@BotName roasting marshmallows on an open flame</code> should reply with <code>🔥</code></li>
+</ul>
+<p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<h1 id="write-an-action-with-a-function-response">Write An Action with a Function Response</h1>
+<hr />
+<pre><code class="js">// src/actions.js //
+// Import Your Dependencies
+const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong', 'ping -&gt; pong');
+const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
+const functionAccessor = (userAction, msg, client) =&gt; {
+  if (msg.content.includes('hot')) {
+    return true;
+  } else if (msg.content.includes('heat')) {
+    return true;
+  } else if (msg.content.includes('fire')) {
+    return true;
+  } else if (msg.content.includes('flame')) {
+    return true;
+  }
+  return false;
+};
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '<img class="docma emoji" src="https://twemoji.maxcdn.com/svg/1f525.svg" />', 'Let the user know if their message is hot');
+
+// ADD A NEW ACTION - Try implementing your own generateJoke function, maybe calling a joke API //
+const generateJoke = () =&gt; 'This should probably make a user laugh';
+const functionResponse = (userArgs, msg, client) =&gt; {
+  return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
+};
+const jokeAction = new DiscordiaAction('joke', functionResponse, 'Responds to the user with a funny joke');
+
+// MAKE SURE TO EXPORT THE NEW ACTION //
+module.exports = [pingAction, arrayAccessorAction, functionAccessorAction];</code></pre>
+<p>The response can be a function. This is where you can make the most powerful actions - actions that leverage the whole Discord client object, actions that make API calls to inform responses, and pretty much anything else you can think of.</p>
+<h1 id="--test-your-bot---accessor-function--">⚠️Test Your Bot - Accessor Function⚠️</h1>
+<hr />
+<pre><code class="bash"># Start Your Bot
+npm start
+# Stop Your Bot (once you are done with this step)
+ctrl+c</code></pre>
+<p>Try out the following commands:</p>
+<ul>
+<li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
+<li><code>@BotName joke</code> should reply with a message that includes my username and a generated joke</li>
+</ul>
+<p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<h1 id="optional---write-your-own-action">Optional - Write Your Own Action</h1>
+<hr />
+<p>You now have all of the information you need to write your own actions with potentially complex accessors and responses. Try flexing your coding muscles and writing something a little more complex than the examples above or skip ahead to the next section to learn a little more about how to configure your framework.</p>
+<h1 id="next">Next</h1>
+<hr />
+<p>Now that we have a working bot with actions, lets experiment with some of the configuration options the bot provides - proceed to <a href="gs_configure_your_bot">Getting Started - Configure Your Bot</a>.</p>
+</body></html>
