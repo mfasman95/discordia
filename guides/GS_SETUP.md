@@ -4,11 +4,11 @@ The first step to creating a Discord bot begins before you even start your own N
 # Setup Node
 When setting up Node you have two main options. Either way, make sure that by the end of this section you can run `node --version` and `npm --version` in your terminal and get back a [semantic version](https://docs.npmjs.com/about-semantic-versioning) back.
 
-## Install Node
+### Install Node
 This is the easiest option, but not the recommended one. Just go to the [Node.JS website's download section](https://nodejs.org/en/download/) and click the button for your Operating System.
 
-## Use a Version Manager
-The more recommended option is to use a version manager, such as [NVM](https://github.com/nvm-sh/nvm) or [Nodenv](https://github.com/nodenv/nodenv). Choose the tool that is best for you and use it to set the version of Node that you are using.
+### Use a Version Manager
+The recommended option is to use a version manager, such as [NVM](https://github.com/nvm-sh/nvm) or [Nodenv](https://github.com/nodenv/nodenv). Choose the tool that is best for you and use it to set the version of Node that you are using.
 
 # Start Your Project
 Once you have `Node` installed you will also have access to `npm`. Make an empty directory on your machine, run `npm init`, and answer the questions.
@@ -34,11 +34,11 @@ mkdir src
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" >> src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored - add it to your .gitignore if you want to store this project in git
+# 4) The file where your DISCORD_BOT_TOKEN is stored - add this file to your .gitignore if you want to store this project in git
 echo "{Insert Your Discord Bot Token Here}" >> .discord_token
 ```
 
-Make sure to use your actual Discord bot token in the fourth command above - we will make use of this later.
+Make sure to use your actual Discord bot token in the fourth command above - we will make use of this in the next step.
 
 # Add a Start Script to Your `package.json
 Open your `package.json`. Add a `start` (and optionally `dev`) script to the `scripts` object.
@@ -53,7 +53,7 @@ Open your `package.json`. Add a `start` (and optionally `dev`) script to the `sc
   // ...
 }
 ```
-At some later points in this guide you will be asked to run `npm start` and test your bot. If you installed `nodemon` you can open a terminal window and type `npm run dev` - your project should refresh automatically whenever you change your code and you can ignore any time these guides tell you to run `npm start`.
+At some later points in this guide you will be asked to run `npm start` and test your bot. If you installed `nodemon` you can open a terminal window and type `npm run dev` right now - your project should refresh automatically whenever you change your code and you can ignore any time these guides tell you to run `npm start`.
 
 # Next
 Our project is now set up, let's start the bot - proceed to [Getting Started - Start Your Bot](gs_start_your_bot).
