@@ -4,13 +4,20 @@ const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
+const packages = ['framework', 'action', 'help-default', 'debug'];
+
 const config = {
-  src: ['./packages/**/*.js', './guides/*.md', { guide: './README.md' }],
+  src: [
+    './packages/**/*.js',
+    './guides/*.md',
+    { readme: './README.md' },
+    ...packages.map((pkg) => ({ [pkg]: `./packages/${pkg}/README.md` })),
+  ],
   dest: './docs',
   clean: true,
   app: {
     title: 'Discordia',
-    entrance: 'content:guide',
+    entrance: 'content:readme',
     base,
     routing: {
       method: 'path',
@@ -32,18 +39,26 @@ const config = {
             label: 'Getting Started',
             items: [
               {
-                label: 'Setting Up A Bot',
-                href: `${base}make_your_bot`,
+                label: 'Setup',
+                href: `${base}gs_setup`,
               },
               {
-                label: 'Creating An Action',
-                href: `${base}create_an_action`,
+                label: 'Start Your Bot',
+                href: `${base}gs_start_your_bot`,
               },
               {
-                label: 'Discordia Quick Start',
-                href: `${base}quick_start`,
+                label: 'Write An Action',
+                href: `${base}gs_write_an_action`,
+              },
+              {
+                label: 'Configure Your Bot',
+                href: `${base}gs_configure_your_bot`,
               },
             ],
+          },
+          {
+            label: 'Packages',
+            items: packages.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
           },
           {
             // https://fontawesome.com/icons/at?style=solid

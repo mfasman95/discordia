@@ -1,11 +1,16 @@
-# `@discordia/help-default`
+- [Installation](#installation)
+- [Usage](#usage)
 
-> TODO: description
+>Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/)
 
-## Usage
+# Installation
+```bash
+# install the module using npm
+npm install @discordia/help-default
 
+# install the module using yarn
+yarn add @discordia/help-default
 ```
-const helpDefault = require('@discordia/help-default');
 
-// TODO: DEMONSTRATE API
-```
+# Usage
+🚧 Coming Soon! 🚧
