@@ -5,12 +5,10 @@
 <h1 id="setup-node">Setup Node</h1>
 <hr />
 <p>When setting up Node you have two main options. Either way, make sure that by the end of this section you can run <code>node --version</code> and <code>npm --version</code> in your terminal and get back a <a href="https://docs.npmjs.com/about-semantic-versioning">semantic version</a> back.</p>
-<h2 id="install-node">Install Node</h2>
-<hr />
+<h3 id="install-node">Install Node</h3>
 <p>This is the easiest option, but not the recommended one. Just go to the <a href="https://nodejs.org/en/download/">Node.JS website's download section</a> and click the button for your Operating System.</p>
-<h2 id="use-a-version-manager">Use a Version Manager</h2>
-<hr />
-<p>The more recommended option is to use a version manager, such as <a href="https://github.com/nvm-sh/nvm">NVM</a> or <a href="https://github.com/nodenv/nodenv">Nodenv</a>. Choose the tool that is best for you and use it to set the version of Node that you are using.</p>
+<h3 id="use-a-version-manager">Use a Version Manager</h3>
+<p>The recommended option is to use a version manager, such as <a href="https://github.com/nvm-sh/nvm">NVM</a> or <a href="https://github.com/nodenv/nodenv">Nodenv</a>. Choose the tool that is best for you and use it to set the version of Node that you are using.</p>
 <h1 id="start-your-project">Start Your Project</h1>
 <hr />
 <p>Once you have <code>Node</code> installed you will also have access to <code>npm</code>. Make an empty directory on your machine, run <code>npm init</code>, and answer the questions.</p>
@@ -29,9 +27,9 @@ mkdir src
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" &gt;&gt; src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored - add it to your .gitignore if you want to store this project in git
+# 4) The file where your DISCORD_BOT_TOKEN is stored - add this file to your .gitignore if you want to store this project in git
 echo "{Insert Your Discord Bot Token Here}" &gt;&gt; .discord_token</code></pre>
-<p>Make sure to use your actual Discord bot token in the fourth command above - we will make use of this later.</p>
+<p>Make sure to use your actual Discord bot token in the fourth command above - we will make use of this in the next step.</p>
 <h1 id="add-a-start-script-to-your-packagejson">Add a Start Script to Your `package.json</h1>
 <hr />
 <p>Open your <code>package.json</code>. Add a <code>start</code> (and optionally <code>dev</code>) script to the <code>scripts</code> object.</p>
@@ -44,7 +42,7 @@ echo "{Insert Your Discord Bot Token Here}" &gt;&gt; .discord_token</code></pre>
   }
   // ...
 }</code></pre>
-<p>At some later points in this guide you will be asked to run <code>npm start</code> and test your bot. If you installed <code>nodemon</code> you can open a terminal window and type <code>npm run dev</code> - your project should refresh automatically whenever you change your code and you can ignore any time these guides tell you to run <code>npm start</code>.</p>
+<p>At some later points in this guide you will be asked to run <code>npm start</code> and test your bot. If you installed <code>nodemon</code> you can open a terminal window and type <code>npm run dev</code> right now - your project should refresh automatically whenever you change your code and you can ignore any time these guides tell you to run <code>npm start</code>.</p>
 <h1 id="next">Next</h1>
 <hr />
 <p>Our project is now set up, let's start the bot - proceed to <a href="gs_start_your_bot">Getting Started - Start Your Bot</a>.</p>
