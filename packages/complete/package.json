@@ -1,6 +1,6 @@
 {
   "name": "@discordia/complete",
-  "version": "0.0.25",
+  "version": "0.1.0",
   "description": "A complete rollup of the packages in the Discordia monorepo",
   "keywords": [
     "discordia",
@@ -28,8 +28,8 @@
   "dependencies": {
     "@discordia/action": "file:../action",
     "@discordia/debug": "file:../debug",
-    "@discordia/framework": "file:../framework",
-    "@discordia/default-help": "file:../default-help"
+    "@discordia/default-help": "file:../default-help",
+    "@discordia/framework": "file:../framework"
   },
   "engines": {
     "node": ">=12",
