@@ -1,6 +1,6 @@
 {
   "name": "@discordia/debug",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Wrapper of the `debug` library for discordia",
   "keywords": [
     "discordia",
