@@ -1,21 +1,15 @@
-# [1.0.0](https://github.com/mfasman95/discordia/compare/v0.0.25...v1.0.0) (2020-05-05)
-
-
-### Code Refactoring
-
-* **multiple-packages:** refactor default-help to a discordia action ([610743b](https://github.com/mfasman95/discordia/commit/610743b25aa76f088492f915d512debe6fcd819a))
-
-
-### BREAKING CHANGES
-
-* **multiple-packages:** @discordia/framework - options.help now must be null or DiscordiaAction
-
-
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.1.1](https://github.com/mfasman95/discordia/compare/v0.1.0...v0.1.1) (2020-05-06)
+
+**Note:** Version bump only for package discordia
+
+
+
+
 
 ## [0.0.25](https://github.com/mfasman95/discordia/compare/v0.0.24...v0.0.25) (2020-05-05)
 
