@@ -210,7 +210,7 @@ class DiscordiaFramework {
    *
    * @param {string} userAction The action taken by the user
    * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
-   * @param {import('discord.js').Message} msg The discord.js message object that triggered this action
+   * @param {any} msg The discord.js message object that triggered this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @memberof DiscordiaFramework
    */
@@ -248,7 +248,7 @@ class DiscordiaFramework {
    * this bot, if it was a help request, if it can be handled by an action, or if it should be handled
    * as a missing action.
    *
-   * @param {import('discord.js').Message} msg The discord.js message object that triggered this action
+   * @param {any} msg The discord.js message object that triggered this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @returns {boolean} Returns whether or not the action was handled
    * @memberof DiscordiaFramework

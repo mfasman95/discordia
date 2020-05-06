@@ -109,10 +109,10 @@ class DiscordiaAction {
    * - enumAccessorType.FUNCTION: if accessor returns true when provided with userAction, msg, and args
    * @param {string} userAction The action the user is attempting to take. This is the first word in the user's
    * message after they addressed this bot by name.
-   * @param {import('discord.js').Message} msg The discord.js message object that might trigger this action
+   * @param {any} msg The discord.js message object that might trigger this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @param {Array<string>} userArgs Everything in the user's message after the userAction
-   * @param {import('@discordia/framework')} framework The full framework instance that this action is attached to
+   * @param {any} framework The full framework instance that this action is attached to
    * @returns {boolean} Returns if the action will be handled
    * @memberof DiscordiaAction
    */
@@ -165,10 +165,10 @@ class DiscordiaAction {
    * - enumResponseType.STRING: Reply to the user with this.response
    * - enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client
    * If the function returns a string, reply to the user with that string
-   * @param {import('discord.js').Message} msg The discord.js message object that triggered this action
+   * @param {any} msg The discord.js message object that triggered this action
    * - https://discord.js.org/#/docs/main/stable/class/Message
    * @param {Array<string>} userArgs Everything in the user's message after the userAction
-   * @param {import('@discordia/framework')} framework The full framework instance that this action is attached to
+   * @param {any} framework The full framework instance that this action is attached to
    * @returns {undefined}
    * @memberof DiscordiaAction
    */
