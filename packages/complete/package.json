@@ -1,6 +1,6 @@
 {
   "name": "@discordia/complete",
-  "version": "0.2.2",
+  "version": "0.2.3-alpha.0",
   "description": "A complete rollup of the packages in the Discordia monorepo",
   "keywords": [
     "discordia",
