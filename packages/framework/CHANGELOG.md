@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/mfasman95/discordia/compare/v0.1.1...v0.2.0) (2020-05-06)
+
+
+### Bug Fixes
+
+* **framework:** hide the discord token property ([9896f6b](https://github.com/mfasman95/discordia/commit/9896f6bdcc2950e81a0bc46531a41d22a4ca9168))
+
+
+
+
+
 ## [0.1.1](https://github.com/mfasman95/discordia/compare/v0.1.0...v0.1.1) (2020-05-06)
 
 **Note:** Version bump only for package @discordia/framework
