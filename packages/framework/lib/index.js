@@ -212,8 +212,8 @@ class DiscordiaFramework {
    *
    * @param {string} userAction The action taken by the user
    * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
-   * @param {any} msg The discord.js message object that triggered this action
-   * - https://discord.js.org/#/docs/main/stable/class/Message
+   * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js
+   * message object</a> that triggered this action
    * @memberof DiscordiaFramework
    */
   handleMissingCommand(userAction, userArgs, msg) {
@@ -249,9 +249,8 @@ class DiscordiaFramework {
    * @description Determines based on the Message object received whether the message was intended for
    * this bot, if it was a help request, if it can be handled by an action, or if it should be handled
    * as a missing action.
-   *
-   * @param {any} msg The discord.js message object that triggered this action
-   * - https://discord.js.org/#/docs/main/stable/class/Message
+   * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js
+   * message object</a> that triggered this action
    * @returns {boolean} Returns whether or not the action was handled
    * @memberof DiscordiaFramework
    */

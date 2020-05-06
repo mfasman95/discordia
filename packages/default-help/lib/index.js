@@ -7,9 +7,10 @@ const { ENUM_HELP_TYPE } = require('./constants');
  * @description Hello World
  *
  * @param {Array<string>} userArgs Everything in the user's message after the userAction
- * @param {any} msg The discord.js message object that triggered this action
- * - https://discord.js.org/#/docs/main/stable/class/Message
- * @param {any} framework The full framework instance that this action is attached to
+ * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js message
+ * object</a> that triggered this action
+ * @param {any} framework the full <a href="api#DiscordiaFramework">Discordia framework instance</a> that this
+ * action is attached to
  * @returns {string} A help message based on the name of the bot and its registered actions
  */
 const helpResponse = (userArgs, msg, framework) => {

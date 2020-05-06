@@ -104,15 +104,18 @@ class DiscordiaAction {
   /**
    * @function checkAccessor
    * @description Check if the provided userAction and/or other parameters meet the requirements of the accessor.
-   * - enumAccessorType.STRING: if userAction matches accessor
-   * - enumAccessorType.ARRAY: if userAction matches anything in the accessor array
-   * - enumAccessorType.FUNCTION: if accessor returns true when provided with userAction, msg, and args
-   * @param {string} userAction The action the user is attempting to take. This is the first word in the user's
+   * <ul>
+   *   <li>enumAccessorType.STRING: if userAction matches accessor</li>
+   *   <li>enumAccessorType.ARRAY: if userAction matches anything in the accessor array</li>
+   *   <li>enumAccessorType.FUNCTION: if accessor returns true when provided with userAction, msg, and args</li>
+   * </ul>
    * message after they addressed this bot by name.
-   * @param {any} msg The discord.js message object that might trigger this action
-   * - https://discord.js.org/#/docs/main/stable/class/Message
+   * @param {string} userAction The action the user is attempting to take. This is the first word in the user's
+   * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js message
+   * object</a> that might trigger this action
    * @param {Array<string>} userArgs Everything in the user's message after the userAction
-   * @param {any} framework The full framework instance that this action is attached to
+   * @param {any} framework The full <a href="api#DiscordiaFramework">Discordia framework instance</a> that this
+   * action is attached to
    * @returns {boolean} Returns if the action will be handled
    * @memberof DiscordiaAction
    */
@@ -162,14 +165,16 @@ class DiscordiaAction {
   /**
    * @function handleAction
    * @description Handle the userAction with this.response based on this.responseType
-   * - enumResponseType.STRING: Reply to the user with this.response
-   * - enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client
+   * <ul>
+   *   <li>enumResponseType.STRING: Reply to the user with this.response</li>
+   *   <li>enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client</li>
+   * </ul>
    * If the function returns a string, reply to the user with that string
-   * @param {any} msg The discord.js message object that triggered this action
-   * - https://discord.js.org/#/docs/main/stable/class/Message
+   * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js message
+   * object</a> that triggered this action
    * @param {Array<string>} userArgs Everything in the user's message after the userAction
-   * @param {any} framework The full framework instance that this action is attached to
-   * @returns {undefined}
+   * @param {any} framework the full <a href="api#DiscordiaFramework">Discordia framework instance</a> that
+   * this action is attached to
    * @memberof DiscordiaAction
    */
   handleAction(msg, userArgs, framework) {
