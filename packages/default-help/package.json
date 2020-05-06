@@ -1,6 +1,6 @@
 {
   "name": "@discordia/default-help",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Default help action for the discordia framework",
   "keywords": [
     "discordia",
