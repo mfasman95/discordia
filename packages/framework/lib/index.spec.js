@@ -43,7 +43,7 @@ describe('@discordia/framework', () => {
     describe('should set passed in values as properties on framework if token and actions are valid and ', () => {
       test('options are default', () => {
         framework = new DiscordiaFramework(mockToken, mockActions);
-        expect(framework.token).toEqual(mockToken);
+        expect(framework.login).toEqual(expect.any(Function));
         expect(framework.actions).toEqual([DEFAULT_HELP, ...mockActions]);
         expect(framework.name).toEqual(DEFAULT_NAME);
         expect(framework.caseSensitiveName).toEqual(DEFAULT_CASE_SENSITIVE_NAME);
@@ -299,11 +299,11 @@ describe('@discordia/framework', () => {
   });
 
   describe('start', () => {
-    beforeEach(async () => {
+    beforeEach(() => {
       framework = new DiscordiaFramework(mockToken, mockActions);
       framework.client.on = jest.fn();
       framework.client.login = jest.fn();
-      await framework.start();
+      framework.start();
     });
 
     test('should call framework.client.on "ready"', () => {
@@ -315,7 +315,7 @@ describe('@discordia/framework', () => {
     });
 
     test('should call framework.client.login with framework.token', () => {
-      expect(framework.client.login).toHaveBeenCalledWith(framework.token);
+      expect(framework.client.login).toHaveBeenCalledWith(mockToken);
     });
   });
 });
