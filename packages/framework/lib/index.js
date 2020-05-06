@@ -49,8 +49,9 @@ class DiscordiaFramework {
     } = DEFAULT_OPTIONS
   ) {
     // #region Validate Required Parameters
-    this.token = token;
-    this.validateToken();
+    // Set the login function here to avoid storing `token`
+    this.login = () => this.client.login(token);
+    this.validateToken(token);
 
     // Include help in the actions but remove it if it is null
     this.actions = [help, ...actions].filter((action) => action !== null);
@@ -77,13 +78,14 @@ class DiscordiaFramework {
   /**
    * @function validateToken
    * @description Confirm that the provided token is a String
+   * @param {string} token The Discord token used to set up this bot
    * @memberof DiscordiaFramework
    * @private
    */
-  validateToken() {
-    if (!isString(this.token)) {
-      this.debug('Token', this.token);
-      throw new Error(red(`ERROR: The provided token ${cyan(this.token)} was not a STRING - failing to start bot`));
+  validateToken(token) {
+    if (!isString(token)) {
+      this.debug('Token', token);
+      throw new Error(red(`ERROR: The provided token ${cyan(token)} was not a STRING - failing to start bot`));
     }
   }
 
@@ -285,10 +287,11 @@ class DiscordiaFramework {
    *
    * @memberof DiscordiaFramework
    */
-  async start() {
+  start() {
     this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
     this.client.on('message', (msg) => this.handleMessage(msg));
-    await this.client.login(this.token);
+    this.login();
+    delete this.login();
   }
 }
 
