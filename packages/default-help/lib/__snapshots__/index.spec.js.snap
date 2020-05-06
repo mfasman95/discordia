@@ -1,5 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 1`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`help\` | \`h\`
+
+Display the list of available actions for this bot"
+`;
+
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 2`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`help\` | \`h\`
+
+Display the list of available actions for this bot"
+`;
+
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 3`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`MOCK_ACCESOR_0\`
+
+MOCK_DESCRIPTION"
+`;
+
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 4`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`MOCK_ACCESOR_1\` | \`MOCK_ACCESSOR_2\`
+
+MOCK_DESCRIPTION"
+`;
+
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 5`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`MOCK_ACCESOR_1\` | \`MOCK_ACCESSOR_2\`
+
+MOCK_DESCRIPTION"
+`;
+
+exports[`@discordia/default-help response should filter the help message if userArgs are provided 6`] = `
+"All commands are written in the form \`MOCK_BOT_NAME {command}\`:
+-------------------------
+**Command**: \`help\` | \`h\`
+
+Display the list of available actions for this bot
+-------------------------
+**Command**: \`MOCK_ACCESOR_0\`
+
+MOCK_DESCRIPTION
+-------------------------
+**Command**: \`MOCK_ACCESOR_1\` | \`MOCK_ACCESSOR_2\`
+
+MOCK_DESCRIPTION
+-------------------------
+**Command**: \`{Dynamic Accessor}\`
+
+MOCK_DESCRIPTION"
+`;
+
 exports[`@discordia/default-help response should include the provided bot name 1`] = `
 "All commands are written in the form \`MOCK_BOT_NAME {command}\`:
 -------------------------

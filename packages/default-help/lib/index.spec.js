@@ -144,6 +144,33 @@ describe('@discordia/default-help', () => {
         expect(helpMessage).toMatchSnapshot();
       });
     });
+
+    test('should filter the help message if userArgs are provided', () => {
+      const args = [
+        {},
+        {
+          nameToSend: mockBotName,
+          actions: [
+            discordiaDefaultHelp,
+            mockActionWithStringAccessor,
+            mockActionWithArrayAccessor,
+            mockActionWithFunctionAccessor,
+          ],
+        },
+      ];
+      const helpMessage1 = discordiaDefaultHelp.response(['help'], ...args);
+      expect(helpMessage1).toMatchSnapshot();
+      const helpMessage2 = discordiaDefaultHelp.response(['h'], ...args);
+      expect(helpMessage2).toMatchSnapshot();
+      const helpMessage3 = discordiaDefaultHelp.response([mockAccessorString], ...args);
+      expect(helpMessage3).toMatchSnapshot();
+      const helpMessage4 = discordiaDefaultHelp.response([mockAccessorArray[0]], ...args);
+      expect(helpMessage4).toMatchSnapshot();
+      const helpMessage5 = discordiaDefaultHelp.response([mockAccessorArray[1]], ...args);
+      expect(helpMessage5).toMatchSnapshot();
+      const helpMessage6 = discordiaDefaultHelp.response([mockAccessorFunction], ...args);
+      expect(helpMessage6).toMatchSnapshot();
+    });
   });
 
   test('should export the help type enums as a property', () => {

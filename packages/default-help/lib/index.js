@@ -1,5 +1,5 @@
 const DiscordiaAction = require('@discordia/action');
-const { isString, isArray, isFunction } = require('lodash');
+const { isString, isArray, isFunction, flatten } = require('lodash');
 const { ENUM_HELP_TYPE } = require('./constants');
 
 /**
@@ -15,7 +15,26 @@ const { ENUM_HELP_TYPE } = require('./constants');
 const helpResponse = (userArgs, msg, framework) => {
   const messageStarter = `All commands are written in the form \`${framework.nameToSend} {command}\`:`;
 
-  const helpMessage = framework.actions.reduce((helpMessageBuilder, { accessor, description }) => {
+  const commandToFilter = userArgs[0];
+  const accessors = flatten(
+    framework.actions.filter((action) => !isFunction(action.accessor)).map((action) => action.accessor)
+  );
+
+  const actionsToDescribe = !accessors.includes(commandToFilter)
+    ? framework.actions
+    : framework.actions
+        .filter((action) => !isFunction(action.accessor))
+        .filter((action) => {
+          if (isArray(action.accessor) && action.accessor.includes(commandToFilter)) {
+            return true;
+          }
+          if (isString(action.accessor) && action.accessor === commandToFilter) {
+            return true;
+          }
+          return false;
+        });
+
+  const helpMessage = actionsToDescribe.reduce((helpMessageBuilder, { accessor, description }) => {
     if (!description) {
       return `${helpMessageBuilder}`;
     }
