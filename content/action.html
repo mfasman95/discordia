@@ -1,0 +1,165 @@
+
+<html><head></head><body><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#basic-example">Basic Example</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#accessor">Accessor</a></li>
+<li><a href="#response">Response</a></li>
+<li><a href="#description">Description</a></li>
+</ul>
+</li>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#string-accessor-and-string-response">String Accessor and String Response</a></li>
+<li><a href="#array-accessor">Array Accessor</a></li>
+<li><a href="#function-accessor">Function Accessor</a></li>
+<li><a href="#function-response">Function Response</a></li>
+</ul>
+</li>
+<li><a href="#testing">Testing</a></li>
+</ul>
+<blockquote>
+<p>Note: Some of the links in this README file work better on the <a href="https://mfasman95.github.io/discordia/">documentation site</a></p>
+</blockquote>
+<h1 id="installation">Installation</h1>
+<hr />
+<pre><code class="bash"># install the module using npm
+npm install @discordia/action
+
+# install the module using yarn
+yarn add @discordia/action</code></pre>
+<p>Discordia actions are designed to be used with a Discordia framework instance. See the <a href="#testing">section on testing</a> below for details on how to validate your actions.</p>
+<h1 id="basic-example">Basic Example</h1>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
+<pre><code># Conversation Example(s)
+
+User: @BotName ping
+BotName: @User, pong</code></pre><h1 id="usage">Usage</h1>
+<hr />
+<p>Every Discordia action is made of three pieces: an accessor, a response, and an optional description.</p>
+<h2 id="accessor">Accessor</h2>
+<hr />
+<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method which in turn determines whether or not to call the action's <a href="api#DiscordiaAction.handleAction">handleAction</a> method based on the type of the accessor. The <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method is given four parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>userAction</code></td>
+<td>The first <code>string</code> after the name of the bot that triggered the framework</td>
+</tr>
+<tr>
+<td><code>msg</code></td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that contains <code>userAction</code> and <code>userArgs</code> in its <code>content</code></td>
+</tr>
+<tr>
+<td><code>userArgs</code></td>
+<td>Everything in side the <code>msg.content</code> field after <code>userAction</code> as an array</td>
+</tr>
+<tr>
+<td><code>framework</code></td>
+<td>The full <a href="api#DiscordiaFramework">Discordia Framework</a> instance - USE WITH CAUTION</td>
+</tr>
+</tbody></table>
+<p><strong>String</strong></p>
+<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p><strong>Array</strong></p>
+<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p><strong>Function</strong></p>
+<p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>framework</code> then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<h2 id="response">Response</h2>
+<hr />
+<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="api#DiscordiaAction.handleAction">handleAction</a> is called it will determine how to respond to the user based on the type of the response. The <a href="api#DiscordiaAction.handleAction">handleAction</a> method is given three parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>msg</code></td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that contains <code>userAction</code> and <code>userArgs</code> in its <code>content</code></td>
+</tr>
+<tr>
+<td><code>userArgs</code></td>
+<td>Everything in side the <code>msg.content</code> field after <code>userAction</code> as an array</td>
+</tr>
+<tr>
+<td><code>framework</code></td>
+<td>The full <a href="api#DiscordiaFramework">Discordia Framework</a> instance - USE WITH CAUTION</td>
+</tr>
+</tbody></table>
+<p><strong>String</strong></p>
+<p>If the response is a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with response as the <code>content</code> parameter.</p>
+<p><strong>Function</strong></p>
+<p>If the response is a function then that function will be called with <code>msg</code>, <code>userArgs</code>, and <code>framework</code> as parameters. If the function returns a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with the result of that function as the <code>content</code> parameter.</p>
+<h2 id="description">Description</h2>
+<hr />
+<p>Description is an optional parameter that must be a string used to enable a <code>help</code> (or <code>h</code>) action on the Discordia framework. By default the discordia framework will attempt to supply usage information to server members who ask the bot created by the Discordia framework for help.</p>
+<pre><code class="js">// Default Behavior
+`-------------------------
+**Command**: \`${accessor}\`
+
+${description}`</code></pre>
+<p>Accessor is formatted based on its type to show the available options (with "{Dynamic Accessor}" sent if the accessor is a function). The description is the exact contents of the description parameter given to the Discordia action constructor.</p>
+<p>If description is ommitted or set to <code>null</code> then the whole action will be left off when the the help action is triggered.</p>
+<p>The behavior of the help command can be overriden - see the <a href="api#DiscordiaFramework">Discordia Framework constructor</a>.</p>
+<h1 id="examples">Examples</h1>
+<hr />
+<h2 id="string-accessor-and-string-response">String Accessor and String Response</h2>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const pingAction = new DiscordiaAction('ping', 'pong');</code></pre>
+<pre><code># Conversation Example(s)
+
+User: @BotName ping
+BotName: @User, pong</code></pre><h2 id="array-accessor">Array Accessor</h2>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const ouchAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt');</code></pre>
+<pre><code># Conversation Example(s)
+
+User: @BotName oof
+BotName: @User, rekt
+---
+User: @BotName ow
+BotName: @User, rekt
+---
+User: @BotName ouch
+BotName: @User, rekt</code></pre><h2 id="function-accessor">Function Accessor</h2>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const accessor = (userAction, msg, framework) =&gt; {
+  if (msg.content.includes('potato')) {
+    return true;
+  }
+  return false;
+};
+const potatoAction = new DiscordiaAction(accessor, 'delicious');</code></pre>
+<pre><code># Conversation Example(s)
+
+User: @BotName Do you like potatoes?
+BotName: @User, delicious</code></pre><h2 id="function-response">Function Response</h2>
+<hr />
+<pre><code class="js">const DiscordiaAction = require('@discordia/action');
+
+const response = (userArgs, msg, framework) =&gt; {
+  return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
+};
+const jokeAction = new DiscordiaAction('joke', response);</code></pre>
+<pre><code># Conversation Example(s)
+
+User: @BotName joke
+BotName: @User, here is a joke for User: {something funny}</code></pre><h1 id="testing">Testing</h1>
+<hr />
+<p>🚧 Coming Soon! 🚧</p>
+</body></html>
