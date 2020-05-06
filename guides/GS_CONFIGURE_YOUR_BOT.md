@@ -70,4 +70,4 @@ const options = {
 const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, options);
 myBot.start();
 ```
-By default the bot will respond to any `help` or `h` action with the default help message exported by [@discordia/default-help](default-help). This default message is based on the accessors and descriptions of the provided actions. You can override that message with a static string or a custom function. For more details on the function go to the [README file for @discordia/framework](framework) or the [API Documentation](api#DiscordiaFramework).
+By default the bot will respond to any `help` or `h` action with the default help message exported by [@discordia/default-help](default-help). This default message is based on the accessors and descriptions of the provided actions. You can override that message with your own custom function or set it to `null` to disable the help message. For more details on the help option go to the [README file for @discordia/framework](framework) or the [API Documentation](api#DiscordiaFramework).

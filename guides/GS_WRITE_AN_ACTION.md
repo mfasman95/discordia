@@ -139,12 +139,12 @@ const functionResponse = (userArgs, msg, framework) => {
 const jokeAction = new DiscordiaAction('joke', functionResponse, 'Responds to the user with a funny joke');
 
 // MAKE SURE TO EXPORT THE NEW ACTION //
-module.exports = [pingAction, arrayAccessorAction, functionAccessorAction];
+module.exports = [pingAction, arrayAccessorAction, functionAccessorAction, jokeAction];
 ```
 
 The response can be a function. This is where you can make the most powerful actions - actions that leverage the whole Discord client object, actions that make API calls to inform responses, and pretty much anything else you can think of.
 
-# ⚠️Test Your Bot - Accessor Function⚠️
+# ⚠️Test Your Bot - Response Function⚠️
 ```bash
 # Start Your Bot
 npm start

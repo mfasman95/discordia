@@ -1,3 +1,6 @@
+# ⚠️Disclaimer⚠️
+These getting started guides assume you are using a Mac or Linux computer with a standard `bash` or `zsh` terminal. Some of the commands included in this guide (e.g. `touch` to make new files) might not work if you are developing on Windows. If you get to a step where you need to run code in a command line and it fails there is a chance that this is the reason.
+
 # Get Your Bot Token And Invite It To Your Server
 The first step to creating a Discord bot begins before you even start your own Node project - you must go through the Discord developer site, set up a new application, give that application a bot, and add it to your server. Following [this guide](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) (steps 2 through 4) will walk you through that process in more detail.
 
@@ -11,20 +14,25 @@ This is the easiest option, but not the recommended one. Just go to the [Node.JS
 The recommended option is to use a version manager, such as [NVM](https://github.com/nvm-sh/nvm) or [Nodenv](https://github.com/nodenv/nodenv). Choose the tool that is best for you and use it to set the version of Node that you are using.
 
 # Start Your Project
-Once you have `Node` installed you will also have access to `npm`. Make an empty directory on your machine, run `npm init`, and answer the questions.
+Once you have `Node` installed you will also have access to `npm`. Make an empty directory on your machine, run `npm init`, and answer the prompts.
 ```bash
 npm init
 ```
 
 # Install Your Dependencies
 ```bash
-npm install @discordia/framework @discordia/action
+npm install @discordia/framework @discordia/action dotenv
 ```
+This command installs 3 packages which we will use in this project:
+- The [discordia framework](framework) constructor used to instantiate your bot
+- The [discordia action](action) constructor used to make actions for your bot
+- [Dotenv](https://www.npmjs.com/package/dotenv) is
 
 ## Optional - Install Nodemon
 ```bash
 npm install -D nodemon
 ```
+[Nodemon](https://www.npmjs.com/package/nodemon) is a tool for automatically restarting your project whenever the file system changes. Using `nodemon` means you won't have to start and stop your bot every time you change how it works. Installing this tool is not required but it will make your life easier.
 
 # Setup Your Project Structure
 ```bash
@@ -34,11 +42,15 @@ mkdir src
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" >> src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored - add this file to your .gitignore if you want to store this project in git
-echo "{Insert Your Discord Bot Token Here}" >> .discord_token
+# 4) The file where your DISCORD_BOT_TOKEN is stored
+echo "DISCORD_TOKEN={Insert Your Discord Bot Token Here}" >> .env
+# 5) Add your .env file to your .gitignore
+echo ".env" >> .gitignore
 ```
 
 Make sure to use your actual Discord bot token in the fourth command above - we will make use of this in the next step.
+
+> ⚠️WARNING: Adding `.env` to your `.gitignore` is VERY IMPORTANT. If you upload your DISCORD_TOKEN to a service like GitHub or anywhere else it exposes your bot to being hacked. Adding your `.env` file to your `.gitignore` helps prevent this from happening.⚠️
 
 # Add a Start Script to Your `package.json
 Open your `package.json`. Add a `start` (and optionally `dev`) script to the `scripts` object.
@@ -47,8 +59,8 @@ Open your `package.json`. Add a `start` (and optionally `dev`) script to the `sc
   // ...
   "scripts": {
     // Other Scripts
-    "start": "DISCORD_TOKEN=$(cat .discord_token) node src/index.js",
-    "dev": "DISCORD_TOKEN=$(cat .discord_token) nodemon src/index.js" // Leave this off if you didn't install nodemon
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js" // Leave this off if you didn't install nodemon
   }
   // ...
 }
