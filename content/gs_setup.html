@@ -1,5 +1,8 @@
 
-<html><head></head><body><h1 id="get-your-bot-token-and-invite-it-to-your-server">Get Your Bot Token And Invite It To Your Server</h1>
+<html><head></head><body><h1 id="--disclaimer--">⚠️Disclaimer⚠️</h1>
+<hr />
+<p>These getting started guides assume you are using a Mac or Linux computer with a standard <code>bash</code> or <code>zsh</code> terminal. Some of the commands included in this guide (e.g. <code>touch</code> to make new files) might not work if you are developing on Windows. If you get to a step where you need to run code in a command line and it fails there is a chance that this is the reason.</p>
+<h1 id="get-your-bot-token-and-invite-it-to-your-server">Get Your Bot Token And Invite It To Your Server</h1>
 <hr />
 <p>The first step to creating a Discord bot begins before you even start your own Node project - you must go through the Discord developer site, set up a new application, give that application a bot, and add it to your server. Following <a href="https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/">this guide</a> (steps 2 through 4) will walk you through that process in more detail.</p>
 <h1 id="setup-node">Setup Node</h1>
@@ -11,14 +14,21 @@
 <p>The recommended option is to use a version manager, such as <a href="https://github.com/nvm-sh/nvm">NVM</a> or <a href="https://github.com/nodenv/nodenv">Nodenv</a>. Choose the tool that is best for you and use it to set the version of Node that you are using.</p>
 <h1 id="start-your-project">Start Your Project</h1>
 <hr />
-<p>Once you have <code>Node</code> installed you will also have access to <code>npm</code>. Make an empty directory on your machine, run <code>npm init</code>, and answer the questions.</p>
+<p>Once you have <code>Node</code> installed you will also have access to <code>npm</code>. Make an empty directory on your machine, run <code>npm init</code>, and answer the prompts.</p>
 <pre><code class="bash">npm init</code></pre>
 <h1 id="install-your-dependencies">Install Your Dependencies</h1>
 <hr />
-<pre><code class="bash">npm install @discordia/framework @discordia/action</code></pre>
+<pre><code class="bash">npm install @discordia/framework @discordia/action dotenv</code></pre>
+<p>This command installs 3 packages which we will use in this project:</p>
+<ul>
+<li>The <a href="framework">discordia framework</a> constructor used to instantiate your bot</li>
+<li>The <a href="action">discordia action</a> constructor used to make actions for your bot</li>
+<li><a href="https://www.npmjs.com/package/dotenv">Dotenv</a> is</li>
+</ul>
 <h2 id="optional---install-nodemon">Optional - Install Nodemon</h2>
 <hr />
 <pre><code class="bash">npm install -D nodemon</code></pre>
+<p><a href="https://www.npmjs.com/package/nodemon">Nodemon</a> is a tool for automatically restarting your project whenever the file system changes. Using <code>nodemon</code> means you won't have to start and stop your bot every time you change how it works. Installing this tool is not required but it will make your life easier.</p>
 <h1 id="setup-your-project-structure">Setup Your Project Structure</h1>
 <hr />
 <pre><code class="bash"># 1) The directory where all our source code will live
@@ -27,9 +37,14 @@ mkdir src
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" &gt;&gt; src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored - add this file to your .gitignore if you want to store this project in git
-echo "{Insert Your Discord Bot Token Here}" &gt;&gt; .discord_token</code></pre>
+# 4) The file where your DISCORD_BOT_TOKEN is stored
+echo "DISCORD_TOKEN={Insert Your Discord Bot Token Here}" &gt;&gt; .env
+# 5) Add your .env file to your .gitignore
+echo ".env" &gt;&gt; .gitignore</code></pre>
 <p>Make sure to use your actual Discord bot token in the fourth command above - we will make use of this in the next step.</p>
+<blockquote>
+<p>⚠️WARNING: Adding <code>.env</code> to your <code>.gitignore</code> is VERY IMPORTANT. If you upload your DISCORD_TOKEN to a service like GitHub or anywhere else it exposes your bot to being hacked. Adding your <code>.env</code> file to your <code>.gitignore</code> helps prevent this from happening.⚠️</p>
+</blockquote>
 <h1 id="add-a-start-script-to-your-packagejson">Add a Start Script to Your `package.json</h1>
 <hr />
 <p>Open your <code>package.json</code>. Add a <code>start</code> (and optionally <code>dev</code>) script to the <code>scripts</code> object.</p>
@@ -37,8 +52,8 @@ echo "{Insert Your Discord Bot Token Here}" &gt;&gt; .discord_token</code></pre>
   // ...
   "scripts": {
     // Other Scripts
-    "start": "DISCORD_TOKEN=$(cat .discord_token) node src/index.js",
-    "dev": "DISCORD_TOKEN=$(cat .discord_token) nodemon src/index.js" // Leave this off if you didn't install nodemon
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js" // Leave this off if you didn't install nodemon
   }
   // ...
 }</code></pre>

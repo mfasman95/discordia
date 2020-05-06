@@ -63,5 +63,5 @@ const options = {
 // Pass ptions as the third parameter to the bot constructor
 const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, options);
 myBot.start();</code></pre>
-<p>By default the bot will respond to any <code>help</code> or <code>h</code> action with the default help message exported by <a href="default-help">@discordia/default-help</a>. This default message is based on the accessors and descriptions of the provided actions. You can override that message with a static string or a custom function. For more details on the function go to the <a href="framework">README file for @discordia/framework</a> or the <a href="api#DiscordiaFramework">API Documentation</a>.</p>
+<p>By default the bot will respond to any <code>help</code> or <code>h</code> action with the default help message exported by <a href="default-help">@discordia/default-help</a>. This default message is based on the accessors and descriptions of the provided actions. You can override that message with your own custom function or set it to <code>null</code> to disable the help message. For more details on the help option go to the <a href="framework">README file for @discordia/framework</a> or the <a href="api#DiscordiaFramework">API Documentation</a>.</p>
 </body></html>
