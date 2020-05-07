@@ -4,6 +4,7 @@
 <p>You should have gotten to this page after completing <a href="gs_setup">Getting Started - Setup</a>.</p>
 <h1 id="setting-up-your-bot">Setting Up Your Bot</h1>
 <hr />
+<p>Open up <code>src/index.js</code> in your code editor of choice and add the following code.</p>
 <pre><code class="js">// src/index.js //
 // Load your `.env` file so the values will be included in `process.env.DISCORD_TOKEN`
 require('dotenv').config();
@@ -19,19 +20,19 @@ myBot.start();</code></pre>
 <p>The first line of the example above loads your <code>.env</code> file and sets all of the values in that file as environment variables. This is how we can load your discord token <strong><em>without including it in your source code</em></strong>.</p>
 <p>The next two lines of the example import dependencies into this file. The first line imports the <code>@discordia/framework</code> module that we installed earlier and the second line imports the empty array we exported from <code>src/actions.js</code>.</p>
 <p>The next line sets up your bot. The <code>DiscordiaFramework</code> class has two mandatory parameters - your discord bot token and an array of actions. Since we ran <code>dotenv</code> already you can get the <code>DISCORD_TOKEN</code> variable from <code>process.env</code>.</p>
-<p>The final line actually starts your bot.</p>
+<p>The final line starts your bot. This means you are ready to test it out.</p>
 <h1 id="--test-your-bot--">⚠️Test Your Bot⚠️</h1>
 <hr />
-<pre><code class="bash"># Start Your Bot
-npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c</code></pre>
-<p>At this point you should be able to send the bot a message and see a response.</p>
+<pre><code class="bash"># Start your bot
+npm start</code></pre>
+<p>At this point you should be able to send the bot a message in Discord and see a response.</p>
 <ul>
 <li><code>@BotName h</code> or <code>@BotName help</code> should display a help message</li>
 <li><code>@BotName action</code> should display a missing action message</li>
 </ul>
 <p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<pre><code class="bash"># Stop your bot
+ctrl + c</code></pre>
 <h1 id="next">Next</h1>
 <hr />
 <p>Now that we have a working bot, lets make some actions for it - proceed to <a href="gs_write_an_action">Getting Started - Write An Action</a>.</p>

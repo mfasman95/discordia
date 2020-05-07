@@ -9,6 +9,8 @@
 <h1 id="custom-name">Custom Name</h1>
 <hr />
 <pre><code class="js">// src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -23,6 +25,8 @@ myBot.start();</code></pre>
 <h1 id="case-sensitive-name">Case Sensitive Name</h1>
 <hr />
 <pre><code class="js">// src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -38,6 +42,8 @@ myBot.start();</code></pre>
 <h1 id="missing-command-message">Missing Command Message</h1>
 <hr />
 <pre><code class="js">// src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -52,13 +58,15 @@ myBot.start();</code></pre>
 <h1 id="help">Help</h1>
 <hr />
 <pre><code class="js">// src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const DiscordiaAction = require('@discordia/action');
 const actions = require('./actions'); // This should be an empty array
 
 // Options object
 const options = {
-  help: new DiscordiaAction(['h', 'help'], () =&gt; 'A help message', 'A description for this action',
+  help: new DiscordiaAction(['h', 'help'], () =&gt; 'A help message', 'A description for this action'),
 };
 // Pass ptions as the third parameter to the bot constructor
 const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, options);

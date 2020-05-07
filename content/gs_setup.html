@@ -23,21 +23,22 @@
 <ul>
 <li>The <a href="framework">discordia framework</a> constructor used to instantiate your bot</li>
 <li>The <a href="action">discordia action</a> constructor used to make actions for your bot</li>
-<li><a href="https://www.npmjs.com/package/dotenv">Dotenv</a> is</li>
+<li><a href="https://www.npmjs.com/package/dotenv">Dotenv</a> is a package for loading environment variables. We will be using it to safely load your discord bot token without including it in your source code.</li>
 </ul>
-<h2 id="optional---install-nodemon">Optional - Install Nodemon</h2>
+<h2 id="recommended---install-nodemon">Recommended - Install Nodemon</h2>
 <hr />
 <pre><code class="bash">npm install -D nodemon</code></pre>
 <p><a href="https://www.npmjs.com/package/nodemon">Nodemon</a> is a tool for automatically restarting your project whenever the file system changes. Using <code>nodemon</code> means you won't have to start and stop your bot every time you change how it works. Installing this tool is not required but it will make your life easier.</p>
 <h1 id="setup-your-project-structure">Setup Your Project Structure</h1>
 <hr />
+<p>The commands below will set up the files you need for this demo.</p>
 <pre><code class="bash"># 1) The directory where all our source code will live
 mkdir src
 # 2) The file where we will set up our bot
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" &gt;&gt; src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored
+# 4) The file where your {DISCORD_TOKEN} is stored - make sure to remove the {}
 echo "DISCORD_TOKEN={Insert Your Discord Bot Token Here}" &gt;&gt; .env
 # 5) Add your .env file to your .gitignore
 echo ".env" &gt;&gt; .gitignore</code></pre>

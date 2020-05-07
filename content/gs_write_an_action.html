@@ -4,6 +4,7 @@
 <p>You should have gotten to this page after completing <a href="gs_start_your_bot">Getting Started - Start Your Bot</a>.</p>
 <h1 id="write-a-basic-ping-action">Write A Basic <code>ping</code> Action</h1>
 <hr />
+<p>Open <code>src/action.js</code> and add the following code to set up your first action.</p>
 <pre><code class="js">// src/actions.js //
 // Import Your Dependencies
 const DiscordiaAction = require('@discordia/action');
@@ -15,16 +16,16 @@ module.exports = [pingAction];</code></pre>
 <p>The accessor is how the bot knows when a server member wants to trigger this action. The response is how the bot knows what to respond with when the action is triggered. The description is how the bot knows what to say when you ask it for <code>help</code>. If you leave off the description then it will not be included when you ask the bot for help.</p>
 <h1 id="--test-your-bot---ping--">⚠️Test Your Bot - Ping⚠️</h1>
 <hr />
-<pre><code class="bash"># Start Your Bot
-npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c</code></pre>
+<pre><code class="bash"># Start your bot
+npm start</code></pre>
 <p>You have given your bot its first action! Try out the following commands:</p>
 <ul>
 <li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use <code>ping</code></li>
 <li><code>@BotName ping</code> should reply with <code>pong</code></li>
 </ul>
 <p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<pre><code class="bash"># Stop your bot
+ctrl + c</code></pre>
 <h1 id="write-an-action-with-an-array-of-accessors">Write An Action with an Array of Accessors</h1>
 <hr />
 <pre><code class="js">// src/actions.js //
@@ -41,10 +42,8 @@ module.exports = [pingAction, arrayAccessorAction];</code></pre>
 <p>The accessor can also be an array of strings instead of a single string. You can use this to respond to multiple triggers with the same action.</p>
 <h1 id="--test-your-bot---accessor-array--">⚠️Test Your Bot - Accessor Array⚠️</h1>
 <hr />
-<pre><code class="bash"># Start Your Bot
-npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c</code></pre>
+<pre><code class="bash"># Start your bot
+npm start</code></pre>
 <p>Try out the following commands:</p>
 <ul>
 <li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
@@ -53,6 +52,8 @@ ctrl+c</code></pre>
 <li><code>@BotName ouch</code> should reply with <code>rekt</code></li>
 </ul>
 <p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<pre><code class="bash"># Stop your bot
+ctrl + c</code></pre>
 <h1 id="write-an-action-with-a-function-accessor">Write An Action with a Function Accessor</h1>
 <hr />
 <pre><code class="js">// src/actions.js //
@@ -75,17 +76,15 @@ const functionAccessor = (userAction, msg, framework) =&gt; {
   }
   return false;
 };
-const functionAccessorAction = new DiscordiaAction(functionAccessor, '<img class="docma emoji" src="https://twemoji.maxcdn.com/svg/1f525.svg" />', 'Let the user know if their message is hot');
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Let the user know if their message is hot');
 
 // MAKE SURE TO EXPORT THE NEW ACTION //
 module.exports = [pingAction, arrayAccessorAction, functionAccessorAction];</code></pre>
 <p>The accessor can also be a function. Once you use a function you get a lot more freedom with the types of messages you can respond to.</p>
 <h1 id="--test-your-bot---accessor-function--">⚠️Test Your Bot - Accessor Function⚠️</h1>
 <hr />
-<pre><code class="bash"># Start Your Bot
-npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c</code></pre>
+<pre><code class="bash"># Start your bot
+npm start</code></pre>
 <p>Try out the following commands:</p>
 <ul>
 <li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
@@ -94,6 +93,8 @@ ctrl+c</code></pre>
 <li><code>@BotName roasting marshmallows on an open flame</code> should reply with <code>🔥</code></li>
 </ul>
 <p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<pre><code class="bash"># Stop your bot
+ctrl + c</code></pre>
 <h1 id="write-an-action-with-a-function-response">Write An Action with a Function Response</h1>
 <hr />
 <pre><code class="js">// src/actions.js //
@@ -114,7 +115,7 @@ const functionAccessor = (userAction, msg, framework) =&gt; {
   }
   return false;
 };
-const functionAccessorAction = new DiscordiaAction(functionAccessor, '<img class="docma emoji" src="https://twemoji.maxcdn.com/svg/1f525.svg" />', 'Let the user know if their message is hot');
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Let the user know if their message is hot');
 
 // ADD A NEW ACTION - Try implementing your own generateJoke function, maybe calling a joke API //
 const generateJoke = () =&gt; 'This should probably make a user laugh';
@@ -128,16 +129,16 @@ module.exports = [pingAction, arrayAccessorAction, functionAccessorAction, jokeA
 <p>The response can be a function. This is where you can make the most powerful actions - actions that leverage the whole Discord client object, actions that make API calls to inform responses, and pretty much anything else you can think of.</p>
 <h1 id="--test-your-bot---response-function--">⚠️Test Your Bot - Response Function⚠️</h1>
 <hr />
-<pre><code class="bash"># Start Your Bot
-npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c</code></pre>
+<pre><code class="bash"># Start your bot
+npm start</code></pre>
 <p>Try out the following commands:</p>
 <ul>
 <li><code>@BotName h</code> or <code>@BotName help</code> should display a help message that describes how to use all the actions you've created</li>
 <li><code>@BotName joke</code> should reply with a message that includes my username and a generated joke</li>
 </ul>
 <p>TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES</p>
+<pre><code class="bash"># Stop your bot
+ctrl + c</code></pre>
 <h1 id="optional---write-your-own-action">Optional - Write Your Own Action</h1>
 <hr />
 <p>You now have all of the information you need to write your own actions with potentially complex accessors and responses. Try flexing your coding muscles and writing something a little more complex than the examples above or skip ahead to the next section to learn a little more about how to configure your framework.</p>
