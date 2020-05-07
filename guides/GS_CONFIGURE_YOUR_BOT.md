@@ -9,6 +9,8 @@ There are a variety of configuration options available for your bot. For more de
 # Custom Name
 ```js
 // src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -25,6 +27,8 @@ By setting `options.name` you stop the bot from responding to `@` and instead th
 # Case Sensitive Name
 ```js
 // src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -42,6 +46,8 @@ By setting `options.caseSensitiveName` you make sure the bot only responds to `o
 # Missing Command Message
 ```js
 // src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const actions = require('./actions'); // This should be an empty array
 
@@ -58,13 +64,15 @@ By default the bot will respond to any missing command with the default missing 
 # Help
 ```js
 // src/index.js //
+require('dotenv').config();
+
 const DiscordiaFramework = require('@discordia/framework');
 const DiscordiaAction = require('@discordia/action');
 const actions = require('./actions'); // This should be an empty array
 
 // Options object
 const options = {
-  help: new DiscordiaAction(['h', 'help'], () => 'A help message', 'A description for this action',
+  help: new DiscordiaAction(['h', 'help'], () => 'A help message', 'A description for this action'),
 };
 // Pass ptions as the third parameter to the bot constructor
 const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, options);

@@ -2,6 +2,7 @@
 You should have gotten to this page after completing [Getting Started - Setup](gs_setup).
 
 # Setting Up Your Bot
+Open up `src/index.js` in your code editor of choice and add the following code.
 ```js
 // src/index.js //
 // Load your `.env` file so the values will be included in `process.env.DISCORD_TOKEN`
@@ -22,21 +23,23 @@ The next two lines of the example import dependencies into this file. The first 
 
 The next line sets up your bot. The `DiscordiaFramework` class has two mandatory parameters - your discord bot token and an array of actions. Since we ran `dotenv` already you can get the `DISCORD_TOKEN` variable from `process.env`.
 
-The final line actually starts your bot.
+The final line starts your bot. This means you are ready to test it out.
 
 # ⚠️Test Your Bot⚠️
 ```bash
-# Start Your Bot
+# Start your bot
 npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c
 ```
-At this point you should be able to send the bot a message and see a response.
+At this point you should be able to send the bot a message in Discord and see a response.
 
 - `@BotName h` or `@BotName help` should display a help message
 - `@BotName action` should display a missing action message
 
 TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
 
+```bash
+# Stop your bot
+ctrl + c
+```
 # Next
 Now that we have a working bot, lets make some actions for it - proceed to [Getting Started - Write An Action](gs_write_an_action).

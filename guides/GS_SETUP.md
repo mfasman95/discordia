@@ -26,15 +26,16 @@ npm install @discordia/framework @discordia/action dotenv
 This command installs 3 packages which we will use in this project:
 - The [discordia framework](framework) constructor used to instantiate your bot
 - The [discordia action](action) constructor used to make actions for your bot
-- [Dotenv](https://www.npmjs.com/package/dotenv) is
+- [Dotenv](https://www.npmjs.com/package/dotenv) is a package for loading environment variables. We will be using it to safely load your discord bot token without including it in your source code.
 
-## Optional - Install Nodemon
+## Recommended - Install Nodemon
 ```bash
 npm install -D nodemon
 ```
 [Nodemon](https://www.npmjs.com/package/nodemon) is a tool for automatically restarting your project whenever the file system changes. Using `nodemon` means you won't have to start and stop your bot every time you change how it works. Installing this tool is not required but it will make your life easier.
 
 # Setup Your Project Structure
+The commands below will set up the files you need for this demo.
 ```bash
 # 1) The directory where all our source code will live
 mkdir src
@@ -42,7 +43,7 @@ mkdir src
 touch src/index.js
 # 3) The file where we will set up the actions for our bot (export an empty array for now - we'll get back to this)
 echo "module.exports = [];" >> src/actions.js
-# 4) The file where your DISCORD_BOT_TOKEN is stored
+# 4) The file where your {DISCORD_TOKEN} is stored - make sure to remove the {}
 echo "DISCORD_TOKEN={Insert Your Discord Bot Token Here}" >> .env
 # 5) Add your .env file to your .gitignore
 echo ".env" >> .gitignore

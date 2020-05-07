@@ -2,6 +2,7 @@
 You should have gotten to this page after completing [Getting Started - Start Your Bot](gs_start_your_bot).
 
 # Write A Basic `ping` Action
+Open `src/action.js` and add the following code to set up your first action.
 ```js
 // src/actions.js //
 // Import Your Dependencies
@@ -18,10 +19,8 @@ The accessor is how the bot knows when a server member wants to trigger this act
 
 # ⚠️Test Your Bot - Ping⚠️
 ```bash
-# Start Your Bot
+# Start your bot
 npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c
 ```
 You have given your bot its first action! Try out the following commands:
 
@@ -29,6 +28,11 @@ You have given your bot its first action! Try out the following commands:
 - `@BotName ping` should reply with `pong`
 
 TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+
+```bash
+# Stop your bot
+ctrl + c
+```
 
 # Write An Action with an Array of Accessors
 ```js
@@ -49,10 +53,8 @@ The accessor can also be an array of strings instead of a single string. You can
 
 # ⚠️Test Your Bot - Accessor Array⚠️
 ```bash
-# Start Your Bot
+# Start your bot
 npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c
 ```
 Try out the following commands:
 
@@ -62,6 +64,11 @@ Try out the following commands:
 - `@BotName ouch` should reply with `rekt`
 
 TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+
+```bash
+# Stop your bot
+ctrl + c
+```
 
 # Write An Action with a Function Accessor
 ```js
@@ -85,7 +92,7 @@ const functionAccessor = (userAction, msg, framework) => {
   }
   return false;
 };
-const functionAccessorAction = new DiscordiaAction(functionAccessor, ':fire:', 'Let the user know if their message is hot');
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Let the user know if their message is hot');
 
 // MAKE SURE TO EXPORT THE NEW ACTION //
 module.exports = [pingAction, arrayAccessorAction, functionAccessorAction];
@@ -95,10 +102,8 @@ The accessor can also be a function. Once you use a function you get a lot more 
 
 # ⚠️Test Your Bot - Accessor Function⚠️
 ```bash
-# Start Your Bot
+# Start your bot
 npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c
 ```
 Try out the following commands:
 
@@ -108,6 +113,11 @@ Try out the following commands:
 - `@BotName roasting marshmallows on an open flame` should reply with `🔥`
 
 TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+
+```bash
+# Stop your bot
+ctrl + c
+```
 
 # Write An Action with a Function Response
 ```js
@@ -129,7 +139,7 @@ const functionAccessor = (userAction, msg, framework) => {
   }
   return false;
 };
-const functionAccessorAction = new DiscordiaAction(functionAccessor, ':fire:', 'Let the user know if their message is hot');
+const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Let the user know if their message is hot');
 
 // ADD A NEW ACTION - Try implementing your own generateJoke function, maybe calling a joke API //
 const generateJoke = () => 'This should probably make a user laugh';
@@ -146,10 +156,8 @@ The response can be a function. This is where you can make the most powerful act
 
 # ⚠️Test Your Bot - Response Function⚠️
 ```bash
-# Start Your Bot
+# Start your bot
 npm start
-# Stop Your Bot (once you are done with this step)
-ctrl+c
 ```
 Try out the following commands:
 
@@ -157,6 +165,11 @@ Try out the following commands:
 - `@BotName joke` should reply with a message that includes my username and a generated joke
 
 TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+
+```bash
+# Stop your bot
+ctrl + c
+```
 
 # Optional - Write Your Own Action
 You now have all of the information you need to write your own actions with potentially complex accessors and responses. Try flexing your coding muscles and writing something a little more complex than the examples above or skip ahead to the next section to learn a little more about how to configure your framework.

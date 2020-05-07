@@ -12,6 +12,7 @@ const { ENUM_HELP_TYPE } = require('./constants');
  * @param {any} framework the full <a href="api#DiscordiaFramework">Discordia framework instance</a> that this
  * action is attached to
  * @returns {string} A help message based on the name of the bot and its registered actions
+ * @private
  */
 const helpResponse = (userArgs, msg, framework) => {
   const messageStarter = `All commands are written in the form \`${framework.nameToSend} {command}\`:`;

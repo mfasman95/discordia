@@ -1,5 +1,5 @@
 const { isString, isArray, isFunction, isBoolean, isNull } = require('lodash');
-const { red, cyan } = require('chalk');
+const { green, red, cyan, magenta, yellow } = require('chalk');
 const discord = require('discord.js');
 const discordiaDebug = require('@discordia/debug');
 const DiscordiaAction = require('@discordia/action');
@@ -36,6 +36,17 @@ class DiscordiaFramework {
    * available commands using 'help' or 'h'. By default this will use the descriptions of each of the provided
    * actions, but can be configured to use a custom DiscordiaAction or set to `null` to remove it from the list of
    * available actions.
+   * @example
+   * // Simple Example
+   * const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions);
+   * @example
+   * // Kitchen Sink Example
+   * const myBot = new DiscordiaFramework(process.env.DISCORD_TOKEN, actions, {
+   *   name: 'bot-name',
+   *   caseSensitiveName: true,
+   *   missingCommandMessage: 'Looks like this command was missing :frowning:',
+   *   help: new DiscordiaAction(['h', 'help'], (userArgs, msg, framework) => 'Include your own custom help message', 'A help message'),
+   * });
    * @memberof DiscordiaFramework
    */
   constructor(
@@ -182,6 +193,7 @@ class DiscordiaFramework {
    * name should be case sensitive
    * @param {string} botName The portion of the user message that would be the botName
    * @returns {boolean} whether or not this bot was being addressed
+   * @private
    * @memberof DiscordiaFramework
    */
   shouldHandleMessage(botName) {
@@ -214,6 +226,7 @@ class DiscordiaFramework {
    * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
    * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js
    * message object</a> that triggered this action
+   * @private
    * @memberof DiscordiaFramework
    */
   handleMissingCommand(userAction, userArgs, msg) {
@@ -252,6 +265,7 @@ class DiscordiaFramework {
    * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js
    * message object</a> that triggered this action
    * @returns {boolean} Returns whether or not the action was handled
+   * @private
    * @memberof DiscordiaFramework
    */
   handleMessage(msg) {
@@ -283,14 +297,23 @@ class DiscordiaFramework {
    * @function start
    * @description Initialize the Discord.js client using the provided token and sets up
    * the message listener to pass all messages to <DiscordiaFramework#handleMessage>
-   *
+   * @private
    * @memberof DiscordiaFramework
    */
   start() {
-    this.client.on('ready', () => this.debug(`Logged in as ${this.client.user.tag}!`));
+    this.client.on('ready', () => {
+      const startMessage = green(`Your bot has logged in as ${cyan(this.client.user.tag)}...`);
+      const loggingMessage = magenta(
+        `You can run this bot with additional logs by setting
+${yellow('DEBUG=@discordia*')} as an environment variable`
+      );
+      // eslint-disable-next-line no-console
+      console.log(`${startMessage}\n\n${loggingMessage}`);
+      this.debug(`Logged in as ${this.client.user.tag}!`);
+    });
     this.client.on('message', (msg) => this.handleMessage(msg));
     this.login();
-    delete this.login();
+    delete this.login;
   }
 }
 

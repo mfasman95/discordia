@@ -15,6 +15,34 @@ class DiscordiaAction {
    * @param {string|Function} response The response to send when the action is run
    * @param {?string} [description=null] The description of this action that will be
    * displayed when the bot is asked for help
+   * @example
+   * // String Accessor
+   * const pingAction = new DiscordiaAction('ping', 'pong', 'ping -> pong');
+   * @example
+   * // Array Accessor
+   * const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
+   * @example
+   * // Function Accessor
+   * const functionAccessor = (userAction, msg, framework) => {
+   *   if (msg.content.includes('hot')) {
+   *     return true;
+   *   } else if (msg.content.includes('heat')) {
+   *     return true;
+   *   } else if (msg.content.includes('fire')) {
+   *     return true;
+   *   } else if (msg.content.includes('flame')) {
+   *     return true;
+   *   }
+   *   return false;
+   * };
+   * const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Let the user know if their message is hot');
+   * @example
+   * // Function Response
+   * const generateJoke = () => 'This should probably make a user laugh';
+   * const functionResponse = (userArgs, msg, framework) => {
+   *   return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
+   * };
+   * const jokeAction = new DiscordiaAction('joke', functionResponse, 'Responds to the user with a funny joke');
    * @memberof DiscordiaAction
    */
   constructor(accessor, response, description = null) {
@@ -117,6 +145,7 @@ class DiscordiaAction {
    * @param {any} framework The full <a href="api#DiscordiaFramework">Discordia framework instance</a> that this
    * action is attached to
    * @returns {boolean} Returns if the action will be handled
+   * @private
    * @memberof DiscordiaAction
    */
   checkAccessor(userAction, msg, userArgs, framework) {
@@ -175,6 +204,7 @@ class DiscordiaAction {
    * @param {Array<string>} userArgs Everything in the user's message after the userAction
    * @param {any} framework the full <a href="api#DiscordiaFramework">Discordia framework instance</a> that
    * this action is attached to
+   * @private
    * @memberof DiscordiaAction
    */
   handleAction(msg, userArgs, framework) {
