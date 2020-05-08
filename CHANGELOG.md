@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.0...v1.0.0) (2020-05-08)
+
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
