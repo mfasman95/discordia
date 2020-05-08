@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.2...v1.0.0) (2020-05-08)
+
+
+
 # [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.1...v1.0.0) (2020-05-08)
 
 
