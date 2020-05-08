@@ -1,6 +1,6 @@
 {
   "name": "@discordia/action",
-  "version": "1.0.1-alpha.1",
+  "version": "1.0.1-alpha.2",
   "description": "Class for creating discordia actions",
   "keywords": [
     "discordia",
