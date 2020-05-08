@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v0.2.3...v1.0.0) (2020-05-08)
+
+
+### Code Refactoring
+
+* **multiple-packages:** handle multi-word accessors ([#5](https://github.com/mfasman95/discordia/issues/5)) ([02f5133](https://github.com/mfasman95/discordia/commit/02f51333cfb137006f1a15719a69e250f5ddb3e4))
+
+
+### BREAKING CHANGES
+
+* **multiple-packages:** Many changes to the ways parameters are passed between action checking and handlers.
+
+
+
+
+
 ## [0.2.2](https://github.com/mfasman95/discordia/compare/v0.2.1...v0.2.2) (2020-05-06)
 
 **Note:** Version bump only for package @discordia/framework
