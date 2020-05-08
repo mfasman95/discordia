@@ -15,7 +15,7 @@ const { ENUM_HELP_TYPE } = require('./constants');
  * @private
  */
 const helpResponse = (userArgs, msg, framework) => {
-  const messageStarter = `All commands are written in the form \`${framework.nameToSend} {command}\`:`;
+  const messageStarter = `All commands are written in the form \`${framework.botName} {command}\`:`;
 
   const commandToFilter = userArgs[0];
   const accessors = flatten(

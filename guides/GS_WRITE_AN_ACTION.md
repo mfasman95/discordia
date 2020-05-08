@@ -80,14 +80,14 @@ const pingAction = new DiscordiaAction('ping', 'pong', 'ping -> pong');
 const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
 
 // ADD A NEW ACTION //
-const functionAccessor = (userAction, msg, framework) => {
-  if (msg.content.includes('hot')) {
+const functionAccessor = (msgContent, msg, framework) => {
+  if (msgContent.includes('hot')) {
     return true;
-  } else if (msg.content.includes('heat')) {
+  } else if (msgContent.includes('heat')) {
     return true;
-  } else if (msg.content.includes('fire')) {
+  } else if (msgContent.includes('fire')) {
     return true;
-  } else if (msg.content.includes('flame')) {
+  } else if (msgContent.includes('flame')) {
     return true;
   }
   return false;
@@ -127,14 +127,14 @@ const DiscordiaAction = require('@discordia/action');
 
 const pingAction = new DiscordiaAction('ping', 'pong', 'ping -> pong');
 const arrayAccessorAction = new DiscordiaAction(['oof', 'ow', 'ouch'], 'rekt', 'Lets you know when you\'ve been rekt.');
-const functionAccessor = (userAction, msg, framework) => {
-  if (msg.content.includes('hot')) {
+const functionAccessor = (msgContent, msg, framework) => {
+  if (msgContent.includes('hot')) {
     return true;
-  } else if (msg.content.includes('heat')) {
+  } else if (msgContent.includes('heat')) {
     return true;
-  } else if (msg.content.includes('fire')) {
+  } else if (msgContent.includes('fire')) {
     return true;
-  } else if (msg.content.includes('flame')) {
+  } else if (msgContent.includes('flame')) {
     return true;
   }
   return false;
@@ -143,7 +143,7 @@ const functionAccessorAction = new DiscordiaAction(functionAccessor, '🔥', 'Le
 
 // ADD A NEW ACTION - Try implementing your own generateJoke function, maybe calling a joke API //
 const generateJoke = () => 'This should probably make a user laugh';
-const functionResponse = (userArgs, msg, framework) => {
+const functionResponse = (msgContent, msg, framework, userArgs) => {
   return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
 };
 const jokeAction = new DiscordiaAction('joke', functionResponse, 'Responds to the user with a funny joke');

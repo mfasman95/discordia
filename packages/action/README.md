@@ -41,36 +41,36 @@ BotName: @User, pong
 Every Discordia action is made of three pieces: an accessor, a response, and an optional description.
 
 ## Accessor
-The accessor is how the Discordia framework determines whether or not this action should give its [response](#response). The Discordia framework calls the action's [checkAccessor](api#DiscordiaAction.checkAccessor) method which in turn determines whether or not to call the action's [handleAction](api#DiscordiaAction.handleAction) method based on the type of the accessor. The [checkAccessor](api#DiscordiaAction.checkAccessor) method is given four parameters:
+The accessor is how the Discordia framework determines whether or not this action should give its [response](#response). The Discordia framework calls the action's `checkAccessor` method which in turn determines whether or not to call the action's `handleAction` method based on the type of the accessor. The `checkAccessor` method is given three parameters:
 
 |Parameter|Description
 |---|---|
-|`userAction`|The first `string` after the name of the bot that triggered the framework|
-|`msg`|The full [Message object](https://discord.js.org/#/docs/main/stable/class/Message) that contains `userAction` and `userArgs` in its `content`|
-|`userArgs`|Everything in side the `msg.content` field after `userAction` as an array|
+|`msgContent`|The exact content of the message that triggered this action|
+|`msg`|The full [Message object](https://discord.js.org/#/docs/main/stable/class/Message) that triggered this action|
 |`framework`|The full [Discordia Framework](api#DiscordiaFramework) instance - USE WITH CAUTION|
 
 
 **String**
 
-If the accessor is a string and matches `userAction` exactly then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
+If the accessor is a string and it is the first string after the name of the bot then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
 
 **Array**
 
-If the accessor is an array and any of its entries matches `userAction` exactly then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
+If the accessor is an array and any of its entries is the first string after the name of the bot then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
 
 **Function**
 
-If the accessor is a function that returns true when provided with `userAction`, `msg`, and `framework` then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
+If the accessor is a function that returns true when provided with `msgContent`, `msg`, and `framework` then [handleAction](api#DiscordiaAction.handleAction) for this action will be called.
 
 ## Response
-The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once [handleAction](api#DiscordiaAction.handleAction) is called it will determine how to respond to the user based on the type of the response. The [handleAction](api#DiscordiaAction.handleAction) method is given three parameters:
+The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once [handleAction](api#DiscordiaAction.handleAction) is called it will determine how to respond to the user based on the type of the response. The [handleAction](api#DiscordiaAction.handleAction) method is given four parameters:
 
 |Parameter|Description
 |---|---|
-|`msg`|The full [Message object](https://discord.js.org/#/docs/main/stable/class/Message) that contains `userAction` and `userArgs` in its `content`|
-|`userArgs`|Everything in side the `msg.content` field after `userAction` as an array|
+|`msgContent`|The exact content of the message that triggered this action|
+|`msg`|The full [Message object](https://discord.js.org/#/docs/main/stable/class/Message) that triggered this action|
 |`framework`|The full [Discordia Framework](api#DiscordiaFramework) instance - USE WITH CAUTION|
+|`userArgs`|Everything in the user's message after the accessor that triggered this action|
 
 **String**
 
@@ -78,7 +78,7 @@ If the response is a string then [msg.reply](https://discord.js.org/#/docs/main/
 
 **Function**
 
-If the response is a function then that function will be called with `msg`, `userArgs`, and `framework` as parameters. If the function returns a string then [msg.reply](https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply) is called with the result of that function as the `content` parameter.
+If the response is a function then that function will be called with `msgContent`, `msg`, `framework`, and `userArgs` as parameters. If the function returns a string then [msg.reply](https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply) is called with the result of that function as the `content` parameter. Otherwise you are encouraged to use the `msg` object to handle sending the response yourself.
 
 ## Description
 Description is an optional parameter that must be a string used to enable a `help` (or `h`) action on the Discordia framework. By default the discordia framework will attempt to supply usage information to server members who ask the bot created by the Discordia framework for help.
@@ -130,8 +130,8 @@ BotName: @User, rekt
 ```js
 const DiscordiaAction = require('@discordia/action');
 
-const accessor = (userAction, msg, framework) => {
-  if (msg.content.includes('potato')) {
+const accessor = (msgContent, msg, framework) => {
+  if (msgContent.includes('potato')) {
     return true;
   }
   return false;
@@ -148,7 +148,7 @@ BotName: @User, delicious
 ```js
 const DiscordiaAction = require('@discordia/action');
 
-const response = (userArgs, msg, framework) => {
+const response = (msgContent, msg, framework, userArgs) => {
   return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
 };
 const jokeAction = new DiscordiaAction('joke', response);
