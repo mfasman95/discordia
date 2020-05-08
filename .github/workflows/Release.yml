@@ -36,7 +36,7 @@ jobs:
   publish-docs:
     needs: test
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.ref, 'refs/tags/') && github.ref != v*.*.*-*}}
+    if: ${{ startsWith(github.ref, 'refs/tags/') && !contains(github.ref, v*.*.*-*) }}
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
