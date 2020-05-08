@@ -1,7 +1,6 @@
 const DiscordiaAction = require('@discordia/action');
 const discord = require('discord.js');
 const DiscordiaFramework = require('./index');
-const { parseMessageContent } = require('./utils');
 const {
   DEFAULT_NAME,
   DEFAULT_CASE_SENSITIVE_NAME,
@@ -142,7 +141,6 @@ describe('@discordia/framework', () => {
 
   describe('shouldHandleMessage', () => {
     const mockUserId = 123;
-    const mockUsername = 123;
     const defaultNamePattern = `<@!${mockUserId}>`;
     const mockName = 'MOCK_NAME';
 
@@ -177,19 +175,6 @@ describe('@discordia/framework', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, { name: mockName, caseSensitiveName: true });
       expect(framework.shouldHandleMessage(mockName.toLowerCase())).toEqual(false);
     });
-
-    test('should set this.nameToSend based on framework.client.user.id if options are default', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions);
-      framework.client.user = { id: mockUserId, username: mockUsername };
-      framework.shouldHandleMessage(defaultNamePattern);
-      expect(framework.nameToSend).toEqual(`@${mockUsername}`);
-    });
-
-    test('should set this.nameToSend based on options.name if options.name is set', () => {
-      framework = new DiscordiaFramework(mockToken, mockActions, { name: mockName });
-      framework.shouldHandleMessage(defaultNamePattern);
-      expect(framework.nameToSend).toEqual(mockName);
-    });
   });
 
   describe('handleMissingCommand', () => {
@@ -203,19 +188,16 @@ describe('@discordia/framework', () => {
 
     test('should call msg.reply with framework.missingCommandMessage if options.missingCommandMessage is a String', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, { missingCommandMessage: 'MOCK' });
-      framework.handleMissingCommand(mockUserAction, mockUserArgs, mockMsg);
+      const msgContent = `${framework.name} ${mockUserAction} ${mockUserArgs.join(' ')}`;
+      framework.handleMissingCommand(msgContent, mockMsg);
       expect(mockMsg.reply).toHaveBeenCalledWith(framework.missingCommandMessage);
     });
 
     test('should call framework.missingCommandMessage if options.missingCommandMessage is a Function', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, { missingCommandMessage: jest.fn() });
-      framework.handleMissingCommand(mockUserAction, mockUserArgs, mockMsg);
-      expect(framework.missingCommandMessage).toHaveBeenCalledWith(
-        mockUserAction,
-        mockUserArgs,
-        mockMsg,
-        framework.client
-      );
+      const msgContent = `${framework.name} ${mockUserAction} ${mockUserArgs.join(' ')}`;
+      framework.handleMissingCommand(msgContent, mockMsg);
+      expect(framework.missingCommandMessage).toHaveBeenCalledWith(msgContent, mockMsg, framework);
       expect(mockMsg.reply).not.toHaveBeenCalled();
     });
 
@@ -223,19 +205,17 @@ describe('@discordia/framework', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, {
         missingCommandMessage: jest.fn().mockImplementation(() => 'MOCK_MISSING_COMMAND_RESPONSE'),
       });
-      framework.handleMissingCommand(mockUserAction, mockUserArgs, mockMsg);
-      expect(framework.missingCommandMessage).toHaveBeenCalledWith(
-        mockUserAction,
-        mockUserArgs,
-        mockMsg,
-        framework.client
-      );
+      const msgContent = `${framework.name} ${mockUserAction} ${mockUserArgs.join(' ')}`;
+      framework.handleMissingCommand(msgContent, mockMsg);
+      expect(framework.missingCommandMessage).toHaveBeenCalledWith(msgContent, mockMsg, framework);
       expect(mockMsg.reply).toHaveBeenCalledWith(framework.missingCommandMessage());
     });
 
     test('should not throw if options.missingCommandMessage is not a String or Function', () => {
       framework = new DiscordiaFramework(mockToken, mockActions, { missingCommandMessage: null });
-      expect(() => framework.handleMissingCommand(mockUserAction, mockUserArgs, mockMsg)).not.toThrow();
+      expect(() =>
+        framework.handleMissingCommand(`${framework.name} ${mockUserAction} ${mockUserArgs.join(' ')}`, mockMsg)
+      ).not.toThrow();
     });
   });
 
@@ -243,23 +223,24 @@ describe('@discordia/framework', () => {
     const mockName = 'MOCK_NAME';
     beforeEach(() => {
       framework = new DiscordiaFramework(mockToken, mockActions, { name: mockName });
+      framework.startingIndex = mockName.length + 1;
     });
 
     test('should call framework.shouldHandleMessage', () => {
       const originalShouldHandleMessage = framework.shouldHandleMessage;
       framework.shouldHandleMessage = jest.fn();
-      framework.handleMessage({ content: `${mockName} some message` });
-      expect(framework.shouldHandleMessage).toHaveBeenCalledWith(mockName);
+      const mockMsg = { content: `${mockName} some message` };
+      framework.handleMessage(mockMsg);
+      expect(framework.shouldHandleMessage).toHaveBeenCalledWith(mockMsg.content);
       framework.shouldHandleMessage = originalShouldHandleMessage;
     });
 
     test('should call framework.handleMissingCommand if userAction would not trigger one of the provided actions', () => {
-      const msg = { content: `${mockName} some message` };
+      const mockMsg = { content: `${mockName} some message` };
       const originalHandleMissingCommand = framework.handleMissingCommand;
       framework.handleMissingCommand = jest.fn();
-      framework.handleMessage(msg);
-      const [, userAction, userArgs] = parseMessageContent(msg);
-      expect(framework.handleMissingCommand).toHaveBeenCalledWith(userAction, userArgs, msg);
+      framework.handleMessage(mockMsg);
+      expect(framework.handleMissingCommand).toHaveBeenCalledWith(mockMsg.content, mockMsg);
       framework.handleMissingCommand = originalHandleMissingCommand;
     });
 
@@ -298,11 +279,15 @@ describe('@discordia/framework', () => {
     });
   });
 
+  const mockName = 'MOCK_NAME';
+  const mockUserId = 123;
+  const mockUsername = 123;
   describe('start', () => {
     beforeEach(() => {
       framework = new DiscordiaFramework(mockToken, mockActions);
       framework.client.on = jest.fn();
       framework.client.login = jest.fn();
+      framework.client.user = { id: mockUserId, username: mockUsername };
       framework.start();
     });
 
@@ -317,5 +302,18 @@ describe('@discordia/framework', () => {
     test('should call framework.client.login with framework.token', () => {
       expect(framework.client.login).toHaveBeenCalledWith(mockToken);
     });
+
+    test('should set this.botName based on framework.client.user.id if options are default', () => {
+      expect(framework.botName).toEqual(`@${mockUsername}`);
+    });
+  });
+
+  test('start should set this.botName based on this.name if this.name is set', () => {
+    framework = new DiscordiaFramework(mockToken, mockActions);
+    framework.client.on = jest.fn();
+    framework.client.login = jest.fn();
+    framework.name = mockName;
+    framework.start();
+    expect(framework.botName).toEqual(mockName);
   });
 });

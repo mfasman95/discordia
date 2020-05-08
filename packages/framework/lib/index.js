@@ -3,7 +3,6 @@ const { green, red, cyan, magenta, yellow } = require('chalk');
 const discord = require('discord.js');
 const discordiaDebug = require('@discordia/debug');
 const DiscordiaAction = require('@discordia/action');
-const { parseMessageContent } = require('./utils');
 const {
   DEFAULT_NAME,
   DEFAULT_CASE_SENSITIVE_NAME,
@@ -61,7 +60,11 @@ class DiscordiaFramework {
   ) {
     // #region Validate Required Parameters
     // Set the login function here to avoid storing `token`
-    this.login = () => this.client.login(token);
+    this.login = () => {
+      this.client.login(token);
+      this.botName = this.name || `@${this.client.user.username}`;
+      this.startingIndex = this.botName.length + 1;
+    };
     this.validateToken(token);
 
     // Include help in the actions but remove it if it is null
@@ -191,25 +194,20 @@ class DiscordiaFramework {
    * @description Determine if the incoming message was directed at this bot based on the
    * portion of the user message that would be the name of the bot and whether or not the
    * name should be case sensitive
-   * @param {string} botName The portion of the user message that would be the botName
+   * @param {string} msgContent The full content of the message that just came in
    * @returns {boolean} whether or not this bot was being addressed
    * @private
    * @memberof DiscordiaFramework
    */
-  shouldHandleMessage(botName) {
-    let defaultNameMatch = false;
-    let caseInsensitiveNameMatch = false;
-    let caseSensitiveNameMatch = false;
-    if (isString(this.name)) {
-      caseInsensitiveNameMatch = botName.toLowerCase() === this.name.toLowerCase() && !this.caseSensitiveName;
-      caseSensitiveNameMatch = botName === this.name && this.caseSensitiveName;
-    } else {
-      defaultNameMatch = `<@!${this.client.user.id}>` === botName;
+  shouldHandleMessage(msgContent) {
+    if (isString(this.name) && this.caseSensitiveName) {
+      return msgContent.indexOf(this.name) === 0;
+    }
+    if (isString(this.name) && !this.caseSensitiveName) {
+      return msgContent.toLowerCase().indexOf(this.name.toLowerCase()) === 0;
     }
 
-    this.nameToSend = defaultNameMatch ? `@${this.client.user.username}` : this.name;
-
-    return defaultNameMatch || caseInsensitiveNameMatch || caseSensitiveNameMatch;
+    return msgContent.indexOf(`<@!${this.client.user.id}>`) === 0;
   }
 
   /**
@@ -217,19 +215,16 @@ class DiscordiaFramework {
    * @description Determines the message to send back to the user if the command
    * they attempted to use was not available based on this.missingCommandMessageType.
    * String - Replies to the user with this.missingCommandMessage
-   * Function - Passes userAction, userArgs, the
+   * Function - Passes msgContent, the
    * <a href="https://discord.js.org/#/docs/main/stable/class/Message">Discord.js Message object</a>,
-   * and the <a href="https://discord.js.org/#/docs/main/stable/class/Client">Discord.js Client object</a>,
-   * as parameters.
-   *
-   * @param {string} userAction The action taken by the user
-   * @param {Array<string>} userArgs Everything in the message after the userAction as an Array
+   * and this class instance.
+   * @param {string} msgContent The full content of the message that just came in
    * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js
    * message object</a> that triggered this action
    * @private
    * @memberof DiscordiaFramework
    */
-  handleMissingCommand(userAction, userArgs, msg) {
+  handleMissingCommand(msgContent, msg) {
     switch (this.missingCommandMessageType) {
       // If the missing command message is a string
       case ENUM_MISSING_COMMAND_MESSAGE_TYPE.STRING: {
@@ -239,7 +234,7 @@ class DiscordiaFramework {
       }
       // If the missingCommandMessage is a function, execute it
       case ENUM_MISSING_COMMAND_MESSAGE_TYPE.FUNCTION: {
-        const result = this.missingCommandMessage(userAction, userArgs, msg, this.client);
+        const result = this.missingCommandMessage(msgContent, msg, this);
         // If the result of the missingCommandMessage function is a string
         if (isString(result)) {
           // Reply the result to the user who triggered the action
@@ -269,22 +264,20 @@ class DiscordiaFramework {
    * @memberof DiscordiaFramework
    */
   handleMessage(msg) {
-    const [botName, userAction, userArgs] = parseMessageContent(msg);
-
-    if (this.shouldHandleMessage(botName)) {
-      this.debug(botName, userAction, userArgs);
+    if (this.shouldHandleMessage(msg.content)) {
+      this.debug(msg.content);
 
       let actionHandled = false;
 
       this.actions.forEach((action) => {
         // If any of the actions are handled, make sure to track it
-        if (action.checkAccessor(userAction, msg, userArgs, this)) {
+        if (action.checkAccessor(msg.content, msg, this)) {
           actionHandled = true;
         }
       });
 
       if (!actionHandled) {
-        this.handleMissingCommand(userAction, userArgs, msg);
+        this.handleMissingCommand(msg.content, msg);
       }
 
       return actionHandled;

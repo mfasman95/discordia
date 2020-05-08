@@ -1,5 +1,5 @@
 - [Installation](#installation)
-- [Basic Example](#basic-example)
+- [Kitchen Sink Example](#kitchen-sink-example)
 - [Usage](#usage)
   - [Token](#token)
   - [Actions](#actions)
@@ -18,7 +18,7 @@ npm install @discordia/framework
 yarn add @discordia/framework
 ```
 
-# Basic Example
+# Kitchen Sink Example
 ```js
 const DiscordiaFramework = require('@discordia/framework');
 // actions is an array of DiscordiaAction objects
@@ -44,12 +44,12 @@ Every Discordia framework is made of three pieces: a token, an array of actions,
 
 Your private Discord bot token. The token for your bot should be located at https://discordapp.com/developers/applications/{client-id}/bot (replace {client-id} with the Client ID of your Discord application) in a hidden field that you can reveal by clicking "Click to Reveal Token". [This guide](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) is a useful one for making a new Discord bot if you have not done so before. Follow that guide through step #4 to make your bot and get a link to invite it to a server.
 
->⚠️This token is a sensitive piece of information - do not commit it with your source code and regenerate it if it ever becomes compromised⚠️
+>⚠️This token is a sensitive piece of information. DO NOT commit it with your source code. Regenerate it if it ever becomes compromised.⚠️
 
 ## Actions
 >Array[DiscordiaAction]
 
-An array of [DiscordiaAction](api#DiscordiaAction) objects. See [our guide](create_an_action) on how to use the [@discordia/action](https://github.com/mfasman95/discordia/tree/master/packages/action) module to create your own actions and/or install them from third party modules.
+An array of [DiscordiaAction](api#DiscordiaAction) objects. See [our guide](gs_write_an_action) on how to use the [@discordia/action](https://github.com/mfasman95/discordia/tree/master/packages/action) module to create your own actions. You can also install them from third party modules.
 
 ## Options
 >Object
@@ -75,16 +75,12 @@ Controls whether or not the bot name should be treated as if it is case sensitiv
 **missingCommandMessage**
 >String|Function - Default = "The command you typed is not available 🙁"
 
-See [DiscordiaFramework.handleMissingCommand](api#DiscordiaAction.handleMissingCommand) for more details.
-
 The message to send if a server member tries to ask the bot to do an action it does not know how to handle. You can either customize the `string` or provide a `function` to give a more involved response.
 
 **help**
 >String|Function - Default = [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help)
 
-See [DiscordiaFramework.handleHelp](api#DiscordiaAction.handleHelp) for more details.
-
-The message to send if a server member tries to ask the bot for help. By default it will use [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help) to read your actions and send a response based on their [accessors](create_an_action#accessor) and [descriptions](create_an_action#description). You can provide a static `string` as a response or provide a custom `function` to give a more involved response.
+The message to send if a server member tries to ask the bot for help. By default it will use [@discordia/default-help](https://github.com/mfasman95/discordia/tree/master/packages/default-help) to read your actions and send a response based on their [accessors](action#accessor) and [descriptions](action#description). You can provide `null` to disable the help message or provide a custom [DiscordiaAction](api#DiscordiaAction) to control what the message responds to and what it says.
 
 # Testing
 🚧 Coming Soon! 🚧

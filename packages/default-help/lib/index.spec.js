@@ -2,10 +2,13 @@ const discordiaDefaultHelp = require('./index');
 const { ENUM_HELP_TYPE } = require('./constants');
 
 const mockMsg = {};
-const mockUserArgs = [];
-const mockFramework = {};
+const mockUserArgs = ['1', '2'];
 
 const mockBotName = 'MOCK_BOT_NAME';
+const mockFramework = {
+  botName: mockBotName,
+  startingIndex: mockBotName.length + 1,
+};
 
 const mockAccessorString = 'MOCK_ACCESOR_0';
 const mockAccessorArray = ['MOCK_ACCESOR_1', 'MOCK_ACCESSOR_2'];
@@ -36,13 +39,15 @@ describe('@discordia/default-help', () => {
     });
 
     test('responds to "h"', () => {
-      discordiaDefaultHelp.checkAccessor('h', mockMsg, mockUserArgs, mockFramework);
-      expect(discordiaDefaultHelp.response).toHaveBeenCalledWith(mockUserArgs, mockMsg, mockFramework);
+      const msgContent = `${mockBotName} h ${mockUserArgs.join(' ')}`;
+      discordiaDefaultHelp.checkAccessor(msgContent, mockMsg, mockFramework);
+      expect(discordiaDefaultHelp.response).toHaveBeenCalledWith(msgContent, mockMsg, mockFramework, mockUserArgs);
     });
 
     test('responds to "help"', () => {
-      discordiaDefaultHelp.checkAccessor('help', mockMsg, mockUserArgs, mockFramework);
-      expect(discordiaDefaultHelp.response).toHaveBeenCalledWith(mockUserArgs, mockMsg, mockFramework);
+      const msgContent = `${mockBotName} help ${mockUserArgs.join(' ')}`;
+      discordiaDefaultHelp.checkAccessor(msgContent, mockMsg, mockFramework);
+      expect(discordiaDefaultHelp.response).toHaveBeenCalledWith(msgContent, mockMsg, mockFramework, mockUserArgs);
     });
 
     test('does not respond to other strings', () => {
@@ -57,7 +62,7 @@ describe('@discordia/default-help', () => {
         [],
         {},
         {
-          nameToSend: mockBotName,
+          botName: mockBotName,
           actions: [discordiaDefaultHelp],
         }
       );
@@ -69,7 +74,7 @@ describe('@discordia/default-help', () => {
         [],
         {},
         {
-          nameToSend: mockBotName,
+          botName: mockBotName,
           actions: [
             discordiaDefaultHelp,
             {
@@ -82,7 +87,7 @@ describe('@discordia/default-help', () => {
         [],
         {},
         {
-          nameToSend: mockBotName,
+          botName: mockBotName,
           actions: [discordiaDefaultHelp],
         }
       );
@@ -96,7 +101,7 @@ describe('@discordia/default-help', () => {
           [],
           {},
           {
-            nameToSend: mockBotName,
+            botName: mockBotName,
             actions: [discordiaDefaultHelp, mockActionWithStringAccessor],
           }
         );
@@ -108,7 +113,7 @@ describe('@discordia/default-help', () => {
           [],
           {},
           {
-            nameToSend: mockBotName,
+            botName: mockBotName,
             actions: [discordiaDefaultHelp, mockActionWithArrayAccessor],
           }
         );
@@ -120,7 +125,7 @@ describe('@discordia/default-help', () => {
           [],
           {},
           {
-            nameToSend: mockBotName,
+            botName: mockBotName,
             actions: [discordiaDefaultHelp, mockActionWithFunctionAccessor],
           }
         );
@@ -132,7 +137,7 @@ describe('@discordia/default-help', () => {
           [],
           {},
           {
-            nameToSend: mockBotName,
+            botName: mockBotName,
             actions: [
               discordiaDefaultHelp,
               mockActionWithStringAccessor,
@@ -149,7 +154,7 @@ describe('@discordia/default-help', () => {
       const args = [
         {},
         {
-          nameToSend: mockBotName,
+          botName: mockBotName,
           actions: [
             discordiaDefaultHelp,
             mockActionWithStringAccessor,

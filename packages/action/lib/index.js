@@ -3,6 +3,11 @@ const { isString, isArray, isFunction, isNull } = require('lodash');
 const { red } = require('chalk');
 const { ENUM_ACCESSOR_TYPE, ENUM_RESPONSE_TYPE, ENUM_DESCRIPTION_TYPE } = require('./constants');
 
+const parseUsersArgs = (msgContent, userAction) =>
+  msgContent.slice(msgContent.indexOf(userAction) + userAction.length + 1).split(' ');
+
+const checkAccessor = (msgContent, accessor, startingIndex) => msgContent.indexOf(accessor) === startingIndex;
+
 /**
  * @class DiscordiaAction
  * @description An action to be used by the discordia framework
@@ -133,29 +138,28 @@ class DiscordiaAction {
    * @function checkAccessor
    * @description Check if the provided userAction and/or other parameters meet the requirements of the accessor.
    * <ul>
-   *   <li>enumAccessorType.STRING: if userAction matches accessor</li>
-   *   <li>enumAccessorType.ARRAY: if userAction matches anything in the accessor array</li>
-   *   <li>enumAccessorType.FUNCTION: if accessor returns true when provided with userAction, msg, and args</li>
+   * <li>enumAccessorType.STRING: if userAction matches accessor</li>
+   * <li>enumAccessorType.ARRAY: if userAction matches anything in the accessor array</li>
+   * <li>enumAccessorType.FUNCTION: if accessor returns true when provided with userAction, msg, and args</li>
    * </ul>
    * message after they addressed this bot by name.
-   * @param {string} userAction The action the user is attempting to take. This is the first word in the user's
+   * @param {string} msgContent The exact content of the message that might trigger this action
    * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js message
    * object</a> that might trigger this action
-   * @param {Array<string>} userArgs Everything in the user's message after the userAction
    * @param {any} framework The full <a href="api#DiscordiaFramework">Discordia framework instance</a> that this
    * action is attached to
    * @returns {boolean} Returns if the action will be handled
    * @private
    * @memberof DiscordiaAction
    */
-  checkAccessor(userAction, msg, userArgs, framework) {
+  checkAccessor(msgContent, msg, framework) {
     switch (this.accessorType) {
       // If the accessor is a string
       case ENUM_ACCESSOR_TYPE.STRING: {
         // If the accessor matches the given command
-        if (userAction === this.accessor) {
-          this.debug(`Handling "${userAction}" as a ${ENUM_ACCESSOR_TYPE.STRING}`);
-          this.handleAction(msg, userArgs, framework);
+        if (checkAccessor(msgContent, this.accessor, framework.startingIndex)) {
+          this.debug(`Handling "${this.accessor}" as a ${ENUM_ACCESSOR_TYPE.STRING}`);
+          this.handleAction(msgContent, msg, framework, parseUsersArgs(msgContent, this.accessor));
           return true;
         }
         return false;
@@ -163,9 +167,19 @@ class DiscordiaAction {
       // If the accessor is an array of strings
       case ENUM_ACCESSOR_TYPE.ARRAY: {
         // If the array includes the given command
-        if (this.accessor.includes(userAction)) {
+        let userAction = false;
+        this.accessor.forEach((accessor) => {
+          if (checkAccessor(msgContent, accessor, framework.startingIndex)) {
+            if (userAction !== false && accessor.length > userAction) {
+              userAction = accessor;
+            } else if (userAction === false) {
+              userAction = accessor;
+            }
+          }
+        });
+        if (userAction) {
           this.debug(`Handling "${userAction}" as an ${ENUM_ACCESSOR_TYPE.ARRAY}`);
-          this.handleAction(msg, userArgs, framework);
+          this.handleAction(msgContent, msg, framework, parseUsersArgs(msgContent, userAction));
           return true;
         }
         return false;
@@ -173,9 +187,9 @@ class DiscordiaAction {
       // If the accessor is a function
       case ENUM_ACCESSOR_TYPE.FUNCTION: {
         // If the accessor returns a truthy value when resolved
-        if (this.accessor(userAction, msg, userArgs)) {
-          this.debug(`Handling "${userAction}" as a ${ENUM_ACCESSOR_TYPE.FUNCTION}`);
-          this.handleAction(msg, userArgs, framework);
+        if (this.accessor(msgContent, msg, framework)) {
+          this.debug(`Handling "${msgContent}" as a ${ENUM_ACCESSOR_TYPE.FUNCTION}`);
+          this.handleAction(msgContent, msg, framework, msgContent.split(' '));
           return true;
         }
         return false;
@@ -195,19 +209,21 @@ class DiscordiaAction {
    * @function handleAction
    * @description Handle the userAction with this.response based on this.responseType
    * <ul>
-   *   <li>enumResponseType.STRING: Reply to the user with this.response</li>
-   *   <li>enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client</li>
+   * <li>enumResponseType.STRING: Reply to the user with this.response</li>
+   * <li>enumResponseType.FUNCTION: Execute the response function providing msg, userArgs, and client</li>
    * </ul>
    * If the function returns a string, reply to the user with that string
+   * @param {string} msgContent The exact content of the message that did trigger this action
    * @param {any} msg The <a href="https://discord.js.org/#/docs/main/stable/class/Message">discord.js message
    * object</a> that triggered this action
-   * @param {Array<string>} userArgs Everything in the user's message after the userAction
    * @param {any} framework the full <a href="api#DiscordiaFramework">Discordia framework instance</a> that
    * this action is attached to
+   * @param {Array<string>} userArgs Everything in the user's message after the accessor that triggered this
+   * action
    * @private
    * @memberof DiscordiaAction
    */
-  handleAction(msg, userArgs, framework) {
+  handleAction(msgContent, msg, framework, userArgs) {
     switch (this.responseType) {
       // If the response is a string
       case ENUM_RESPONSE_TYPE.STRING: {
@@ -218,7 +234,7 @@ class DiscordiaAction {
       // If the response is a function
       case ENUM_RESPONSE_TYPE.FUNCTION: {
         // Execute it and store the result
-        const result = this.response(userArgs, msg, framework);
+        const result = this.response(msgContent, msg, framework, userArgs);
         // If the result of the response function is a string
         if (isString(result)) {
           // Send the response as a reply to the user who triggered the action
