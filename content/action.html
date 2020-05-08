@@ -41,7 +41,7 @@ BotName: @User, pong</code></pre><h1 id="usage">Usage</h1>
 <p>Every Discordia action is made of three pieces: an accessor, a response, and an optional description.</p>
 <h2 id="accessor">Accessor</h2>
 <hr />
-<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method which in turn determines whether or not to call the action's <a href="api#DiscordiaAction.handleAction">handleAction</a> method based on the type of the accessor. The <a href="api#DiscordiaAction.checkAccessor">checkAccessor</a> method is given four parameters:</p>
+<p>The accessor is how the Discordia framework determines whether or not this action should give its <a href="#response">response</a>. The Discordia framework calls the action's <code>checkAccessor</code> method which in turn determines whether or not to call the action's <code>handleAction</code> method based on the type of the accessor. The <code>checkAccessor</code> method is given three parameters:</p>
 <table>
 <thead>
 <tr>
@@ -50,16 +50,12 @@ BotName: @User, pong</code></pre><h1 id="usage">Usage</h1>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>userAction</code></td>
-<td>The first <code>string</code> after the name of the bot that triggered the framework</td>
+<td><code>msgContent</code></td>
+<td>The exact content of the message that triggered this action</td>
 </tr>
 <tr>
 <td><code>msg</code></td>
-<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that contains <code>userAction</code> and <code>userArgs</code> in its <code>content</code></td>
-</tr>
-<tr>
-<td><code>userArgs</code></td>
-<td>Everything in side the <code>msg.content</code> field after <code>userAction</code> as an array</td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that triggered this action</td>
 </tr>
 <tr>
 <td><code>framework</code></td>
@@ -67,14 +63,14 @@ BotName: @User, pong</code></pre><h1 id="usage">Usage</h1>
 </tr>
 </tbody></table>
 <p><strong>String</strong></p>
-<p>If the accessor is a string and matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is a string and it is the first string after the name of the bot then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <p><strong>Array</strong></p>
-<p>If the accessor is an array and any of its entries matches <code>userAction</code> exactly then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is an array and any of its entries is the first string after the name of the bot then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <p><strong>Function</strong></p>
-<p>If the accessor is a function that returns true when provided with <code>userAction</code>, <code>msg</code>, and <code>framework</code> then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
+<p>If the accessor is a function that returns true when provided with <code>msgContent</code>, <code>msg</code>, and <code>framework</code> then <a href="api#DiscordiaAction.handleAction">handleAction</a> for this action will be called.</p>
 <h2 id="response">Response</h2>
 <hr />
-<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="api#DiscordiaAction.handleAction">handleAction</a> is called it will determine how to respond to the user based on the type of the response. The <a href="api#DiscordiaAction.handleAction">handleAction</a> method is given three parameters:</p>
+<p>The response is how the Discordia framework responds to a user that tries to interact with the bot it creates. Once <a href="api#DiscordiaAction.handleAction">handleAction</a> is called it will determine how to respond to the user based on the type of the response. The <a href="api#DiscordiaAction.handleAction">handleAction</a> method is given four parameters:</p>
 <table>
 <thead>
 <tr>
@@ -83,22 +79,26 @@ BotName: @User, pong</code></pre><h1 id="usage">Usage</h1>
 </tr>
 </thead>
 <tbody><tr>
-<td><code>msg</code></td>
-<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that contains <code>userAction</code> and <code>userArgs</code> in its <code>content</code></td>
+<td><code>msgContent</code></td>
+<td>The exact content of the message that triggered this action</td>
 </tr>
 <tr>
-<td><code>userArgs</code></td>
-<td>Everything in side the <code>msg.content</code> field after <code>userAction</code> as an array</td>
+<td><code>msg</code></td>
+<td>The full <a href="https://discord.js.org/#/docs/main/stable/class/Message">Message object</a> that triggered this action</td>
 </tr>
 <tr>
 <td><code>framework</code></td>
 <td>The full <a href="api#DiscordiaFramework">Discordia Framework</a> instance - USE WITH CAUTION</td>
+</tr>
+<tr>
+<td><code>userArgs</code></td>
+<td>Everything in the user's message after the accessor that triggered this action</td>
 </tr>
 </tbody></table>
 <p><strong>String</strong></p>
 <p>If the response is a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with response as the <code>content</code> parameter.</p>
 <p><strong>Function</strong></p>
-<p>If the response is a function then that function will be called with <code>msg</code>, <code>userArgs</code>, and <code>framework</code> as parameters. If the function returns a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with the result of that function as the <code>content</code> parameter.</p>
+<p>If the response is a function then that function will be called with <code>msgContent</code>, <code>msg</code>, <code>framework</code>, and <code>userArgs</code> as parameters. If the function returns a string then <a href="https://discord.js.org/#/docs/main/stable/class/Message?scrollTo=reply">msg.reply</a> is called with the result of that function as the <code>content</code> parameter. Otherwise you are encouraged to use the <code>msg</code> object to handle sending the response yourself.</p>
 <h2 id="description">Description</h2>
 <hr />
 <p>Description is an optional parameter that must be a string used to enable a <code>help</code> (or <code>h</code>) action on the Discordia framework. By default the discordia framework will attempt to supply usage information to server members who ask the bot created by the Discordia framework for help.</p>
@@ -138,8 +138,8 @@ BotName: @User, rekt</code></pre><h2 id="function-accessor">Function Accessor</h
 <hr />
 <pre><code class="js">const DiscordiaAction = require('@discordia/action');
 
-const accessor = (userAction, msg, framework) =&gt; {
-  if (msg.content.includes('potato')) {
+const accessor = (msgContent, msg, framework) =&gt; {
+  if (msgContent.includes('potato')) {
     return true;
   }
   return false;
@@ -152,7 +152,7 @@ BotName: @User, delicious</code></pre><h2 id="function-response">Function Respon
 <hr />
 <pre><code class="js">const DiscordiaAction = require('@discordia/action');
 
-const response = (userArgs, msg, framework) =&gt; {
+const response = (msgContent, msg, framework, userArgs) =&gt; {
   return `here is a joke for ${msg.author.username}: ${generateJoke()}`;
 };
 const jokeAction = new DiscordiaAction('joke', response);</code></pre>
