@@ -1,0 +1,59 @@
+
+<html><head></head><body><h1 id="make-your-discord-application">Make Your Discord Application</h1>
+<hr />
+<p>Go to the <a href="https://discord.com/developers/applications">Discord developers applications page</a>. You may be prompted to log in with your Discord account. Press the "New Application" button in the top right of the page.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/make_discord_application.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<p>Put in the name of your application - this will end up being the default name of your bot but you can change it later. Press the "Create" button.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/name_your_application.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<h1 id="save-the-client-id">Save the Client ID</h1>
+<hr />
+<p>This link - <code>https://discordapp.com/oauth2/authorize?&amp;client_id={Client ID}&amp;scope=bot&amp;permissions={Permissions Integer}</code> - is the link used to invite users to your server. Replace <code>{Client ID}</code> in this link with the "Client ID" in the center of your page. We will get to <code>{Permissing Integer}</code> later.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/save_client_id.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<h1 id="add-a-bot-to-your-application">Add a Bot to Your Application</h1>
+<hr />
+<p>Go to the "Bot" section by clicking the button on the left side of your page and then clicking the "Add Bot" button. When prompted to see if you are sure, say yes.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/add_bot.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<h1 id="discord-bot-token">Discord Bot Token</h1>
+<hr />
+<p>Now that you have your bot you can copy its token. You will need this token when setting up your project.</p>
+<blockquote>
+<p>⚠️WARNING: Your Discord Token is a sensitive piece of information and exposing it to the public puts your bot at risk of being hacked. Make sure to never share or upload this token.⚠️</p>
+</blockquote>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/discord_bot_token.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<h1 id="finish-making-the-bot-invite-url">Finish Making the Bot Invite URL</h1>
+<hr />
+<p>We can now get the last piece we need for the bot invite link - <code>https://discordapp.com/oauth2/authorize?&amp;client_id={Client ID}&amp;scope=bot&amp;permissions={Permissions Integer}</code>.
+You already have <code>Client ID</code>, the <code>Permissions Integer</code> is how tell Discord what you want to let the bot be able to do. To generate the <code>Permissions Integer</code> you can go back to the Bot tab and scroll to the bottom of the page. Selecting options there will generate a new <code>Permissions Integer</code> - we recommend starting with "Send Messages" and "Read Message History".</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/permissions_integer.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<p>Anyone who goes to the link you created will be prompted to add your bot to one of their servers. Go that link so you can add it to a server and use it for testing. Select the server you want to add the bot to and press the "Continue" button.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/invite_bot.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<p>You will be prompted to authorize the bot based on the "Permissions Integer" you set earlier. Once you press the "Authorize" button your bot will be added to your server.</p>
+<div style="width: 100%">
+  <img src="img/gs_setup_your_bot/authorize_bot.png" style="margin: auto; display: block; max-width: 100%;">
+</div>
+
+<h1 id="next">Next</h1>
+<hr />
+<p>Our project is now set up, let's start the bot - proceed to <a href="gs_setup_your_workspace">Getting Started - Setup Your Workspace</a>.</p>
+</body></html>
