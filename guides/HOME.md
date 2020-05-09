@@ -6,7 +6,7 @@ Navigate this site using the options in the top bar.
 ## [Readme](readme)
 The README.md file for the [`@discordia` monorepo](https://github.com/mfasman95/discordia).
 
-## [Getting Started](gs_setup)
+## [Getting Started](gs_setup_your_bot)
 A series of guides to walk you through setting up a project.
 
 ## Packages

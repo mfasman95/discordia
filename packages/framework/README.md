@@ -42,7 +42,7 @@ Every Discordia framework is made of three pieces: a token, an array of actions,
 ## Token
 >String
 
-Your private Discord bot token. The token for your bot should be located at https://discordapp.com/developers/applications/{client-id}/bot (replace {client-id} with the Client ID of your Discord application) in a hidden field that you can reveal by clicking "Click to Reveal Token". [This guide](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) is a useful one for making a new Discord bot if you have not done so before. Follow that guide through step #4 to make your bot and get a link to invite it to a server.
+Your private Discord bot token. The token for your bot should be located at https://discordapp.com/developers/applications/{client-id}/bot (replace {client-id} with the Client ID of your Discord application) in a hidden field that you can reveal by clicking "Click to Reveal Token". [This guide](gs_setup_your_bot) will help you make a new Discord bot if you have not done so before.
 
 >⚠️This token is a sensitive piece of information. DO NOT commit it with your source code. Regenerate it if it ever becomes compromised.⚠️
 

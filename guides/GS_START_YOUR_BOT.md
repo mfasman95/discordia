@@ -1,7 +1,7 @@
 # Previous
-You should have gotten to this page after completing [Getting Started - Setup](gs_setup).
+You should have gotten to this page after completing [Getting Started - Setup Your Workspace](gs_setup_your_workspace).
 
-# Setting Up Your Bot
+# Starting Your Bot
 Open up `src/index.js` in your code editor of choice and add the following code.
 ```js
 // src/index.js //
@@ -35,7 +35,11 @@ At this point you should be able to send the bot a message in Discord and see a 
 - `@BotName h` or `@BotName help` should display a help message
 - `@BotName action` should display a missing action message
 
-TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+<div style="width: 100%">
+  <img src="img/gs_start_your_bot/first_test.png" style="margin: auto; display: block;">
+</div>
+
+<br/>
 
 ```bash
 # Stop your bot

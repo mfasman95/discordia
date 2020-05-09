@@ -25,7 +25,7 @@
     "commit": "git-cz",
     "commit:retry": "git-cz --retry",
     "commitmsg": "commitlint -e",
-    "docs:build": "rm -rf docs/ && node docma.js",
+    "docs:build": "trash docs/ && node docma.js",
     "docs:dev": "nodemon --watch packages/ --watch guides/ --watch docma.js --exec npm run docs:serve",
     "docs:publish": "npm run docs:build && gh-pages -d docs/",
     "docs:serve": "DOCMA_BASE=/ npm run docs:build && light-server -s docs",
@@ -113,7 +113,8 @@
     "lint-staged": "^10.2.2",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.5",
-    "sort-package-json": "^1.42.2"
+    "sort-package-json": "^1.42.2",
+    "trash-cli": "^3.0.0"
   },
   "engines": {
     "node": ">=12",

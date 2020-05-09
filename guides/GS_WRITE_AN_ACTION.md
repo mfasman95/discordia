@@ -27,7 +27,11 @@ You have given your bot its first action! Try out the following commands:
 - `@BotName h` or `@BotName help` should display a help message that describes how to use `ping`
 - `@BotName ping` should reply with `pong`
 
-TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+<div style="width: 100%">
+  <img src="img/gs_write_an_action/ping_test.png" style="margin: auto; display: block;">
+</div>
+
+<br/>
 
 ```bash
 # Stop your bot
@@ -63,7 +67,11 @@ Try out the following commands:
 - `@BotName ow` should reply with `rekt`
 - `@BotName ouch` should reply with `rekt`
 
-TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+<div style="width: 100%">
+  <img src="img/gs_write_an_action/array_accessor_test.png" style="margin: auto; display: block;">
+</div>
+
+<br/>
 
 ```bash
 # Stop your bot
@@ -112,7 +120,11 @@ Try out the following commands:
 - `@BotName do you like lighting things on fire?` should reply with `🔥`
 - `@BotName roasting marshmallows on an open flame` should reply with `🔥`
 
-TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+<div style="width: 100%">
+  <img src="img/gs_write_an_action/function_accessor_test.png" style="margin: auto; display: block;">
+</div>
+
+<br/>
 
 ```bash
 # Stop your bot
@@ -164,7 +176,11 @@ Try out the following commands:
 - `@BotName h` or `@BotName help` should display a help message that describes how to use all the actions you've created
 - `@BotName joke` should reply with a message that includes my username and a generated joke
 
-TODO: INSERT IMAGE HERE SHOWING MESSAGE EXAMPLES
+<div style="width: 100%">
+  <img src="img/gs_write_an_action/function_response_test.png" style="margin: auto; display: block;">
+</div>
+
+<br/>
 
 ```bash
 # Stop your bot

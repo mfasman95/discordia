@@ -24,6 +24,12 @@ const config = {
       method: 'path',
     },
   },
+  assets: {
+    '/': './guides/img',
+  },
+  markdown: {
+    sanitize: false,
+  },
   template: {
     options: {
       title: {
@@ -40,8 +46,12 @@ const config = {
             label: 'Getting Started',
             items: [
               {
-                label: 'Setup',
-                href: `${base}gs_setup`,
+                label: 'Setup Bot',
+                href: `${base}gs_setup_your_bot`,
+              },
+              {
+                label: 'Setup Workspace',
+                href: `${base}gs_setup_your_workspace`,
               },
               {
                 label: 'Start Your Bot',

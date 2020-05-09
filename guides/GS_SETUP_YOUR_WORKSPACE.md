@@ -1,11 +1,11 @@
+# Previous
+You should have gotten to this page after completing [Getting Started - Setup Your Bot](gs_setup_your_bot).
+
 # ⚠️Disclaimer⚠️
 These getting started guides assume you are using a Mac or Linux computer with a standard `bash` or `zsh` terminal. Some of the commands included in this guide (e.g. `touch` to make new files) might not work if you are developing on Windows. If you get to a step where you need to run code in a command line and it fails there is a chance that this is the reason.
 
-# Get Your Bot Token And Invite It To Your Server
-The first step to creating a Discord bot begins before you even start your own Node project - you must go through the Discord developer site, set up a new application, give that application a bot, and add it to your server. Following [this guide](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) (steps 2 through 4) will walk you through that process in more detail.
-
 # Setup Node
-When setting up Node you have two main options. Either way, make sure that by the end of this section you can run `node --version` and `npm --version` in your terminal and get back a [semantic version](https://docs.npmjs.com/about-semantic-versioning) back.
+When setting up Node you have two main options. Either way, make sure that by the end of this section you can run `node --version` and `npm --version` in your terminal and get back a [semantic version](https://docs.npmjs.com/about-semantic-versioning).
 
 ### Install Node
 This is the easiest option, but not the recommended one. Just go to the [Node.JS website's download section](https://nodejs.org/en/download/) and click the button for your Operating System.
