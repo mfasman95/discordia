@@ -279,7 +279,6 @@ describe('@discordia/framework', () => {
     });
   });
 
-  const mockName = 'MOCK_NAME';
   const mockUserId = 123;
   const mockUsername = 123;
   describe('start', () => {
@@ -306,14 +305,5 @@ describe('@discordia/framework', () => {
     test('should set this.botName based on framework.client.user.id if options are default', () => {
       expect(framework.botName).toEqual(`@${mockUsername}`);
     });
-  });
-
-  test('start should set this.botName based on this.name if this.name is set', () => {
-    framework = new DiscordiaFramework(mockToken, mockActions);
-    framework.client.on = jest.fn();
-    framework.client.login = jest.fn();
-    framework.name = mockName;
-    framework.start();
-    expect(framework.botName).toEqual(mockName);
   });
 });
