@@ -60,10 +60,14 @@ class DiscordiaFramework {
   ) {
     // #region Validate Required Parameters
     // Set the login function here to avoid storing `token`
-    this.login = () => {
-      this.client.login(token);
+    this.login = async () => {
+      await this.client.login(token);
       this.botName = this.name || `@${this.client.user.username}`;
-      this.startingIndex = this.botName.length + 1;
+      if (this.name) {
+        this.startingIndex = this.name.length + 1;
+      } else {
+        this.startingIndex = `<@!${this.client.user.id}>`.length + 1;
+      }
     };
     this.validateToken(token);
 
