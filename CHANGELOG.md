@@ -1,23 +1,18 @@
-# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1...v1.0.0) (2020-05-08)
-
-
-
-# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.2...v1.0.0) (2020-05-08)
-
-
-
-# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.1...v1.0.0) (2020-05-08)
-
-
-
-# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.0.1-alpha.0...v1.0.0) (2020-05-08)
-
-
-
 # Change Log
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.2-alpha.1](https://github.com/mfasman95/discordia/compare/v1.0.2-alpha.0...v1.0.2-alpha.1) (2020-05-09)
+
+
+### Bug Fixes
+
+* **framework:** fix logic in login functionality ([d24ec3f](https://github.com/mfasman95/discordia/commit/d24ec3fbe831c72c2f5b9b8ddc40f1d4d383fc5b))
+
+
+
+
 
 # [1.0.0](https://github.com/mfasman95/discordia/compare/v0.2.3...v1.0.0) (2020-05-08)
 
