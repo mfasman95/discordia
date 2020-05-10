@@ -10,6 +10,11 @@
 
 See the [documentation site](https://mfasman95.github.io/discordia/) for more info.
 
+## What is Discordia?
+Discordia is the Roman equivalent of [Eris, the Goddess of Discord](https://en.wikipedia.org/wiki/Eris_(mythology)).
+
+This monorepo, on the other hand, is a tool for creating Discord bots. The core of the framework is made of two pieces - [@discordia/framework](https://mfasman95.github.io/discordia/framework) and [@discordia/action](https://mfasman95.github.io/discordia/action). The `framework` module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to. The `action` module is how you handle the actual message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the actual response to be given if the accessor is met). For a tutorial on how to setup a project using `@discordia` you can check out the [getting started guide](https://mfasman95.github.io/discordia/gs_setup_your_bot).
+
 ## Packages
 <p align="center">
   <a href="https://www.npmjs.com/package/@discordia/framework">
