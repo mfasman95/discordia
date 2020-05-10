@@ -2,25 +2,52 @@
 <html><head></head><body><h1 id="-discordia">@discordia</h1>
 <hr />
 <blockquote>
-<p>Home page for the @discordia Discord bot framework</p>
+<p>Monorepo for the @discordia Discord bot framework</p>
 </blockquote>
-<p>Navigate this site using the options in the top bar.</p>
-<h2 id="readme"><a href="readme">Readme</a></h2>
+<p align="center">
+  <a href="https://github.com/mfasman95/discordia/blob/master/LICENSE">
+    <img alt="license" src="https://img.shields.io/github/license/mfasman95/discordia" style="max-width: 100%;">
+  </a>
+</p>
+
+<p>See the <a href="https://mfasman95.github.io/discordia/">documentation site</a> for more info.</p>
+<h2 id="what-is-discordia-">What is Discordia?</h2>
 <hr />
-<p>The README.md file for the <a href="https://github.com/mfasman95/discordia"><code>@discordia</code> monorepo</a>.</p>
-<h2 id="getting-started"><a href="gs_setup_your_bot">Getting Started</a></h2>
-<hr />
-<p>A series of guides to walk you through setting up a project.</p>
+<p>Discordia is the Roman equivalent of <a href="https://en.wikipedia.org/wiki/Eris_(mythology)">Eris, the Goddess of Discord</a>.</p>
+<p>This monorepo, on the other hand, is a tool for creating Discord bots. The core of the framework is made of two pieces - <a href="https://mfasman95.github.io/discordia/framework">@discordia/framework</a> and <a href="https://mfasman95.github.io/discordia/action">@discordia/action</a>. The <code>framework</code> module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to. The <code>action</code> module is how you handle the message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the response to be given if the accessor is met). You can also publish the actions you make individually so that others can add those actions to their bots. For a tutorial on how to setup a project using <code>@discordia</code> you can check out the <a href="https://mfasman95.github.io/discordia/gs_setup_your_bot">getting started guide</a>.</p>
 <h2 id="packages">Packages</h2>
 <hr />
-<p>The README.md file for each package in the <code>@discordia</code> monorepo.</p>
-<ul>
-<li><a href="action">@discordia/action</a></li>
-<li><a href="debug">@discordia/debug</a></li>
-<li><a href="default-help">@discordia/default-help</a></li>
-<li><a href="framework">@discordia/framework</a></li>
-</ul>
-<h2 id="api"><a href="api">API</a></h2>
+<p align="center">
+  <a href="https://www.npmjs.com/package/@discordia/framework">
+    <img alt="@discordia/framework" src="https://img.shields.io/npm/v/@discordia/framework?label=%40discordia%2Fframework" style="max-width: 100%;">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/action">
+    <img alt="@discordia/action" src="https://img.shields.io/npm/v/@discordia/action?label=%40discordia%2Faction" style="max-width: 100%;">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/create-discordia-bot">
+    <img alt="@discordia/create-discordia-bot" src="https://img.shields.io/npm/v/@discordia/create-discordia-bot?label=%40discordia%2Fcreate-discordia-bot" style="max-width: 100%;">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/default-help">
+    <img alt="@discordia/default-help" src="https://img.shields.io/npm/v/@discordia/default-help?label=%40discordia%2Fdefault-help" style="max-width: 100%;">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/debug">
+    <img alt="@discordia/debug" src="https://img.shields.io/npm/v/@discordia/debug?label=%40discordia%2Fdebug" style="max-width: 100%;">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/complete">
+    <img alt="@discordia/complete" src="https://img.shields.io/npm/v/@discordia/complete?label=%40discordia%2Fcomplete" style="max-width: 100%;">
+  </a>
+</p>
+
+<h2 id="getting-started"><a href="https://mfasman95.github.io/discordia/gs_setup_your_bot">Getting Started</a></h2>
 <hr />
-<p>Detailed API documentation.</p>
+<p>This guide will walk you through creating a bot from the <a href="http://discordapp.com/developers/">Discord developers site</a> as well as setting up your workspace to develop an <code>@discordia</code> bot with Node and NPM, and then finally how to use the <a href="https://mfasman95.github.io/discordia/framework">@discordia/framework</a> and <a href="https://mfasman95.github.io/discordia/action">@discordia/action</a> modules.</p>
+<h2 id="contributing">Contributing</h2>
+<hr />
+<p>This project uses <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>. After you make your changes and update the appropriate tests, do the following steps:</p>
+<ul>
+<li><code>npm test</code> - You can also use <code>npm run test:watch</code> to validate in a watch loop</li>
+<li><code>npm run lint</code> - Your changes will be linted when they are staged, but this will help you catch those changes earlier</li>
+<li><code>git add ...</code> - Stage the changes you want to commit</li>
+<li><code>npm run commit</code> - This command will walk you through making a conventional commit</li>
+</ul>
 </body></html>
