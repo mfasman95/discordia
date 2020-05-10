@@ -1,3 +1,8 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.2.0...v1.0.0) (2020-05-10)
+
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file.

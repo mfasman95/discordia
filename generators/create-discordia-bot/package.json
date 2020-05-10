@@ -1,6 +1,6 @@
 {
   "name": "@discordia/create-discordia-bot",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Wrapper of the `create-discordia-bot` library for discordia",
   "keywords": [
     "discordia",
