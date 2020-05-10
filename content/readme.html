@@ -11,6 +11,10 @@
 </p>
 
 <p>See the <a href="https://mfasman95.github.io/discordia/">documentation site</a> for more info.</p>
+<h2 id="what-is-discordia-">What is Discordia?</h2>
+<hr />
+<p>Discordia is the Roman equivalent of <a href="https://en.wikipedia.org/wiki/Eris_(mythology)">Eris, the Goddess of Discord</a>.</p>
+<p>This monorepo, on the other hand, is a tool for creating Discord bots. The core of the framework is made of two pieces - <a href="https://mfasman95.github.io/discordia/framework">@discordia/framework</a> and <a href="https://mfasman95.github.io/discordia/action">@discordia/action</a>. The <code>framework</code> module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to. The <code>action</code> module is how you handle the actual message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the actual response to be given if the accessor is met). For a tutorial on how to setup a project using <code>@discordia</code> you can check out the <a href="https://mfasman95.github.io/discordia/gs_setup_your_bot">getting started guide</a>.</p>
 <h2 id="packages">Packages</h2>
 <hr />
 <p align="center">
@@ -37,8 +41,10 @@
 <h2 id="contributing">Contributing</h2>
 <hr />
 <p>This project uses <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a>. After you make your changes and update the appropriate tests, do the following steps:</p>
-<p>1) <code>npm test</code> - You can also use <code>npm run test:watch</code> to validate in a watch loop
-2) <code>npm run lint</code> - Your changes will be linted when they are staged, but this will help you catch those changes earlier
-3) <code>git add ...</code> - Stage the changes you want to commit
-4) <code>npm run commit</code> - This command will walk you through making a conventional commit</p>
+<ul>
+<li><code>npm test</code> - You can also use <code>npm run test:watch</code> to validate in a watch loop</li>
+<li><code>npm run lint</code> - Your changes will be linted when they are staged, but this will help you catch those changes earlier</li>
+<li><code>git add ...</code> - Stage the changes you want to commit</li>
+<li><code>npm run commit</code> - This command will walk you through making a conventional commit</li>
+</ul>
 </body></html>
