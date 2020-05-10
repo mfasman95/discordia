@@ -1,0 +1,53 @@
+{
+  "name": "@discordia/create-discordia-bot",
+  "version": "1.0.4",
+  "description": "Wrapper of the `create-discordia-bot` library for discordia",
+  "keywords": [
+    "discordia",
+    "discord",
+    "bot",
+    "create-discordia-bot",
+    "yeoman",
+    "generator",
+    "yeoman-generator"
+  ],
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/create-discordia-bot#readme",
+  "bugs": {
+    "url": "https://github.com/mfasman95/discordia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfasman95/discordia.git"
+  },
+  "license": "MIT",
+  "author": "Matthew <mfasman95@gmail.com>",
+  "main": "lib/index.js",
+  "bin": {
+    "create-discordia-bot": "./lib/index.js"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "generate": "node lib/index.js",
+    "sortPackage": "sort-package-json"
+  },
+  "dependencies": {
+    "@discordia/debug": "file:../debug",
+    "chalk": "^4.0.0",
+    "fast-glob": "^3.2.2",
+    "lodash": "^4.17.15",
+    "yeoman-environment": "^2.10.0",
+    "yeoman-generator": "^4.10.0",
+    "yosay": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.10"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "gitHead": "b6c98bc5a0d7d5af79ffbd08aea21156a926c789"
+}

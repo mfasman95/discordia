@@ -1,0 +1,18 @@
+{
+  "name": "<%= promptValues.projectName %>",
+  "version": "0.0.0",
+  "description": "<%= promptValues.projectDescription %>",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "@discordia/action": "^1.0.0",
+    "@discordia/framework": "^1.0.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

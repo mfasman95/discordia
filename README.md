@@ -13,7 +13,7 @@ See the [documentation site](https://mfasman95.github.io/discordia/) for more in
 ## What is Discordia?
 Discordia is the Roman equivalent of [Eris, the Goddess of Discord](https://en.wikipedia.org/wiki/Eris_(mythology)).
 
-This monorepo, on the other hand, is a tool for creating Discord bots. The core of the framework is made of two pieces - [@discordia/framework](https://mfasman95.github.io/discordia/framework) and [@discordia/action](https://mfasman95.github.io/discordia/action). The `framework` module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to. The `action` module is how you handle the message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the actual response to be given if the accessor is met). You can even publish the actions you make individually so that others can add those actions to their bots. For a tutorial on how to setup a project using `@discordia` you can check out the [getting started guide](https://mfasman95.github.io/discordia/gs_setup_your_bot).
+This monorepo, on the other hand, is a tool for creating Discord bots. The core of the framework is made of two pieces - [@discordia/framework](https://mfasman95.github.io/discordia/framework) and [@discordia/action](https://mfasman95.github.io/discordia/action). The `framework` module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to. The `action` module is how you handle the message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the response to be given if the accessor is met). You can also publish the actions you make individually so that others can add those actions to their bots. For a tutorial on how to setup a project using `@discordia` you can check out the [getting started guide](https://mfasman95.github.io/discordia/gs_setup_your_bot).
 
 ## Packages
 <p align="center">
@@ -22,6 +22,9 @@ This monorepo, on the other hand, is a tool for creating Discord bots. The core 
   </a>
   <a href="https://www.npmjs.com/package/@discordia/action">
     <img alt="@discordia/action" src="https://img.shields.io/npm/v/@discordia/action?label=%40discordia%2Faction">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/create-discordia-bot">
+    <img alt="@discordia/create-discordia-bot" src="https://img.shields.io/npm/v/@discordia/create-discordia-bot?label=%40discordia%2Fcreate-discordia-bot">
   </a>
   <a href="https://www.npmjs.com/package/@discordia/default-help">
     <img alt="@discordia/default-help" src="https://img.shields.io/npm/v/@discordia/default-help?label=%40discordia%2Fdefault-help">

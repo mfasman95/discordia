@@ -88,9 +88,10 @@
   "dependencies": {
     "@discordia/action": "file:packages/action",
     "@discordia/complete": "file:packages/complete",
+    "@discordia/create-discordia-bot": "file:packages/create-discordia-bot",
     "@discordia/debug": "file:packages/debug",
-    "@discordia/framework": "file:packages/framework",
-    "@discordia/default-help": "file:packages/default-help"
+    "@discordia/default-help": "file:packages/default-help",
+    "@discordia/framework": "file:packages/framework"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

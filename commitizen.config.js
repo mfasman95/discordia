@@ -41,12 +41,12 @@ const types = [
 
 const scopes = [
   'action',
+  'framework',
+  'create-discordia-bot',
+  'default-help',
   'complete',
   'debug',
-  'framework',
-  'default-help',
   'multiple-packages',
-  'build-tooling',
 ].map((name) => ({ name }));
 
 module.exports = {
