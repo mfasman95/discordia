@@ -42,6 +42,7 @@ const types = [
 const scopes = [
   'action',
   'framework',
+  'create-discordia-action',
   'create-discordia-bot',
   'default-help',
   'complete',

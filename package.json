@@ -26,7 +26,7 @@
     "commit:retry": "git-cz --retry",
     "commitmsg": "commitlint -e",
     "docs:build": "trash docs/ && node docma.js",
-    "docs:dev": "nodemon --watch packages/ --watch guides/ --watch docma.js --exec npm run docs:serve",
+    "docs:dev": "nodemon --watch packages/ --watch guides/ --watch docma.js --watch README.md --exec npm run docs:serve",
     "docs:publish": "npm run docs:build && gh-pages -d docs/",
     "docs:serve": "DOCMA_BASE=/ npm run docs:build && light-server -s docs",
     "lint": "eslint .",
@@ -88,7 +88,8 @@
   "dependencies": {
     "@discordia/action": "file:packages/action",
     "@discordia/complete": "file:packages/complete",
-    "@discordia/create-discordia-bot": "file:packages/create-discordia-bot",
+    "@discordia/create-discordia-action": "file:generators/create-discordia-action",
+    "@discordia/create-discordia-bot": "file:generators/create-discordia-bot",
     "@discordia/debug": "file:packages/debug",
     "@discordia/default-help": "file:packages/default-help",
     "@discordia/framework": "file:packages/framework"

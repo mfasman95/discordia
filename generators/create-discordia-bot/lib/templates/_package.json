@@ -1,6 +1,7 @@
 {
   "name": "<%= promptValues.projectName %>",
   "version": "0.0.0",
+  "private": true,
   "description": "<%= promptValues.projectDescription %>",
   "main": "src/index.js",
   "scripts": {

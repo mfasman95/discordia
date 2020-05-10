@@ -1,0 +1,16 @@
+{
+  "name": "<%= promptValues.projectName %>",
+  "version": "0.0.0",
+  "description": "<%= promptValues.projectDescription %>",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "xo",
+    "lint:fix": "xo --fix"
+  },
+  "dependencies": {
+    "@discordia/action": "^1.0.0"
+  },
+  "devDependencies": {
+    "xo": "^0.30.0"
+  }
+}

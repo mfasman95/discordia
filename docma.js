@@ -4,7 +4,8 @@ const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
-const packages = ['framework', 'action', 'create-discordia-bot', 'default-help', 'debug', 'complete'];
+const packages = ['framework', 'action', 'default-help', 'debug', 'complete'];
+const generators = ['create-discordia-bot', 'create-discordia-action'];
 
 const config = {
   src: [
@@ -13,6 +14,7 @@ const config = {
     './README.md',
     { content: './README.md' },
     ...packages.map((pkg) => ({ [pkg]: `./packages/${pkg}/README.md` })),
+    ...generators.map((pkg) => ({ [pkg]: `./generators/${pkg}/README.md` })),
   ],
   dest: './docs',
   clean: true,
@@ -66,6 +68,10 @@ const config = {
           {
             label: 'Packages',
             items: packages.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
+          },
+          {
+            label: 'Generators',
+            items: generators.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
           },
           {
             // https://fontawesome.com/icons/at?style=solid

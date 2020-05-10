@@ -1,17 +1,17 @@
 {
-  "name": "@discordia/create-discordia-bot",
+  "name": "@discordia/create-discordia-action",
   "version": "1.1.1",
-  "description": "Wrapper of the `create-discordia-bot` library for discordia",
+  "description": "Wrapper of the `create-discordia-action` library for discordia",
   "keywords": [
     "discordia",
     "discord",
     "bot",
-    "create-discordia-bot",
+    "create-discordia-action",
     "yeoman",
     "generator",
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/create-discordia-bot#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/generators/create-discordia-action#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -23,7 +23,7 @@
   "author": "Matthew <mfasman95@gmail.com>",
   "main": "lib/index.js",
   "bin": {
-    "create-discordia-bot": "./lib/index.js"
+    "create-discordia-action": "./lib/index.js"
   },
   "files": [
     "lib"
@@ -33,7 +33,6 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/debug": "file:../debug",
     "chalk": "^4.0.0",
     "fast-glob": "^3.2.2",
     "lodash": "^4.17.15",
