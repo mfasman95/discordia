@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@discordia/create-discordia-bot">
-    <img alt="@discordia/create-discordia-bot" src="https://img.shields.io/npm/v/@discordia/create-discordia-bot?label=%40discordia%2Fdebug">
+    <img alt="@discordia/create-discordia-bot" src="https://img.shields.io/npm/v/@discordia/create-discordia-bot?label=%40discordia%2Fcreate-discordia-bot">
   </a>
   <a href="https://www.npmjs.com/package/@discordia/create-discordia-bot">
     <img alt="@discordia/create-discordia-bot" src="https://img.shields.io/npm/dw/@discordia/create-discordia-bot">

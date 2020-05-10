@@ -51,11 +51,8 @@ const helpResponse = (userArgs, msg, framework) => {
     }
 
     return `${helpMessageBuilder}
--------------------------
-**Command**: \`${finalAccessorDescription}\`
-
-${description}`;
-  }, messageStarter);
+* \`${finalAccessorDescription}\` - ${description}`;
+  }, `${messageStarter}\n`);
 
   return helpMessage;
 };

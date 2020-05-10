@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@discordia/create-discordia-action">
-    <img alt="@discordia/create-discordia-action" src="https://img.shields.io/npm/v/@discordia/create-discordia-action?label=%40discordia%2Fdebug">
+    <img alt="@discordia/create-discordia-action" src="https://img.shields.io/npm/v/@discordia/create-discordia-action?label=%40discordia%2Fcreate-discordia-action">
   </a>
   <a href="https://www.npmjs.com/package/@discordia/create-discordia-action">
     <img alt="@discordia/create-discordia-action" src="https://img.shields.io/npm/dw/@discordia/create-discordia-action">
@@ -10,7 +10,7 @@
 </p>
 
 # Usage
-Use this generator to quickly bootstrap the sheer minimum discordia action that can be shared and used in other bots created with the [@discordia/framework](https://mfasman95.github.io/discordia/framework). Once this generator is complete you are a single `npm publish` away from a sharable action.
+Use this generator to quickly bootstrap the minimum [@discordia/action](https://mfasman95.github.io/discordia/action) that can be shared and used in other bots created with the [@discordia/framework](https://mfasman95.github.io/discordia/framework). Once this generator is complete you are a single `npm publish` away from a sharable action.
 
 ```bash
 # Run the module using npx
