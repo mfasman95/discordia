@@ -5,8 +5,12 @@ const glob = require('fast-glob');
 const _ = require('lodash');
 const { cyan, yellow } = require('chalk');
 
+const requiredValue = (value) => (_.isEmpty(value) ? 'Required' : true);
+
 module.exports = class extends Generator {
   initializing() {
+    this.config.name = '@discordia/create-discordia-bot';
+
     this.log(
       yosay(
         yellow(`Welcome to ${cyan('create-discordia-bot')}
@@ -25,7 +29,7 @@ Answer the following prompts to create your bot`),
         message: 'Your project name',
         default: this.appname, // Default to current folder name
         store: true,
-        validate: (value) => !_.isEmpty(value),
+        validate: requiredValue,
       },
       {
         type: 'input',
@@ -33,18 +37,18 @@ Answer the following prompts to create your bot`),
         message: 'A short description of your project',
         default: 'A discord bot',
         store: true,
-        validate: (value) => !_.isEmpty(value),
+        validate: requiredValue,
       },
       {
         type: 'input',
         name: 'discordToken',
         message:
           'The token for your discord bot - it will only be stored in a `.env` file that is listed in the provided `.gitignore`',
-        validate: (value) => !_.isEmpty(value),
+        validate: requiredValue,
       },
     ]);
 
-    this.config.set(answers);
+    this.discordToken = answers.discordToken;
   }
 
   writing() {
@@ -52,14 +56,14 @@ Answer the following prompts to create your bot`),
       dot: true,
     });
 
-    this.fs.copyTpl(filesArray, this.destinationRoot(), this.config.getAll());
+    this.fs.copyTpl(filesArray, this.destinationRoot(), {
+      ...this.config.getAll(),
+      discordToken: this.discordToken,
+    });
 
-    /*
-     * The generator cannot be published with a `package.json` or `.gitignore` in the templates folder
-     * rename the files after writing them
-     */
     this.fs.move(this.destinationPath('_package.json'), this.destinationPath('package.json'));
     this.fs.move(this.destinationPath('_gitignore'), this.destinationPath('.gitignore'));
+    this.fs.move(this.destinationPath('_env'), this.destinationPath('.env'));
   }
 
   end() {

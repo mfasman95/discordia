@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "lint": "xo",
+    "lint:fix": "xo --fix"
   },
   "dependencies": {
     "@discordia/action": "^1.0.0",
@@ -13,6 +15,7 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "xo": "^0.30.0"
   }
 }

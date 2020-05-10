@@ -11,14 +11,14 @@ const config = {
     './packages/**/*.js',
     './guides/*.md',
     './README.md',
-    { content: './guides/HOME.md' },
+    { content: './README.md' },
     ...packages.map((pkg) => ({ [pkg]: `./packages/${pkg}/README.md` })),
   ],
   dest: './docs',
   clean: true,
   app: {
     title: 'Discordia',
-    entrance: 'content:home',
+    entrance: 'content:readme',
     base,
     routing: {
       method: 'path',
@@ -38,10 +38,6 @@ const config = {
       navbar: {
         dark: true,
         menu: [
-          {
-            label: 'Readme',
-            href: `${base}readme`,
-          },
           {
             label: 'Getting Started',
             items: [
