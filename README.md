@@ -35,7 +35,7 @@ This guide will walk you through creating a bot from the [Discord developers sit
 ## Contributing
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). After you make your changes and update the appropriate tests, do the following steps:
 
-1) `npm test` - You can also use `npm run test:watch` to validate in a watch loop
-2) `npm run lint` - Your changes will be linted when they are staged, but this will help you catch those changes earlier
-3) `git add ...` - Stage the changes you want to commit
-4) `npm run commit` - This command will walk you through making a conventional commit
+- `npm test` - You can also use `npm run test:watch` to validate in a watch loop
+- `npm run lint` - Your changes will be linted when they are staged, but this will help you catch those changes earlier
+- `git add ...` - Stage the changes you want to commit
+- `npm run commit` - This command will walk you through making a conventional commit
