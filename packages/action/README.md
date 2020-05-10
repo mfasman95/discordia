@@ -1,3 +1,14 @@
+>Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/action)
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@discordia/framework">
+    <img alt="@discordia/framework" src="https://img.shields.io/npm/v/@discordia/framework?label=%40discordia%2Fframework">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/framework">
+    <img alt="@discordia/framework" src="https://img.shields.io/npm/dw/@discordia/framework">
+  </a>
+</p>
+
 - [Installation](#installation)
 - [Basic Example](#basic-example)
 - [Usage](#usage)
@@ -10,8 +21,6 @@
   - [Function Accessor](#function-accessor)
   - [Function Response](#function-response)
 - [Testing](#testing)
-
->Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/)
 
 # Installation
 ```bash

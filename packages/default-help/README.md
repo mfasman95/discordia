@@ -1,7 +1,13 @@
-- [Installation](#installation)
-- [Usage](#usage)
+>Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/default-help)
 
->Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@discordia/default-help">
+    <img alt="@discordia/default-help" src="https://img.shields.io/npm/v/@discordia/default-help?label=%40discordia%2Fdefault-help">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/default-help">
+    <img alt="@discordia/default-help" src="https://img.shields.io/npm/dw/@discordia/default-help">
+  </a>
+</p>
 
 # Installation
 ```bash
@@ -12,5 +18,4 @@ npm install @discordia/default-help
 yarn add @discordia/default-help
 ```
 
-# Usage
-🚧 Coming Soon! 🚧
+🚧 Under Construction 🚧

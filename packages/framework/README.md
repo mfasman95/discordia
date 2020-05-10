@@ -1,3 +1,14 @@
+>Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/framework)
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@discordia/framework">
+    <img alt="@discordia/framework" src="https://img.shields.io/npm/v/@discordia/framework?label=%40discordia%2Fframework">
+  </a>
+  <a href="https://www.npmjs.com/package/@discordia/framework">
+    <img alt="@discordia/framework" src="https://img.shields.io/npm/dw/@discordia/framework">
+  </a>
+</p>
+
 - [Installation](#installation)
 - [Kitchen Sink Example](#kitchen-sink-example)
 - [Usage](#usage)
@@ -6,10 +17,7 @@
   - [Options](#options)
 - [Testing](#testing)
 
->Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/)
-
 # Installation
-Discordia instantiates and starts Discord bots using the [@discordia/framework](https://github.com/mfasman95/discordia/tree/master/packages/framework) module.
 ```bash
 # install the module using npm
 npm install @discordia/framework
