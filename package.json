@@ -87,6 +87,7 @@
   },
   "dependencies": {
     "@discordia/action": "file:packages/action",
+    "@discordia/action-weather-current": "file:actions/action-current-weather",
     "@discordia/complete": "file:packages/complete",
     "@discordia/create-discordia-action": "file:generators/create-discordia-action",
     "@discordia/create-discordia-bot": "file:generators/create-discordia-bot",

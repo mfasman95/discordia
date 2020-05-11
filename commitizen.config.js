@@ -44,6 +44,7 @@ const scopes = [
   'framework',
   'create-discordia-action',
   'create-discordia-bot',
+  'action-current-weather',
   'default-help',
   'complete',
   'debug',

@@ -1,0 +1,42 @@
+{
+  "name": "@discordia/action-weather-current",
+  "version": "1.2.2",
+  "description": "A action-weather-current rollup of the packages in the Discordia monorepo",
+  "keywords": [
+    "discordia",
+    "discord",
+    "action",
+    "action-weather-current"
+  ],
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-weather-current#readme",
+  "bugs": {
+    "url": "https://github.com/mfasman95/discordia/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfasman95/discordia.git"
+  },
+  "license": "MIT",
+  "author": "Matthew <mfasman95@gmail.com>",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "sortPackage": "sort-package-json"
+  },
+  "dependencies": {
+    "@discordia/action": "file:../../packages/action",
+    "node-fetch": "^2.6.0",
+    "temp-units-conv": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=12",
+    "npm": ">=6.10"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.com"
+  },
+  "gitHead": "b6c98bc5a0d7d5af79ffbd08aea21156a926c789"
+}

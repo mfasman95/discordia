@@ -1,5 +1,6 @@
 {
   "packages": [
+    "actions/*",
     "generators/*",
     "packages/*"
   ],

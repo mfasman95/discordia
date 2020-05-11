@@ -6,6 +6,7 @@ const base = process.env.DOCMA_BASE || '/discordia/';
 
 const packages = ['framework', 'action', 'default-help', 'debug', 'complete'];
 const generators = ['create-discordia-bot', 'create-discordia-action'];
+const actions = ['action-current-weather'];
 
 const config = {
   src: [
@@ -72,6 +73,10 @@ const config = {
           {
             label: 'Generators',
             items: generators.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
+          },
+          {
+            label: 'Actions',
+            items: actions.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
           },
           {
             // https://fontawesome.com/icons/at?style=solid

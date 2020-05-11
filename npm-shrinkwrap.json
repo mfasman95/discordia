@@ -774,6 +774,14 @@
         "lodash": "^4.17.15"
       }
     },
+    "@discordia/action-weather-current": {
+      "version": "file:actions/action-current-weather",
+      "requires": {
+        "@discordia/action": "file:packages/action",
+        "node-fetch": "^2.6.0",
+        "temp-units-conv": "^1.0.2"
+      }
+    },
     "@discordia/complete": {
       "version": "file:packages/complete",
       "requires": {
@@ -17931,6 +17939,11 @@
       "resolved": "https://registry.npmjs.org/temp-dir/-/temp-dir-2.0.0.tgz",
       "integrity": "sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==",
       "dev": true
+    },
+    "temp-units-conv": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/temp-units-conv/-/temp-units-conv-1.0.2.tgz",
+      "integrity": "sha512-+yCh3r1VWwV5caJxgT2A1Q7iORqR4gOErvgLBY2RL4UTYq8aNy0aDlN/FAjPREU/Y0iT8ZDi1IWM30dNFZQWlw=="
     },
     "temp-write": {
       "version": "3.4.0",

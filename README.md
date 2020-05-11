@@ -8,8 +8,6 @@
   </a>
 </p>
 
-See the [documentation site](https://mfasman95.github.io/discordia/) for more info.
-
 ## What is Discordia?
 Discordia is the Roman equivalent of [Eris, the Goddess of Discord](https://en.wikipedia.org/wiki/Eris_(mythology)).
 
@@ -17,11 +15,11 @@ This monorepo, on the other hand, is a tool for creating Discord bots. The core 
 
 The `framework` module is used to register your discord bot by giving it your discord bot token as well as giving the bot a name to respond to.
 
-The `action` module is how you handle the message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the response to be given if the accessor is met). You can also publish the actions you make individually so that others can add those actions to their bots.
+The `action` module is how you handle message responses. It allows you to specify accessors (conditions under which the bot should respond) and responses (the response to be given if the accessor is met). You can also publish the actions you make so that others can add those actions to their bots.
 
 For a tutorial on how to setup a project using `@discordia` you can check out the [getting started guide](https://mfasman95.github.io/discordia/gs_setup_your_bot).
 
-You can also use one of the [generators](#generators) to bootstrap your own bot or bootstrap an action to publish on its own.
+You can also use one of the [generators](#generators) to [bootstrap your own bot](https://mfasman95.github.io/discordia/create-discordia-bot) or [bootstrap an action](https://mfasman95.github.io/discordia/create-discordia-action) to publish on its own.
 
 ## Packages
 <p align="center">
@@ -52,6 +50,9 @@ Use these generators to quickly bootstrap projects related to the `@discordia` f
     <img alt="@discordia/create-discordia-action" src="https://img.shields.io/npm/v/@discordia/create-discordia-action?label=%40discordia%2Fcreate-discordia-action">
   </a>
 </p>
+
+## Actions
+
 
 ## [Getting Started](https://mfasman95.github.io/discordia/gs_setup_your_bot)
 This guide will walk you through creating a bot from the [Discord developers site](http://discordapp.com/developers/) as well as setting up your workspace to develop an `@discordia` bot with Node and NPM, and then finally how to use the [@discordia/framework](https://mfasman95.github.io/discordia/framework) and [@discordia/action](https://mfasman95.github.io/discordia/action) modules.
