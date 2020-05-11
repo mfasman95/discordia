@@ -5,6 +5,20 @@
 ### Bug Fixes
 
 * fix broken commit ([1ac3319](https://github.com/mfasman95/discordia/commit/1ac3319))
+* version fix ([73a2585](https://github.com/mfasman95/discordia/commit/73a2585))
+* **action-current-weather:** include icon embed ([1d95116](https://github.com/mfasman95/discordia/commit/1d95116))
+* **action-current-weather:** include icon embed ([a992c5e](https://github.com/mfasman95/discordia/commit/a992c5e))
+* documentation fix ([df82a56](https://github.com/mfasman95/discordia/commit/df82a56))
+
+
+
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.3.0...v1.0.0) (2020-05-11)
+
+
+### Bug Fixes
+
+* fix broken commit ([1ac3319](https://github.com/mfasman95/discordia/commit/1ac3319))
 * **action-current-weather:** include icon embed ([1d95116](https://github.com/mfasman95/discordia/commit/1d95116))
 * **action-current-weather:** include icon embed ([a992c5e](https://github.com/mfasman95/discordia/commit/a992c5e))
 * documentation fix ([df82a56](https://github.com/mfasman95/discordia/commit/df82a56))
