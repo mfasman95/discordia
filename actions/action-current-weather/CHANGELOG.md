@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/mfasman95/discordia/compare/v1.4.1...v1.4.2) (2020-05-11)
+
+
+### Bug Fixes
+
+* documentation fixes ([144a707](https://github.com/mfasman95/discordia/commit/144a707c166e70c9557f2d38f35e75fd75babcc7))
+
+
+
+
+
 # 1.4.0 (2020-05-11)
 
 
