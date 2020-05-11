@@ -8,6 +8,17 @@ const RESPONSE_FORMAT = {
 };
 
 const formatResponse = (weatherJSON, format, location) => {
+  const primaryWeatherCondition = weatherJSON.weather[0];
+
+  const embed = `http://openweathermap.org/img/wn/${primaryWeatherCondition.icon}@2x.png`;
+
+  if (format === 'advanced') {
+    const advancedResponse = `\`\`\`json
+${JSON.stringify(weatherJSON, null, 2)}
+\`\`\``;
+    return [advancedResponse, embed];
+  }
+
   const tempFahrenheit = Math.round(tuc.k2f(weatherJSON.main.temp));
   const tempCelsius = Math.round(tuc.k2c(weatherJSON.main.temp));
   const tempMinFahrenheit = Math.round(tuc.k2f(weatherJSON.main.temp_min));
@@ -15,24 +26,12 @@ const formatResponse = (weatherJSON, format, location) => {
   const tempMaxFahrenheit = Math.round(tuc.k2f(weatherJSON.main.temp_max));
   const tempMaxCelsius = Math.round(tuc.k2c(weatherJSON.main.temp_max));
 
-  const simpleResponse = `The weather for ${location} is ${weatherJSON.weather[0].description}
+  const simpleResponse = `The weather for ${location} is ${primaryWeatherCondition.description}
 Current Temperature: ${tempFahrenheit}°F  |  ${tempCelsius}°C
 Min Temperature    : ${tempMinFahrenheit}°F  |  ${tempMinCelsius}°C
 Max Temperature    : ${tempMaxFahrenheit}°F  |  ${tempMaxCelsius}°C`;
 
-  switch (format) {
-    case 'simple': {
-      return simpleResponse;
-    }
-    case 'advanced': {
-      return `\`\`\`json
-${JSON.stringify(weatherJSON, null, 2)}
-\`\`\``;
-    }
-    default: {
-      return simpleResponse;
-    }
-  }
+  return [simpleResponse, embed];
 };
 
 module.exports = (APIKey) => {
@@ -71,7 +70,14 @@ ${JSON.stringify(weatherJSON, null, 2)}
         format = 'simple';
       }
 
-      return msg.channel.send(formatResponse(weatherJSON, format, location.split(',').join(', ')));
+      const [responseText, embedUrl] = formatResponse(weatherJSON, format, location.split(',').join(', '));
+      return msg.channel.send(responseText, {
+        embed: {
+          image: {
+            url: embedUrl,
+          },
+        },
+      });
     } catch (err) {
       return msg.reply('There was an error with the `weather` action :frowning:');
     }
