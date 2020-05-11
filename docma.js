@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const Docma = require('docma');
+const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
@@ -81,7 +82,7 @@ const config = {
           {
             // https://fontawesome.com/icons/at?style=solid
             iconClass: 'fas fa-lg fa-at',
-            label: 'API',
+            label: `API ${version}`,
             href: `${base}api`,
           },
           {

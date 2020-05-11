@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/@discordia/action-weather-current">
-    <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/v/@discordia/action-weather-current?label=%40discordia%2Fcomplete">
+    <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/v/@discordia/action-weather-current?label=%40discordia%2Faction-weather-current">
   </a>
   <a href="https://www.npmjs.com/package/@discordia/action-weather-current">
     <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/dw/@discordia/action-weather-current">
