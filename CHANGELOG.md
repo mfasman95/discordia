@@ -1,3 +1,15 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/mfasman95/discordia/compare/v1.3.0...v1.0.0) (2020-05-11)
+
+
+### Bug Fixes
+
+* **action-current-weather:** include icon embed ([1d95116](https://github.com/mfasman95/discordia/commit/1d95116))
+* **action-current-weather:** include icon embed ([a992c5e](https://github.com/mfasman95/discordia/commit/a992c5e))
+* documentation fix ([df82a56](https://github.com/mfasman95/discordia/commit/df82a56))
+
+
+
 # Change Log
 
 All notable changes to this project will be documented in this file.
