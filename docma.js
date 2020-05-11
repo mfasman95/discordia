@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const Docma = require('docma');
+const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
@@ -13,7 +14,6 @@ const config = {
     './guides/*.md',
     './README.md',
     { content: './README.md' },
-    ...actions.map((pkg) => ({ [pkg]: `./actions/${pkg}/README.md` })),
     ...packages.map((pkg) => ({ [pkg]: `./packages/${pkg}/README.md` })),
     ...generators.map((pkg) => ({ [pkg]: `./generators/${pkg}/README.md` })),
   ],
@@ -81,7 +81,7 @@ const config = {
           {
             // https://fontawesome.com/icons/at?style=solid
             iconClass: 'fas fa-lg fa-at',
-            label: 'API',
+            label: `API ${version}`,
             href: `${base}api`,
           },
           {
