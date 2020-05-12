@@ -34,7 +34,9 @@
     "sortPackage": "sort-package-json && lerna run sortPackage",
     "test": "jest",
     "test:watch": "jest --watch",
-    "preversion": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "preversion": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "example": "node example-bot/index.js",
+    "example:dev": "DEBUG=@discordia* nodemon example-bot/index.js"
   },
   "husky": {
     "hooks": {
@@ -87,13 +89,14 @@
   },
   "dependencies": {
     "@discordia/action": "file:packages/action",
-    "@discordia/action-weather-current": "file:actions/action-current-weather",
+    "@discordia/action-openweather-current": "file:actions/OpenWeather/action-openweather-current",
     "@discordia/complete": "file:packages/complete",
     "@discordia/create-discordia-action": "file:generators/create-discordia-action",
     "@discordia/create-discordia-bot": "file:generators/create-discordia-bot",
     "@discordia/debug": "file:packages/debug",
     "@discordia/default-help": "file:packages/default-help",
-    "@discordia/framework": "file:packages/framework"
+    "@discordia/framework": "file:packages/framework",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
