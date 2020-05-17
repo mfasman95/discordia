@@ -1,14 +1,14 @@
 {
-  "name": "@discordia/action-weather-current",
+  "name": "@discordia/action-openweather-current",
   "version": "1.4.2",
-  "description": "A action-weather-current rollup of the packages in the Discordia monorepo",
+  "description": "A action-openweather-current rollup of the packages in the Discordia monorepo",
   "keywords": [
     "discordia",
     "discord",
     "action",
-    "action-weather-current"
+    "action-openweather-current"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-weather-current#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-openweather-current#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -26,7 +26,7 @@
     "sortPackage": "sort-package-json"
   },
   "dependencies": {
-    "@discordia/action": "file:../../packages/action",
+    "@discordia/action": "file:../../../packages/action",
     "node-fetch": "^2.6.0",
     "temp-units-conv": "^1.0.2"
   },

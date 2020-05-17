@@ -53,8 +53,8 @@ Use these generators to quickly bootstrap projects related to the `@discordia` f
 
 ## Actions
 <p align="center">
-  <a href="https://www.npmjs.com/package/@discordia/action-weather-current">
-    <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/v/@discordia/action-weather-current?label=%40discordia%2Faction-weather-current">
+  <a href="https://www.npmjs.com/package/@discordia/action-openweather-current">
+    <img alt="@discordia/action-openweather-current" src="https://img.shields.io/npm/v/@discordia/action-openweather-current?label=%40discordia%2Faction-weather-current">
   </a>
 </p>
 
