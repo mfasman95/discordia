@@ -1,13 +1,13 @@
 
 <html><head></head><body><blockquote>
-<p>Note: Some of the links in this README file work better on the <a href="https://mfasman95.github.io/discordia/action-weather-current">documentation site</a></p>
+<p>Note: Some of the links in this README file work better on the <a href="https://mfasman95.github.io/discordia/action-anilist-user">documentation site</a></p>
 </blockquote>
 <p align="center">
-  <a href="https://www.npmjs.com/package/@discordia/action-weather-current">
-    <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/v/@discordia/action-weather-current?label=%40discordia%2Faction-weather-current" style="max-width: 100%;">
+  <a href="https://www.npmjs.com/package/@discordia/action-anilist-user">
+    <img alt="@discordia/action-anilist-user" src="https://img.shields.io/npm/v/@discordia/action-anilist-user?label=%40discordia%2Faction-anilist-user" style="max-width: 100%;">
   </a>
-  <a href="https://www.npmjs.com/package/@discordia/action-weather-current">
-    <img alt="@discordia/action-weather-current" src="https://img.shields.io/npm/dw/@discordia/action-weather-current" style="max-width: 100%;">
+  <a href="https://www.npmjs.com/package/@discordia/action-anilist-user">
+    <img alt="@discordia/action-anilist-user" src="https://img.shields.io/npm/dw/@discordia/action-anilist-user" style="max-width: 100%;">
   </a>
 </p>
 
@@ -18,19 +18,19 @@
 <h1 id="installation">Installation</h1>
 <hr />
 <pre><code class="bash"># install the module using npm
-npm install @discordia/action-weather-current
+npm install @discordia/action-anilist-user
 
 # install the module using yarn
-yarn add @discordia/action-weather-current</code></pre>
+yarn add @discordia/action-anilist-user</code></pre>
 <h1 id="usage">Usage</h1>
 <hr />
 <p>Add the query to the existing array of queries that your bot can respond to.</p>
 <pre><code class="js">const DiscordiaFramework = require('@discordia/framework');
-const actionJsonQuery = require('@discordia/action-weather-current');
+const actionAniListUser = require('@discordia/action-anilist-user');
 
 const actions = [
   // Other actions can go here...
-  actionJsonQuery('OpenWeather API Key'),
+  actionAniListUser,
 ];
 
 const myBot = new DiscordiaFramework('DISCORD TOKEN', actions);
