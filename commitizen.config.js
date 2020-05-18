@@ -42,9 +42,9 @@ const types = [
 const scopes = [
   'action',
   'framework',
-  'create-discordia-action',
-  'create-discordia-bot',
-  'action-current-weather',
+  'generator',
+  'anilist',
+  'openweather',
   'default-help',
   'complete',
   'debug',
