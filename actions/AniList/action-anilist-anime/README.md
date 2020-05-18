@@ -1,11 +1,11 @@
->Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/action-openweather-current)
+>Note: Some of the links in this README file work better on the [documentation site](https://mfasman95.github.io/discordia/action-anilist-anime)
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/@discordia/action-openweather-current">
-    <img alt="@discordia/action-openweather-current" src="https://img.shields.io/npm/v/@discordia/action-openweather-current?label=%40discordia%2Faction-openweather-current">
+  <a href="https://www.npmjs.com/package/@discordia/action-anilist-anime">
+    <img alt="@discordia/action-anilist-anime" src="https://img.shields.io/npm/v/@discordia/action-anilist-anime?label=%40discordia%2Faction-anilist-anime">
   </a>
-  <a href="https://www.npmjs.com/package/@discordia/action-openweather-current">
-    <img alt="@discordia/action-openweather-current" src="https://img.shields.io/npm/dw/@discordia/action-openweather-current">
+  <a href="https://www.npmjs.com/package/@discordia/action-anilist-anime">
+    <img alt="@discordia/action-anilist-anime" src="https://img.shields.io/npm/dw/@discordia/action-anilist-anime">
   </a>
 </p>
 
@@ -17,21 +17,21 @@ The request comes in the form `@BotName weather {city name} {state} {country cod
 # Installation
 ```bash
 # install the module using npm
-npm install @discordia/action-openweather-current
+npm install @discordia/action-anilist-anime
 
 # install the module using yarn
-yarn add @discordia/action-openweather-current
+yarn add @discordia/action-anilist-anime
 ```
 
 # Usage
 Add the query to the existing array of queries that your bot can respond to.
 ```js
 const DiscordiaFramework = require('@discordia/framework');
-const actionOpenWeatherCurrent = require('@discordia/action-openweather-current');
+const actionAniListAnime = require('@discordia/action-anilist-anime');
 
 const actions = [
   // Other actions can go here...
-  actionOpenWeatherCurrent('OpenWeather API Key'),
+  actionAniListAnime,
 ];
 
 const myBot = new DiscordiaFramework('DISCORD TOKEN', actions);

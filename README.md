@@ -51,14 +51,6 @@ Use these generators to quickly bootstrap projects related to the `@discordia` f
   </a>
 </p>
 
-## Actions
-<p align="center">
-  <a href="https://www.npmjs.com/package/@discordia/action-openweather-current">
-    <img alt="@discordia/action-openweather-current" src="https://img.shields.io/npm/v/@discordia/action-openweather-current?label=%40discordia%2Faction-weather-current">
-  </a>
-</p>
-
-
 ## [Getting Started](https://mfasman95.github.io/discordia/gs_setup_your_bot)
 This guide will walk you through creating a bot from the [Discord developers site](http://discordapp.com/developers/) as well as setting up your workspace to develop an `@discordia` bot with Node and NPM, and then finally how to use the [@discordia/framework](https://mfasman95.github.io/discordia/framework) and [@discordia/action](https://mfasman95.github.io/discordia/action) modules.
 

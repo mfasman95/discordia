@@ -170,7 +170,7 @@ class DiscordiaAction {
         let userAction = false;
         this.accessor.forEach((accessor) => {
           if (checkAccessor(msgContent, accessor, framework.startingIndex)) {
-            if (userAction !== false && accessor.length > userAction) {
+            if (userAction !== false && accessor.length > userAction.length) {
               userAction = accessor;
             } else if (userAction === false) {
               userAction = accessor;

@@ -1,14 +1,14 @@
 {
-  "name": "@discordia/action-openweather-current",
+  "name": "@discordia/action-anilist-manga",
   "version": "1.4.2",
-  "description": "An action to look up the current weather for a city using the OpenWeather API",
+  "description": "An action to look up an manga using the AniList GraphQL API",
   "keywords": [
     "discordia",
     "discord",
     "action",
-    "action-openweather-current"
+    "action-anilist-manga"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-openweather-current#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-anilist-manga#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -27,8 +27,9 @@
   },
   "dependencies": {
     "@discordia/action": "file:../../../packages/action",
-    "node-fetch": "^2.6.0",
-    "temp-units-conv": "^1.0.2"
+    "discord.js": "^12.2.0",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": ">=12",

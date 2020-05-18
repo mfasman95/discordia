@@ -1,14 +1,14 @@
 {
-  "name": "@discordia/action-openweather-current",
+  "name": "@discordia/action-anilist-user",
   "version": "1.4.2",
-  "description": "An action to look up the current weather for a city using the OpenWeather API",
+  "description": "An action to look up an user using the AniList GraphQL API",
   "keywords": [
     "discordia",
     "discord",
     "action",
-    "action-openweather-current"
+    "action-anilist-user"
   ],
-  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-openweather-current#readme",
+  "homepage": "https://github.com/mfasman95/discordia/tree/master/packages/action-anilist-user#readme",
   "bugs": {
     "url": "https://github.com/mfasman95/discordia/issues"
   },
@@ -27,8 +27,11 @@
   },
   "dependencies": {
     "@discordia/action": "file:../../../packages/action",
-    "node-fetch": "^2.6.0",
-    "temp-units-conv": "^1.0.2"
+    "discord.js": "^12.2.0",
+    "lodash": "^4.17.15",
+    "moment": "^2.25.3",
+    "moment-duration-format": "^2.3.2",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": ">=12",

@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
 const Docma = require('docma');
+const _ = require('lodash');
 const { version } = require('./lerna.json');
 
 const base = process.env.DOCMA_BASE || '/discordia/';
 
 const packages = ['framework', 'action', 'default-help', 'debug', 'complete'];
 const generators = ['create-discordia-bot', 'create-discordia-action'];
-const actions = ['action-current-weather'];
+const aniListActions = ['anime', 'manga', 'user'];
+const openWeatherActions = ['current'];
 
 const config = {
   src: [
@@ -14,9 +16,14 @@ const config = {
     './guides/*.md',
     './README.md',
     { content: './README.md' },
-    ...actions.map((pkg) => ({ [pkg]: `./actions/${pkg}/README.md` })),
     ...packages.map((pkg) => ({ [pkg]: `./packages/${pkg}/README.md` })),
     ...generators.map((pkg) => ({ [pkg]: `./generators/${pkg}/README.md` })),
+    ...aniListActions.map((pkg) => ({
+      [`action-anilist-${pkg}`]: `./actions/AniList/action-anilist-${pkg}/README.md`,
+    })),
+    ...openWeatherActions.map((pkg) => ({
+      [`action-openweather-${pkg}`]: `./actions/OpenWeather/action-openweather-${pkg}/README.md`,
+    })),
   ],
   dest: './docs',
   clean: true,
@@ -77,7 +84,19 @@ const config = {
           },
           {
             label: 'Actions',
-            items: actions.map((pkg) => ({ label: pkg, href: `${base}${pkg}` })),
+            items: [
+              { separator: true },
+              { label: '<b>AniList</b>' },
+              { separator: true },
+              ...aniListActions.map((pkg) => ({ label: _.upperFirst(pkg), href: `${base}action-anilist-${pkg}` })),
+              { separator: true },
+              { label: '<b>OpenWeather</b>' },
+              { separator: true },
+              ...openWeatherActions.map((pkg) => ({
+                label: _.upperFirst(pkg),
+                href: `${base}action-openweather-${pkg}`,
+              })),
+            ],
           },
           {
             // https://fontawesome.com/icons/at?style=solid

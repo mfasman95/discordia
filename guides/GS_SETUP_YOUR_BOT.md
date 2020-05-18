@@ -12,7 +12,7 @@ Put in the name of your application - this will end up being the default name of
 </div>
 
 # Save the Client ID
-This link - `https://discordapp.com/oauth2/authorize?&client_id={Client ID}&scope=bot&permissions={Permissions Integer}` - is the link used to invite users to your server. Replace `{Client ID}` in this link with the "Client ID" in the center of your page. We will get to `{Permissing Integer}` later.
+This link - `https://discordapp.com/oauth2/authorize?&client_id={Client ID}&scope=bot&permissions={Permissions Integer}` - is the link used to invite users to your server. Replace `{Client ID}` in this link with the "Client ID" in the center of your page. We will get to `{Permissions Integer}` later.
 
 <div style="width: 100%">
   <img src="img/gs_setup_your_bot/save_client_id.png" style="margin: auto; display: block;">
