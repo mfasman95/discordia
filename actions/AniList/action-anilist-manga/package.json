@@ -1,6 +1,6 @@
 {
   "name": "@discordia/action-anilist-manga",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "An action to look up an manga using the AniList GraphQL API",
   "keywords": [
     "discordia",
