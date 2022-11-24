@@ -141,7 +141,7 @@ describe('@discordia/framework', () => {
 
   describe('shouldHandleMessage', () => {
     const mockUserId = 123;
-    const defaultNamePattern = `<@!${mockUserId}>`;
+    const defaultNamePattern = `<@${mockUserId}>`;
     const mockName = 'MOCK_NAME';
 
     test('should return true if botName is based on framework.client.user.id and options are default', () => {

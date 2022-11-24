@@ -66,7 +66,6 @@ query ($username: String) {
 `;
 
 const response = async (msgContent, msg, framework, userArgs) => {
-  console.log(msgContent, userArgs);
   try {
     const res = await fetch('https://graphql.anilist.co', {
       method: 'POST',

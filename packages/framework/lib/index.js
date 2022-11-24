@@ -66,7 +66,7 @@ class DiscordiaFramework {
       if (this.name) {
         this.startingIndex = this.name.length + 1;
       } else {
-        this.startingIndex = `<@!${this.client.user.id}>`.length + 1;
+        this.startingIndex = `<@${this.client.user.id}>`.length + 1;
       }
     };
     this.validateToken(token);
@@ -211,7 +211,7 @@ class DiscordiaFramework {
       return msgContent.toLowerCase().indexOf(this.name.toLowerCase()) === 0;
     }
 
-    return msgContent.indexOf(`<@!${this.client.user.id}>`) === 0;
+    return msgContent.indexOf(`<@${this.client.user.id}>`) === 0;
   }
 
   /**
